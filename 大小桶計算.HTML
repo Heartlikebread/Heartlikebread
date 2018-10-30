@@ -4,84 +4,129 @@
   <meta charset="UTF-8">
   <title>大小桶計算</title>  
   <script src="js/jquery-1.11.0.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
    <div align="center">
-  <table align="center">
+  <table class="table" align="center" style="width:60%">
     <tr  style="height:30px;">
-      <td>        
-     單號金額：
+	 <td>        
+     單號金額：      
+      </td>
+      <td>           
       <span><input id="Order" type="text"></span> 
       </td>
-      <td>
-         稅金：
+	   <td>
+         稅金：     
+      </td>
+      <td>        
       <span><input id="Tax" type="text" disabled="true" ></span>         
       </td>
-      <td>
-         含稅總金額：
+	   <td>
+         含稅總金額：     
+      </td>
+      <td>       
       <span><input id="TotalQuantity" type="text"disabled="true"></span>           
       </td>
     </tr>
       <tr  style="height:30px;">
-      <td>        
-     大桶金額：
+ <td>        
+     大桶金額：     
+      </td>     
+	 <td>            
       <span><input id="bigBucket" type="text"></span> 
       </td>
-      <td>
-         大桶最佳數量：
-      <span><input id="bigBucketQuantity" type="text" disabled="true"></span>         
+	   <td>
+         大桶最佳數量：          
       </td>
       <td>
-         大桶總金額：
+               <span><input id="bigBucketQuantity" type="text" disabled="true"></span>         
+      </td>
+	  <td>
+         大桶總金額：     
+      </td>
+      <td>         
       <span><input id="bigBucketTotal" type="text" disabled="true"></span> 
       </td>
     </tr>
       <tr  style="height:30px;">
-      <td>        
+	   <td>        
      小桶金額：
+      
+      </td>
+      <td>        
+     
       <span><input id="SmallBucket" type="text"></span> 
       </td>
       <td>
-         小桶最佳數量：
+         小桶最佳數量：         
+      </td>
+	  <td>         
       <span><input id="SmallBucketQuantity" type="text" disabled="true"></span>         
       </td>
-      <td>
-         小桶總金額：
+	   <td>
+         小桶總金額： 
+      </td>
+      <td>         
       <span><input id="SmallBucketTotal" type="text" disabled="true"></span> 
       </td>
     </tr>
        <tr  style="height:30px;">
-      <td>        
-     希望大桶數：
+	   <td>        
+     希望大桶數：    
+      </td>
+      <td>           
       <span><input id="HopeBigBucket" type="text"></span> 
       </td>
-      <td>
+	     <td>
          大小合計金額：
-      <span><input id="TotalSum" type="text" disabled="true"></span>         
+              
       </td>
       <td>
+       
+      <span><input id="TotalSum" type="text" disabled="true"></span>         
+      </td>
+	   <td>
          餘：
+      
+      </td>
+
+      <td>
+       
       <span><input id="Balance" type="text" disabled="true"></span> 
       </td>
 
       </tr>
        <tr  style="height:30px;">
-      <td>        
+       <td>        
      希望小桶數：
+     
+      </td>
+	  <td>        
+     
       <span><input id="HopeSmallBucket" type="text"></span> 
       </td>
       <td>
          稅金：
+      
+      </td>
+	  <td>
+      
       <span><input id="SubTax" type="text" disabled="true"></span>         
       </td>
       <td>
-         含稅總金額：
+         含稅總金額：      
+     	 </td>
+		  <td>
+         
       <span><input id="SubTotalQuantity" type="text" disabled="true"></span> 
       </td>
     </tr>
      
   </table> 
-   <button  style="width:50%;height:50px;" onclick="Calculation();">進行運算</button>
+   <button class="btn-info" style="width:50%;height:50px;" onclick="Calculation();">進行運算</button>
   </div> 
   
 <script>		
