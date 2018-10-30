@@ -34,7 +34,7 @@
      單號金額：      
       </td>
       <td>           
-      <input id="Order" class="form-control" type="text">
+      <input id="Order" class="form-control" type="text" onkeypress="Orderkey(event)">
       </td>
 	   <td>
          稅金：     
@@ -54,7 +54,7 @@
      大桶金額：     
       </td>     
 	 <td>            
-      <span><input id="bigBucket" class="form-control" type="text"></span> 
+      <span><input id="bigBucket" class="form-control" type="text" onkeypress="bigBucketkey(event)" ></span> 
       </td>
 	   <td>
          大桶最佳數量：          
@@ -76,7 +76,7 @@
       </td>
       <td>        
      
-      <span><input id="SmallBucket" class="form-control" type="text"></span> 
+      <span><input id="SmallBucket" class="form-control" type="text" onkeypress="SmallBucketkey(event)" > </span> 
       </td>
       <td>
          小桶最佳數量：         
@@ -163,6 +163,25 @@ var SmallBucketTotal=document.getElementById("SmallBucketTotal");
 var SubTax=document.getElementById("SubTax");
 var SubTotalQuantity=document.getElementById("SubTotalQuantity");
 
+
+function Orderkey(even){
+if(even.keyCode === 13){
+            bigBucket.focus();           
+        }
+}
+function bigBucketkey(even){
+if(even.keyCode === 13){
+            SmallBucket.focus();           
+        }
+}
+function SmallBucketkey(even){
+if(even.keyCode === 13){
+            HopeSmallBucket.focus();           
+        }
+}
+
+
+
 function Calculation(){
 if(Order.value==''||Order.value==undefined)
 {
@@ -233,10 +252,10 @@ return;
                   }
                   if (quotient == 0)
                   {
-                      
-                      alert("無法整除，請重新設定大桶與小桶金額!");
-                      init();
-                      Loop = true;
+					Loop = true;
+                       init();
+                      alert("無法整除，請重新設定大桶與小桶金額!");                     
+                      return;
                   }
               }
           }
