@@ -7,78 +7,96 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  .block {
+ position: absolute;   
+            top: 50%;   
+            left: 50%;   
+            -webkit-transform: translate(-50%, -50%);   
+            -moz-transform: translate(-50%, -50%);   
+            -ms-transform: translate(-50%, -50%);   
+            -o-transform: translate(-50%, -50%);   
+            transform: translate(-50%, -50%);   
+			algin:center;
+
+}
+ .table td{
+ width:16%;
+ }
+
+  </style>
 </head>
 <body>
-   <div align="center">
-  <table class="table" align="center" style="width:60%">
-    <tr  style="height:30px;">
-	 <td>        
+   <div class="block">
+  <table class="table" align="center" >
+    <tr>
+	 <td> 	 
      單號金額：      
       </td>
       <td>           
-      <span><input id="Order" type="text"></span> 
+      <input id="Order" class="form-control" type="text">
       </td>
 	   <td>
          稅金：     
       </td>
       <td>        
-      <span><input id="Tax" type="text" disabled="true" ></span>         
+      <input id="Tax" class="form-control"  type="text" disabled="true" >      
       </td>
 	   <td>
          含稅總金額：     
       </td>
       <td>       
-      <span><input id="TotalQuantity" type="text"disabled="true"></span>           
+      <input id="TotalQuantity" class="form-control"  type="text"disabled="true">         
       </td>
     </tr>
-      <tr  style="height:30px;">
+      <tr >
  <td>        
      大桶金額：     
       </td>     
 	 <td>            
-      <span><input id="bigBucket" type="text"></span> 
+      <span><input id="bigBucket" class="form-control" type="text"></span> 
       </td>
 	   <td>
          大桶最佳數量：          
       </td>
       <td>
-               <span><input id="bigBucketQuantity" type="text" disabled="true"></span>         
+             <input id="bigBucketQuantity" class="form-control"  type="text" disabled="true">     
       </td>
 	  <td>
          大桶總金額：     
       </td>
       <td>         
-      <span><input id="bigBucketTotal" type="text" disabled="true"></span> 
+      <span><input id="bigBucketTotal" class="form-control"  type="text" disabled="true"></span> 
       </td>
     </tr>
-      <tr  style="height:30px;">
+      <tr >
 	   <td>        
      小桶金額：
       
       </td>
       <td>        
      
-      <span><input id="SmallBucket" type="text"></span> 
+      <span><input id="SmallBucket" class="form-control" type="text"></span> 
       </td>
       <td>
          小桶最佳數量：         
       </td>
 	  <td>         
-      <span><input id="SmallBucketQuantity" type="text" disabled="true"></span>         
+      <span><input id="SmallBucketQuantity" class="form-control"  type="text" disabled="true"></span>         
       </td>
 	   <td>
          小桶總金額： 
       </td>
       <td>         
-      <span><input id="SmallBucketTotal" type="text" disabled="true"></span> 
+      <span><input id="SmallBucketTotal" class="form-control"  type="text" disabled="true"></span> 
       </td>
     </tr>
-       <tr  style="height:30px;">
+       <tr >
 	   <td>        
      希望大桶數：    
       </td>
       <td>           
-      <span><input id="HopeBigBucket" type="text"></span> 
+      <span><input id="HopeBigBucket"  class="form-control" type="text"></span> 
       </td>
 	     <td>
          大小合計金額：
@@ -86,7 +104,7 @@
       </td>
       <td>
        
-      <span><input id="TotalSum" type="text" disabled="true"></span>         
+      <span><input id="TotalSum" class="form-control"  type="text" disabled="true"></span>         
       </td>
 	   <td>
          餘：
@@ -95,18 +113,18 @@
 
       <td>
        
-      <span><input id="Balance" type="text" disabled="true"></span> 
+      <span><input id="Balance" class="form-control"  type="text" disabled="true"></span> 
       </td>
 
       </tr>
-       <tr  style="height:30px;">
+       <tr>
        <td>        
      希望小桶數：
      
       </td>
 	  <td>        
      
-      <span><input id="HopeSmallBucket" type="text"></span> 
+      <span><input id="HopeSmallBucket" class="form-control" type="text"></span> 
       </td>
       <td>
          稅金：
@@ -114,19 +132,20 @@
       </td>
 	  <td>
       
-      <span><input id="SubTax" type="text" disabled="true"></span>         
+      <span><input id="SubTax" type="text" class="form-control"  disabled="true"></span>         
       </td>
       <td>
          含稅總金額：      
      	 </td>
 		  <td>
          
-      <span><input id="SubTotalQuantity" type="text" disabled="true"></span> 
+      <span><input id="SubTotalQuantity" class="form-control"  type="text" disabled="true"></span> 
       </td>
     </tr>
      
   </table> 
-   <button class="btn-info" style="width:50%;height:50px;" onclick="Calculation();">進行運算</button>
+  
+   <button class="btn-info" style="width:100%;height:50px;" onclick="Calculation();">進行運算</button>
   </div> 
   
 <script>		
