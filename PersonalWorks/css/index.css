@@ -1,0 +1,59 @@
+*{
+margin: 0px;
+padding: 0px;
+}
+body{
+    background-color: beige;
+    font-family: Microsoft JhengHei;
+}
+#wrapper{
+    margin: 0px auto;
+    width: 1024px;
+}
+#logo{
+    height: 250px;
+}
+nav{
+    background-color: #b63D32;
+    text-align:center;
+}
+ul{
+    display: inline-block;
+    margin: 0px;
+}
+li{
+    list-style-type: none;
+    float: left;
+    text-align: center;
+}
+li a{
+    display: block;
+    padding: 15px 20px;
+    color:#FFFFFF;
+    text-decoration: none;
+}
+li a:hover{
+    color: #FFC90E
+}
+#content_in{
+    padding: 30px 50px;
+    text-align: center;
+    background-color: #F4F4ED; 
+}
+#content h1{
+   color: #B63D32;
+   margin-bottom: 10px;
+}
+#content h2{    
+    color: rgba(53, 58, 46, 0.315);
+    margin-bottom: 10px;
+}
+footer{
+    background-color: #71552A;
+    text-align: center;
+}
+footer p{
+font-size: 10px;
+color:#FFFFFF;
+padding:10px 0px;
+}
