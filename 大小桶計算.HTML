@@ -215,7 +215,7 @@ return;
 		  bigBucketQuantity.value=quotient
              SmallBucketQuantity.value = remainder; 
 		//示大小桶金額
-		bigBucketTotal.value=bigBucketQuantity.value*quotient;
+		bigBucketTotal.value=parseInt(bigBucket.value)*quotient;
           SmallBucketTotal.value=SmallBucketQuantity.value*remainder;
           }
           else
@@ -231,7 +231,7 @@ return;
                   quotient--;
                 var newbigBucket= original - quotient;
                   //取得小桶須整除(餘數+大桶的價錢)若無法 則進入下一次迴圈
-                  var smalltotalBucket = (bigBucket.value* newbigBucket) + remainder;
+                  var smalltotalBucket = (parseInt(bigBucket.value)* newbigBucket) + remainder;
                   //計算小桶能不能跟餘數總除算出餘數為零
                   var subremainder = smalltotalBucket % SmallBucket.value  ;
                   //取小桶商數
@@ -244,8 +244,8 @@ return;
                       //顯示小桶數輛
                       SmallBucketQuantity.value = subquotient;
                      //示大小桶金額
-						bigBucketTotal.value= bigBucket.value*quotient;
-						SmallBucketTotal.value=SmallBucket.value*subquotient;
+						bigBucketTotal.value= parseInt(bigBucket.value)*quotient;
+						SmallBucketTotal.value=parseInt(SmallBucket.value)*subquotient;
 									
                       //修改Loop=true跳出迴圈
                       Loop = true;
