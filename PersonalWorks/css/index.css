@@ -49,6 +49,10 @@ li a:hover{
     text-align: center;
     background-color: #F4F4ED; 
 }
+#content_in img{
+    width: 12%;
+    height: auto;
+}
 #content h1{
    color: #B63D32;
    margin-bottom: 10px;
@@ -106,7 +110,7 @@ padding:10px 0px;
 
   #content .block img {   
     height:auto;
-    width: 100%;   
+    width: 50%;   
   }
 
   #content .block .info{
