@@ -11,7 +11,18 @@
  
 </head>
 <body>
+        <div class="absolute" width="100%">
+            <p algin="right">歌名:漫步在雲端 詞:唐盛賢 曲:唐盛賢</p>
+                <audio id="audio" loop="true"  autoplay="autoplay"  controls="controls" >
+                 <source src="img/漫步在雲端.mp3" type="audio/mp3" />               
+               </audio>
+             </div>
    <header>
+      
+        <script>
+        var myAuto = document.getElementById('audio');  
+                myAuto.play();  
+        </script>
 <div id="logo">
     <img src="img/images.jpg" alt="federer" height="100%" width="100%">    
 </div>
@@ -38,6 +49,7 @@
 </div>
 </div>
    <footer>
+       
 <p>@2018</p>
    </footer>
 </body>
