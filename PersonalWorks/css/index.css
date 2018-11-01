@@ -81,9 +81,9 @@ padding:10px 0px;
     width: 40%;
     display:inline-block;
     margin: 10px;
-    border-width:1px;
+  /* border-width:1px;
     border-style:solid;
-    border-color:#0000FF;
+    border-color:#0000FF;*/
     position:relative;   
     background-color:#ccc;
     
@@ -123,4 +123,12 @@ padding:10px 0px;
     width: 100%;
     height:auto;
     display:block;
+  }
+
+  button{
+    border-radius: 12px;
+    color: black;
+    background-color:  rgb(47, 255, 255);
+    border: 1px;
+    border-color: black;
   }
