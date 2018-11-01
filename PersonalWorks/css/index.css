@@ -131,4 +131,5 @@ padding:10px 0px;
     background-color:  rgb(47, 255, 255);
     border: 1px;
     border-color: black;
+    cursor: pointer;
   }
