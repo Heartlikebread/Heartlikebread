@@ -2,9 +2,7 @@
 margin: 0px;
 padding: 0px;
 }
-header{
-    position: relative;
-}
+
 .absolute {
     position: absolute;
     top: 50%;
