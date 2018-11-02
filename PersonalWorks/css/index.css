@@ -158,7 +158,8 @@ padding:10px 0px;
 }
 
 .item{
-    width: 20%;
+    
+    width: 30%;
     height: auto;
     margin:20px;
     float: left; 
@@ -175,3 +176,6 @@ br{
 .item p{ 
     margin:10px;   
 }
+.after-box {
+    clear: left;
+  }
