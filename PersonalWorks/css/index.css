@@ -156,3 +156,22 @@ padding:10px 0px;
     background-color: #008CBA;
     color: white;
 }
+
+.item{
+    width: 20%;
+    height: auto;
+    margin:20px;
+    float: left; 
+}
+h3{
+    font-family:fantasy;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+br{
+    border: #ccc;
+    
+}
+.item p{ 
+    margin:10px;   
+}
