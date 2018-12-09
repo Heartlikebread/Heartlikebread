@@ -7,10 +7,10 @@
     <title>Experience</title>
     <link rel="stylesheet" href="css/normalize.css"type="text/css">
     <link rel="stylesheet" href="css/index.css"type="text/css">
-    <script type="text/javascript" src="js/jquery.js"></script>
- 
+    <script type="text/javascript" src="js/jquery.js"></script>  
+   
 </head>
-<body>
+<body onload="CheckAlert()">
    <header>
 <div id="logo">
     <img src="img/8004.jpg" alt="federer" height="100%" width="100%">    
@@ -28,54 +28,36 @@
    <div id="content">
 <div id="content_in">
     <h1>經歷</h1>
-    <div align="center">
-    <table align="center">
-            <tr>
-                    <td>
-                        <h2>2017/11</h2>
-                    </td>
-                    <td>
-                        <h2>客製開發ERP與MES教育訓練</h2>
-                    </td>
-                </tr>
-        <tr>
-            <td>
-                <h2>2018/6</h2>
-            </td>
-            <td>
-                <h2>協同開發新高生物科技MES</h2>
-            </td>
-        </tr>
-        <tr>
-            <td>
-            <h2> 2018/7</h2>
-            </td>
-            <td>
-               <h2>協同開發中國砂輪MES</h2> 
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <h2>2018/9</h2>  
-            </td>
-            <td>
-              <h2>協同開發九龍正捷MES</h2>  
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <h2>2018/11</h2>  
-            </td>
-            <td>
-              <h2>協同開發穗高科技MES</h2>  
-            </td>
-        </tr>
-    </table>
+        
+<div id="div1" style="display:none"><h2>2017/11客製開發ERP與MES教育訓練</h2></div>
+
+<div id="div2" style="display:none"><h2>2018/6協同開發新高生物科技MES</h2></div>
+
+<div id="div3" style="display:none"><h2>2018/7協同開發中國砂輪MES</h2></div>
+
+<div id="div4" style="display:none"><h2>2018/9協同開發九龍正捷MES</h2></div>
+
+<div id="div5" style="display:none"><h2>2018/11協同開發穗高科技MES</h2></div>
+
+<div id="div6" style="display:none"><h2>2018/12Serenity框架開發動態報表</h2></div>
 </div>
 </div>
-</div>
+
    <footer>
 <p>@2018</p>
    </footer>
+     <!--淡入淡出特效$("#div3").fadeIn(3000);-->
+    
+     <script >
+        
+         function CheckAlert() {
+            for ( var i = 1 ; i <= 6 ; i ++) {
+                var getid="#div"+i;
+                var outtime=1000*i;
+                $(getid).fadeIn(outtime);
+}            
+
+}
+    </script>
 </body>
 </html>
