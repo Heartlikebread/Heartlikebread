@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"</mata>
+	<meta name ="viewport" content="width=device-width, initial-scale=1,maximum-scale=1"/>
+	<title>夏川價目表</title>	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style type="text/css">
+	.head{background-color:#9bc8f3;color:white;font-weight:bold;font-size:40px;
+	text-align:center;padding:10px;
+	}
+	.footer {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  bottom: 0;
+  margin-bottom: 0;
+  border-width: 1px 0 0;
+}
+body{
+	background-image:url("45339924_489037024937273_8156518764871942144_n.jpg");
+	background-size:cover;
+	font-size: 20px;
+}
+td{
+	font-family:DFKai-sb;
+	width: 33%;
+}
+.containerimg{
+	
+	width: 100%;
+	height: auto;
+	opacity: 0.8;
+	margin:0px
+}
+tr{
+	 border:0;	 
+	 border-collapse:collapse;
+	 border-color:rgb(136,136,136);
+	 border-width:0px;
+	
+}
+
+	</style>
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body class="containerimg">		
+<div id="app">
+	<div class="head" align="center"><font face="標楷體">夏川冰品價目表</font></div>	
+	<div class="container">			
+		<div class="col-md-6">		
+			<table class="table" style="text-align: center"  border="0" cellpadding="0" cellspacing="0" > 
+				<tr>
+					<td  colspan="3">
+						<h2>手工冰品</h2>
+					</td>
+				</tr>
+				<tr>
+					<td>品名</td>
+					<td>單價</td>
+					<td>份</td>
+				</tr>
+				<tr>
+					<td>紅豆牛奶冰</td>
+					<td>{{redbeat}}元</td>
+					<td><input type="number"  class="form-control" placeholder="數量" v-model="score1"/></td>
+				</tr>
+				<tr>
+					<td>綠豆牛奶冰</td>
+					<td>{{greenbeat}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score10"/></td>
+				</tr>
+				<tr>
+					<td>薏仁牛奶冰</td>
+					<td>{{Huanren}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score11"/></td>
+				</tr>
+				<tr>
+					<td>花生牛奶冰</td>
+					<td>{{peanut}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score12"/></td>
+				</tr>
+				<tr>
+					<td>蜜豆牛奶冰</td>
+					<td>{{Honeybean}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score13"/></td>
+				</tr>
+				<tr>
+					<td>香蕉牛奶冰</td>
+					<td>{{banana}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score14"/></td>
+				</tr>
+				<tr>
+					<td>巧克力牛奶冰</td>
+					<td>{{Chocolate}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score15"/></td>
+				</tr>
+				<tr>
+					<td>
+						綜合牛奶冰
+					</td>
+					<td>{{mixice}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score2"/></td>
+				</tr>
+				<tr>
+					<td>水果冰</td>
+					<td> {{fruit}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score3"/></td>
+				</tr>
+			</table>					
+		</div>
+		<div class="col-md-6">		
+			<table class="table" style="text-align: center">
+				<tr>
+					<td  colspan="3">
+						<h2>鮮果汁</h2>
+					</td>
+				</tr>
+				<tr>
+					<td>品名</td>
+					<td>單價</td>
+					<td>份</td>
+				</tr>
+				<tr>
+					<td>木瓜牛奶</td>
+					<td>{{papayaMilk}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score4"/></td>
+				</tr>
+				<tr>
+					<td>西瓜牛奶</td>
+					<td>{{watermelonMilk}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score5"/></td>
+				</tr>
+				<tr>
+					<td>香蕉牛奶</td>
+					<td> {{bananaMilk}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score16"/></td>
+				</tr>
+				<tr>
+					<td>鳳梨牛奶</td>
+					<td> {{pineappleMilk}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score6"/></td>
+				</tr>
+				<tr>
+					<td>奇異果牛奶</td>
+					<td> {{kiwiMilk}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score17"/></td>
+				</tr>
+				<tr>
+					<td>燕麥牛奶</td>
+					<td> {{oatmealMilk}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score18"/></td>
+				</tr>
+				<tr>
+					<td>酪梨牛奶</td>
+					<td> {{avocadoMilk}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score19"/></td>
+				</tr>
+				<tr>
+					<td>芒果汁</td>
+					<td> {{mangoJuice}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score20"/></td>
+				</tr>
+			</table>				
+		</div>
+		<hr style="clear: left;">
+		<div class="col-md-6">		
+			<table class="table" style="text-align: center">
+				<tr>
+					<td  colspan="3">
+						<h2>養身可口風味</h2>
+					</td>
+				</tr>
+				<tr>
+					<td>品名</td>
+					<td>單價</td>
+					<td>份</td>
+				</tr>
+				<tr>
+					<td>十穀鮮奶</td>
+					<td>{{cereals}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score7"/></td>
+				</tr>
+				<tr>
+					<td>紅豆鮮奶</td>
+					<td>{{redbeatMilk}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score21"/></td>
+				</tr>
+				<tr>
+					<td>綠豆鮮奶</td>
+					<td>{{greenbeatMilk}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score22"/></td>
+				</tr>
+				<tr>
+					<td>薏仁鮮奶</td>
+					<td>{{HuanrenMilk}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score23"/></td>
+				</tr>
+				<tr>
+					<td>蜜豆鮮奶</td>
+					<td>{{Honeybean}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score24"/></td>
+				</tr>
+				<tr>
+					<td>
+						芋頭牛奶冰
+					</td>
+					<td>{{taro}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score8"/></td>
+				</tr>
+				<tr>
+					<td>鮮奶仙草凍</td>
+					<td> {{Grass}}元</td>
+					<td><input type="number" class="form-control" placeholder="數量" v-model="score9"/></td>
+				</tr>
+			</table>				
+		</div>
+		<div class="col-md-6">
+				<table class="table" style="text-align: center">
+						<tr>
+							<td  colspan="3">
+								<h2>冰淇淋系列</h2>
+							</td>
+						</tr>
+						<tr>
+							<td>品名</td>
+							<td>單價</td>
+							<td>份</td>
+						</tr>
+						<tr>
+							<td>雪人聖代<p style="font-size: 12px">(香草)</p></td>
+							<td> {{SnowmanSundae}}元</td>
+							<td><input type="number" class="form-control" placeholder="數量" v-model="score25"/></td>
+						</tr>
+						<tr>
+							<td>夏日海灘<p style="font-size: 12px">(巧克力)</p></td>
+							<td> {{SummerBeach}}元</td>
+							<td><input type="number" class="form-control" placeholder="數量" v-model="score26"/></td>
+						</tr>
+						<tr>
+							<td>紫色相戀<p style="font-size: 12px">(香檳葡萄)</p></td>
+							<td> {{PurpleLove}}元</td>
+							<td><input type="number" class="form-control" placeholder="數量" v-model="score27"/></td>
+						</tr>
+						<tr>
+							<td>紅豆牛奶+冰淇淋</td>
+							<td> {{redbeatIce}}元</td>
+							<td><input type="number" class="form-control" placeholder="數量" v-model="score28"/></td>
+						</tr>
+						<tr>
+							<td>綜合冰淇淋<p style="font-size: 12px">(三球)</p></td>
+							<td> {{IntegratedIceCream}}元</td>
+							<td><input type="number" class="form-control" placeholder="數量" v-model="score29"/></td>
+						</tr>
+
+				</table>
+			</div>
+			<hr style="clear: left;">
+			<div class="col-md-6">
+					<table class="table" style="text-align: center">
+							<tr>
+								<td  colspan="3">
+									<h2>創意冰品</h2>
+								</td>
+							</tr>
+							<tr>
+								<td>品名</td>
+								<td>單價</td>
+								<td>份</td>
+							</tr>
+							<tr>
+								<td>黃金旺來<p style="font-size: 12px">(鳳梨)</p></td>
+								<td> {{GoldWanglai}}元</td>
+								<td><input type="number" class="form-control" placeholder="數量" v-model="score30"/></td>
+							</tr>
+							<tr>
+								<td>鴻運當頭<p style="font-size: 12px">(紅豆)</p></td>
+								<td> {{OpportunityKnocks}}元</td>
+								<td><input type="number" class="form-control" placeholder="數量" v-model="score31"/></td>
+							</tr>
+							<tr>
+								<td>粉紅甜心<p style="font-size: 12px">(鳳梨)</p></td>
+								<td> {{PinkSweetheart}}元</td>
+								<td><input type="number" class="form-control" placeholder="數量" v-model="score32"/></td>
+							</tr>
+							<tr>
+								<td>金色田園<p style="font-size: 12px">(芒果)</p></td>
+								<td> {{GoldenPastoral}}元</td>
+								<td><input type="number" class="form-control" placeholder="數量" v-model="score33"/></td>
+							</tr>
+							<tr>
+								<td>雙響霸</td>
+								<td> {{DoubleTyrant}}元</td>
+								<td><input type="number" class="form-control" placeholder="數量" v-model="score34"/></td>
+							</tr>						
+					</table>
+				</div>
+	
+				<div class="col-md-6">
+						<table class="table" style="text-align: center">
+								<tr>
+									<td  colspan="3">
+										<h2>冬季限定供應</h2>
+									</td>
+								</tr>
+								<tr>
+									<td>品名</td>
+									<td>單價</td>
+									<td>份</td>
+								</tr>
+								<tr>
+									<td>八寶紅豆湯圓</td>
+									<td>時價</td>
+									<td><input type="number" class="form-control" placeholder="數量" v-model="score35"/></td>
+								</tr>
+								<tr>
+									<td>招牌圓仔湯</td>
+									<td>時價</td>
+									<td><input type="number" class="form-control" placeholder="數量" v-model="score36"/></td>
+								</tr>
+								<tr>
+									<td>熱鮮奶紅豆</td>
+									<td>時價</td>
+									<td><input type="number" class="form-control" placeholder="數量" v-model="score37"/></td>
+								</tr>
+								<tr>
+									<td>古早味麵茶</td>
+									<td>時價</td>
+									<td><input type="number" class="form-control" placeholder="數量" v-model="score38"/></td>
+								</tr>
+						</table>
+					</div>
+
+					<hr style="clear: left;">			
+		</div class="navbar-fixed-bottom" >
+		<p style="font-size: 28px;color: darkred;text-align: center;">總額：{{(redbeat*score1)+(mixice*score2)+(fruit*score3)+(papayaMilk*score4)+(watermelonMilk*score5)+(pineappleMilk*score6)+(cereals*score7)+(taro*score8)+(Grass*score9)+(greenbeat*score10)+(Huanren*score11)+(peanut*score12)+(Honeybean*score13)+(banana*score14)+(Chocolate*score15)+(bananaMilk*score16)+(kiwiMilk*score17)+(oatmealMilk*score18)+(avocadoMilk*score19)+(mangoJuice*score20)+(redbeatMilk*score21)+(greenbeatMilk*score22)+(HuanrenMilk*score23)+(Honeybean*score24)+(SnowmanSundae*score25)+(SummerBeach*score26)+(PurpleLove*score27)+(redbeatIce*score28)+(IntegratedIceCream*score29)+(GoldWanglai*score30)+(OpportunityKnocks*score31)+(PinkSweetheart*score32)+(GoldenPastoral*score33)+(DoubleTyrant*score34)}}</p>
+		
+		</div>
+		<hr style="clear: left;">	
+		<div class="col-md-12" style="text-align: center">
+			<H5>
+				地址：台南市新市區民權路20號
+				電話：06-5896579
+				營業時間：10:30 ~ 22:00</H5>
+			<iframe width="80%" height="auto" frameborder="0"
+			src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDS8q6td_mDVtyzks9miRna_U9j6GOnnKU&q=台南市新市區民權路20號" 
+			allowfullscreen>
+			</iframe>
+		</div>
+	</div>
+</div>
+
+	<script>
+var app=new Vue({
+el:'#app',
+data:{
+redbeat:45,
+greenbeat:45,
+Huanren:45,
+peanut:45,
+Honeybean:45,
+banana:45,
+Chocolate:45,
+mixice:50,
+fruit:65,
+
+papayaMilk:40,
+watermelonMilk:40,
+bananaMilk:40,
+pineappleMilk:40,
+kiwiMilk:40,
+oatmealMilk:40,
+avocadoMilk:60,
+mangoJuice:45,
+
+cereals:50,
+redbeatMilk:50,
+greenbeatMilk:50,
+HuanrenMilk:50,
+Honeybean:50,
+taro:60,
+Grass:50,
+
+SnowmanSundae:60,
+SummerBeach:70,
+PurpleLove:70,
+redbeatIce:60,
+IntegratedIceCream:70,
+
+
+GoldWanglai:65,
+OpportunityKnocks:65,
+PinkSweetheart:100,
+GoldenPastoral:100,
+DoubleTyrant:110,
+
+score1:0,
+score2:0,
+score3:0,
+score4:0,
+score5:0,
+score6:0,
+score7:0,
+score8:0,
+score9:0,
+score10:0,
+score11:0,
+score12:0,
+score13:0,
+score14:0,
+score15:0,
+score16:0,
+score17:0,
+score18:0,
+score19:0,
+score20:0,
+score21:0,
+score22:0,
+score23:0,
+score24:0,
+score25:0,
+score26:0,
+score27:0,
+score28:0,
+score29:0,
+score30:0,
+score31:0,
+score32:0,
+score33:0,
+score34:0,
+score35:0,
+score36:0,
+score37:0,
+score38:0,
+}
+})
+
+</script>
+</body>
+</html>
