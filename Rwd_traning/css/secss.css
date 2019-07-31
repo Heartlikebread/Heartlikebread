@@ -1,0 +1,123 @@
+*{
+    /*預設不要有間格*/
+    margin: 0px;
+    padding: 0px;
+}
+/*頭中尾間格10px*/
+.heading,
+.container,
+.footing{
+    margin: 10px auto;
+}
+/*頭預設橘色與高度100px*/
+.heading{
+    height: 100px;
+    background-color: chocolate;
+}
+/*中間部分顯示藍色*/
+.left,
+.right,
+.main{
+    background-color: cornflowerblue;
+}
+/*尾顯示淺藍色*/
+.footing{
+    height: 100px;
+    background-color: aquamarine;
+}
+/*如果畫面不小於960*/
+@media screen and (min-width:960px){
+    /*頭中尾都設定寬為960px*/
+    .heading,
+    .container,
+    .footing{
+        width:960px;
+    }
+    /*中間部分則顯示500px，並使用float向左靠攏*/
+    .left,
+    .main,
+    .right{
+        float:left;
+        height: 500px;
+    }
+    /*中間段左右顯示200px*/
+    .left,
+    .right{
+        width: 200px;
+    }
+    /*中間塊中間部分修改左右間格5px大小顯示550px*/
+    .main{
+        margin-left: 5px;
+        margin-right: 5px;
+        width: 550px;
+    }
+    /*中間塊顯示500px*/
+    .container{
+        
+        height: 500px;
+    }
+}
+/*若畫面在600-960px時*/
+@media screen and (min-width: 600px) and (max-width: 960px){
+    /*頭中尾 寬都設定為600px*/
+    .heading,
+    .container,
+    .footing{
+        width:600px;
+    }
+    /*中左與中中設為400px*/
+    .left,
+    .main
+    {
+        float:left;
+        height: 400px;
+    }
+    /*將中右做隱藏*/
+    .right
+    {
+        display: none;
+    }
+    /*修改中左為160px*/
+    .left
+    {
+        width: 160px;
+    }
+    /*中中設定為435px 間隔左方5px*/
+    .main{
+        width: 435px;
+        margin-left: 5px;       
+    }
+    /*中間區塊設訂為400px*/
+    .container{
+        height: 400px;
+    }
+}
+/*畫面小於600時*/
+@media screen and (max-width: 600px){
+    /*頭中尾設定寬度400px*/
+    .heading,
+    .container,
+    .footing{
+        width: 400px;
+    }
+    /*原本中左合中右各調整格寬度400與高度100進行呈現*/
+    .left,
+    .right{
+        width: 400px;
+        height: 100px;
+    }
+    /*中中部分將上方間距10px寬度調成400已及高度200*/
+    .main{
+        margin-top: 10px;
+        width : 400px;
+        height: 200px;
+    }
+    /*中右目前已擠到中中下方,調整上方間距10px*/
+    .right{
+        margin-top: 10px;
+    }
+    /*設定區塊高度為420*/
+    .container{
+        height: 420px;
+    }
+}
