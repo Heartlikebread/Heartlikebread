@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- 此標籤與手機理念有關，加入後確保型動裝置可觸控縮放 ，
+      當然也可以在content部分多加一項 user-scalable=no來關閉縮放功能製造出使用原生手機應用程式的感覺-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- 引入Bootstrap CSS -->
+    <link rel="stylesheet" href="~/../bootstrap-4.3.1-dist/css/bootstrap.css">
+
+    <title>公司宣傳封面</title>
+    <style>
+        header {
+            background-color: #f8f8f8;
+        }
+
+        header ul {
+            margin: 0;
+        }
+
+        header a,
+        header li {
+            padding: 1.4rem 0;
+            color: #777;
+            font-weight: bold;
+        }
+
+        section#intro-header {
+            background-image: url("~/../ec3f17ee-ad17-455e-8af0-12d6ec740715.jpg");
+            background-size: cover;
+        }
+
+        section#intro-header .wrap-headline {
+            position: relative;
+            padding-top: 20%;
+            padding-bottom: 20%
+        }
+
+        section#intro-header h1,
+        section #intro-header h2 {
+            color: #fff;
+        }
+
+        section#intro-header h2 {
+            font-size: 1.5rem;
+        }
+
+        section#intro-header hr {
+            width: 10%;
+        }
+
+        section#intro-header .btn-default {
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+        }
+
+        section#about img {
+            margin-top: 6.5rem;
+            margin-bottom: 5rem;
+        }
+
+        section#about h3 {
+            margin-top: 10rem;
+        }
+
+        section#features {
+            background-color: #eef2f5;
+            border-top: 0.1rem solid #e9e9e9;
+            border-bottom: 0.1rem solid #e9e9e9;
+        }
+
+        section#features * {
+            color: #657C8E;
+        }
+
+        section#features .feature {
+            padding-top: 2rem;
+            padding-bottom: 4rem;
+            text-align: center;
+        }
+
+        section#pricing h3 .price-geadline {
+            margin-top: 5rem;
+            margin-bottom: 3rem;
+        }
+
+        section#pricing .while-text {
+            color: #fff;
+        }
+
+        section#pricing thead .success {
+            background-color: #78CFBF;
+        }
+
+        section#pricing thead .info {
+            background-color: #3EC6E0;
+        }
+
+        section#pricing thead .danger {
+            background-color: #E3536C;
+        }
+
+        section#pricing tbody .success {
+            background-color: #82DACA;
+        }
+
+        section#pricing tbody .info {
+            background-color: #53CFE9;
+        }
+
+        section#pricing tbody .danger {
+            background-color: #EB6379;
+        }
+        footer{
+            background-color: #191919;
+            color:#ADADAD;
+            margin-top:3em;
+        }
+        footer h5,footer img{
+            margin-top:5em;
+            font-weight: bold;
+        }
+        footer address{
+            margin-top: 5em;
+            margin-bottom: 5em;
+            color:#5A5A5A;            
+        }
+        footer ul{
+            margin-bottom: 5em;
+        }
+        footer address{
+            margin-top: +6em;
+
+        }
+        footer address strong{
+            color: #ADADAD;
+            display: block;
+            padding-bottom: 0.62em;
+        }
+        footer a{
+            font-weight: 300;
+            color:#5A5A5A;
+        }
+        footer a:hover{
+            text-decoration: none;
+            color:#fff;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="row">
+                        <a href="#" class="brand pull-left">呆呆股份</a>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class=" row justify-content-end">
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><a href="#about">關於產品</a> </li>
+                            <li class="list-inline-item"><a href="#features">特色</a> </li>
+                            <li class="list-inline-item"><a href="#pricing">價格</a> </li>
+                            <li class="list-inline-item"><a href="#contact.html">聯絡我們</a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="intro-header">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="wrap-headline">
+                    <h1 class="text-center">呆呆股份有限公司</h1>
+                    <h2 class="text-center">呆萌、耍呆、千萬別惹呆呆，小心跟著變呆呆!共勉知</h2>
+                    <hr>
+                    <ul class="list-inline list-unstyled text-center">
+                        <li class="list-inline-item">
+                            <a href="#" class="btn btn-default btn-lg" role="button">登入</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="btn btn-primary btn-lg" role="button">註冊</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <img src="~/../backhand.jpg" alt="img">
+                </div>
+                <div class="col-sm-6">
+                    <h3>federer backhand</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi odio voluptate cupiditate. Nostrum
+                        aliquid expedita sapiente possimus ex? Atque fugit eligendi voluptas impedit amet delectus in
+                        consequatur assumenda tempore sed!</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>verdasco backhand</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum quam non expedita, blanditiis
+                        illo quasi? Similique doloremque magni sequi? Alias, provident laudantium! Optio autem rem
+                        facilis nesciunt illum. Minus, amet!</p>
+                </div>
+                <div class="col-sm-6">
+                    <img src="~/../verdasco.jpg" alt="img">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="features">
+        <div class="container">
+            <div class="row justify-content-center">
+                <h3 class="text-center">特色</h3>
+            </div>
+            <div class="row justify-content-center">
+                <p class="text-center">特色的標題文字</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-2 col-md-4">
+                    <div class="feature">特色</div>
+                </div>
+                <div class="col-sm-2 col-md-4">
+                    <div class="feature">特色</div>
+                </div>
+                <div class="col-sm-2 col-md-4">
+                    <div class="feature">特色</div>
+                </div>
+                <div class="col-sm-2 col-md-4">
+                    <div class="feature">特色</div>
+                </div>
+                <div class="col-sm-2 col-md-4">
+                    <div class="feature">特色</div>
+                </div>
+                <div class="col-sm-2 col-md-4">
+                    <div class="feature">特色</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="pricing">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="text-center price-headline"> 價格表 </h3>
+                </div>
+            </div>
+            <div class="row">
+                <th class="col-sm-10 col-sm-offset-1">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th class="success">
+                                    <h4 class="text-center white-text">免費方案</h4>
+                                </th>
+                                <th class="info">
+                                    <h4 class="text-center white-text">準備方案</h4>
+                                </th>
+                                <th class="danger">
+                                    <h4 class="text-center white-text">豪華方案</h4>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="success">
+                                    <h4 class="text-center white-text">$0</h4>
+                                </td>
+                                <td class="info">
+                                    <h4 class="text-center white-text">$99</h4>
+                                </td>
+                                <td class="danger">
+                                    <h4 class="text-center white-text">$999</h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                </td>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                </td>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                </td>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                </td>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                </td>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                </td>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                </td>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                </td>
+                                <td>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="#" class="btn btn-success btn-block">購買</a></td>
+                                <td><a href="#" class="btn btn-info btn-block">購買</a></td>
+                                <td><a href="#" class="btn btn-danger btn-block">購買</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <img src="~/../images.png" alt="img" width="100%">                        
+                </div>
+                <div class="col-sm-2">
+                    <h5>公司</h5>
+                    <ul class="list-unstyled">
+                        <li class="list-unstyled-item">
+                            <a href="#">文件資料</a>
+                        </li>
+                        <li class="list-unstyled-item">
+                            <a href="#">出版社</a>
+                        </li>
+                        <li class="list-unstyled-item">
+                            <a href="#">關於我們</a>
+                        </li>
+                        <li class="list-unstyled-item">
+                            <a href="#">聯絡資訊</a>
+                        </li>
+                    </ul>
+                </div>
+                 <div class="col-sm-2">
+                    <h5>社群</h5>
+                    <ul class="list-unstyled">
+                        <li class="list-unstyled-item">
+                            <a href="#">Facebook</a>
+                        </li>
+                        <li class="list-unstyled-item">
+                            <a href="#">Twitter</a>
+                        </li>
+                        <li class="list-unstyled-item">
+                            <a href="#">部落格</a>
+                        </li>
+                        <li class="list-unstyled-item">
+                            <a href="#">微博</a>
+                        </li>
+                    </ul>
+                </div>
+                  <div class="col-sm-2">
+                    <h5>客戶支援</h5>
+                    <ul class="list-unstyled">
+                        <li class="list-unstyled-item">
+                            <a href="#">聯絡資訊</a>
+                        </li>
+                        <li class="list-unstyled-item">
+                            <a href="#">隱私政策</a>
+                        </li>
+                        <li class="list-unstyled-item">
+                            <a href="#">條款與細節</a>
+                        </li>
+                        <li class="list-unstyled-item">
+                            <a href="#">服務台</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-4">
+                    <address>
+                        <strong>
+                            呆呆股份有限公司
+                        </strong>
+                        地址 逼哩啪啦<br>
+                        地址 呼嘎蝦嘎<br>
+                        <abbr title="Phone">TEL:</abbr>(02)28825252
+                    </address>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- 引入jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="~/../bootstrap-4.3.1-dist/js/node_modules/jquery/dist/jquery.js"></script>
+    <script src="~/../bootstrap-4.3.1-dist/js/bootstrap.js"></script>
+</body>
+
+</html>
