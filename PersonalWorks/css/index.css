@@ -5,12 +5,12 @@ padding: 0px;
 
 .absolute {
     position: absolute;
-    opacity:0.3; 
+    opacity:0.5; 
     top: 0;
     left: 0;
     width:50%;
     height: 20%;
-    color: #ccc;
+    color: #ccc;    
   }
 body{
     background-color: beige;
