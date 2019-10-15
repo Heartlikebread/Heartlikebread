@@ -1,0 +1,33 @@
+header {
+    background-color: #f8f8f8;
+    
+}
+
+header ul {
+    margin: 0;
+}
+
+header a,
+header li {
+    padding: 1rem 0;
+    color: #777;
+    font-weight: bold;
+}
+#myCarousel{
+  border: 10px solid #ddd;
+}
+
+#Carousel{
+margin-top: 50px;
+}
+#product,#Giftbox{
+    text-align: center;
+    padding-bottom: 50px;
+}
+footer{
+    text-align: center;
+    position: relative;
+    color: #777;
+    background-color: #f8f8f8;
+    margin-top: 100px;
+}
