@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <script src="https://unpkg.com/vue"></script>
+  <link
+    rel="stylesheet"
+    href="../Booststrap/bootstrap-4.3.1-dist/css/bootstrap.min.css"
+  />
+  <!-- JS, Popper.js, and jQuery -->
+  <!-- 引入jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="../Booststrap/bootstrap-4.3.1-dist/js/node_modules/jquery/dist/jquery.js"></script>
+  <script src="../Booststrap/bootstrap-4.3.1-dist/js/bootstrap.js"></script>
+
+  <title>Blog_Master</title>
+  <style>
+    #menu {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      width: 8em;
+      margin-top: -2.5em;
+    }
+
+    .relative {
+      position: fixed;
+      right: 0;
+      top: 5%;
+      width: 8em;
+    }
+
+    img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .row {
+      margin-right: 0px;
+      margin-left: 0px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <!--標頭-->
+    <section id="headerBK">
+      <div class="row px-0">
+        <div class="col-12 px-0 row px-0 justify-content-center px-0">
+          <div
+            width="200"
+            height="150"
+          >
+            <img
+              src="../Booststrap/backhand.jpg"
+              class="rounded-circle"
+              alt="Cinque Terre"
+            />
+          </div>
+        </div>
+        <div class="col-12">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+              class="collapse navbar-collapse justify-content-center"
+              id="navbarNavDropdown"
+            >
+              <ul class="navbar-nav">
+                <li class="nav-item px-4 active">
+                  <a
+                    class="nav-link"
+                    href="../Vue_Blog/Ke.blog.html"
+                  >首頁 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item px-4">
+                  <a
+                    class="nav-link"
+                    href="#"
+                  >照片集</a>
+                </li>
+                <li class="nav-item px-4">
+                  <a
+                    class="nav-link"
+                    href="#"
+                  >影片集</a>
+                </li>
+                <li class="nav-item dropdown px-4">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdownMenuLink"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Dropdown link
+                  </a>
+                  <div
+                    class="dropdown-menu"
+                    aria-labelledby="navbarDropdownMenuLink"
+                  >
+                    <a
+                      class="dropdown-item"
+                      href="#"
+                    >Action</a>
+                    <a
+                      class="dropdown-item"
+                      href="#"
+                    >Another action</a>
+                    <a
+                      class="dropdown-item"
+                      href="#"
+                    >Something else here</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </section>
+    <!--標頭-->
+    <section id="headerBK">
+      <div id="app">
+        <div
+          class="relative"
+          style="width: 200px; height: 200px; opacity: 0.8;"
+        >
+          <div
+            class="input-group input-group-sm mb-3"
+            v-show="btnShow"
+          >
+            <div class="input-group-prepend">
+              <span
+                class="input-group-text"
+                id="inputGroup-sizing-sm"
+              >標題</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              aria-label="Small"
+              aria-describedby="inputGroup-sizing-sm"
+              v-model="title"
+              v-show="btnShow"
+            />
+          </div>
+          <div
+            class="input-group input-group-sm mb-3"
+            v-show="btnShow"
+          >
+            <div class="input-group-prepend">
+              <span
+                class="input-group-text"
+                id="inputGroup-sizing-sm"
+              >內容</span>
+            </div>
+            <textarea
+              v-show="btnShow"
+              aria-label="Small"
+              aria-describedby="inputGroup-sizing-sm"
+              class="form-control"
+              name="Text1"
+              cols="40"
+              rows="5"
+              v-model="content"
+            ></textarea>
+          </div>
+          <button
+            type="button"
+            v-show="btnShow"
+            class="btn btn-info"
+            @click="ok()"
+          >
+            發送
+          </button>
+
+          <a
+            v-show="!btnShow"
+            @click="showInput()"
+          >
+            <img
+              src="../bread/Img/images3.jpg"
+              alt=""
+              width="50px"
+              height="50px"
+            />
+          </a>
+        </div>
+        <div
+          class="row px-0 justify-content-center"
+          v-for="(item, index) in lifeTalkList"
+        >
+          <div
+            class="card my-3"
+            style="width: 36rem;"
+          >
+            <div class="card-body">
+              <h5 class="card-title">{{ item.title }}</h5>
+              <p class="card-text">
+                {{ item.content }}
+              </p>
+              <small> {{ item.date }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="menu">
+    <div
+      class="absolute"
+      width="100%"
+      style="opacity: 0.5;"
+    >
+      <p
+        algin="right"
+        style="color: black;"
+      >
+        歌名:漫步在雲端<br />
+        詞:唐盛賢<br />
+        曲:唐盛賢
+      </p>
+      <audio
+        id="audio"
+        loop="true"
+        autoplay="autoplay"
+        controls="controls"
+      >
+        <source
+          src="../PersonalWorks/img/漫步在雲端.mp3"
+          type="audio/mp3"
+        />
+      </audio>
+    </div>
+  </div>
+</body>
+<script type="text/javascript">
+  new Vue({
+    el: '#app',
+    data: {
+      btnShow: false,
+      title: '',
+      content: '',
+      lifeTalkList: [{
+        title: '呆呆',
+        date: '2020/07/31',
+        content: '今天過得好嗎?',
+      }, ],
+    },
+    computed: {},
+    mounted() {},
+    methods: {
+      ok() {
+        var today = new Date()
+        const date =
+          today.getFullYear() + '/' + today.getMonth() + '/' + today.getDate()
+        this.lifeTalkList.splice(0, 0, {
+          title: this.title,
+          date: date,
+          content: this.content,
+        })
+        clear()
+      },
+      showInput() {
+        this.btnShow = !this.btnShow
+      },
+      clear() {
+        this.title = ''
+        this.content = ''
+        this.btnShow = !this.btnShow
+      },
+    },
+  })
+</script>
+
+</html>
