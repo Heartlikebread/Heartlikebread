@@ -215,8 +215,7 @@
       mounted() {
         this.$ajax
           .get(
-            'https://heartlikebread.github.io/Heartlikebread/Vue_Blog/master' +
-              '.json'
+            'https://heartlikebread.github.io/Heartlikebread/Vue_Blog/master.json'
           )
           .then((response) => {
             this.lifeTalkList = response.data
