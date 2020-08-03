@@ -216,12 +216,12 @@
       mounted() {
         const cors = 'https://cors-anywhere.herokuapp.com/'
         const url =
-          'https://heartlikebread.github.io/Heartlikebread/Vue_Blog/master.json' 
+          'https://heartlikebread.github.io/Heartlikebread/Vue_Blog/master.json'
         axios
           .get(`${cors}${url}`)
           .then(function (response) {
             console.log(response.data)
-            this.lifeTalkList = response.data
+            this.lifeTalkList = response.data.data
           })
           .catch(function (error) {
             console.log(error)
