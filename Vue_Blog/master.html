@@ -210,7 +210,13 @@
         btnShow: false,
         title: '',
         content: '',
-        lifeTalkList: [],
+        lifeTalkList: [
+          {
+            title: 'title',
+            date: '2020/07/31',
+            content: '今天過得好嗎?',
+          },
+        ],
       },
       computed: {},
       mounted() {
@@ -221,7 +227,6 @@
           .get(`${cors}${url}`)
           .then(function (response) {
             console.log(response.data)
-            this.lifeTalkList = response.data.data
           })
           .catch(function (error) {
             console.log(error)
