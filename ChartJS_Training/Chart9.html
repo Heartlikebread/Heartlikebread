@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chart.js樣板</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="Style/main.css">
+    <script src="Chartjs/Chart.bundle.js"></script>
+</head>
+
+<body>
+    <canvas id="myChart">
+        圖表區
+    </canvas>
+    <script>
+        (function () {
+            'user strict';
+            var type = 'pie';
+            var data = {
+                labels: ["食", "衣", "住", "行", "娛樂"],
+                datasets: [
+                    {
+                        label: '阿萬',
+                        data: [10, 5, 2, 8,6],
+                        //borderColor:['green','blue','gray','yello','pink'],
+                        backgroundColor:['green','blue','gray','yellow','pink'],
+                    }
+                ]
+            };
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var newchart = new Chart(ctx, {
+                type: type,
+                data: data,
+                options: {                  
+                    title: {
+                        display: true,
+                        text: "花費",
+                        fontColor: 'red',
+                        fontSize: '24'
+                    }
+                }
+            })
+        })();
+    </script>
+</body>
+
+</html>

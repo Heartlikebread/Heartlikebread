@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chart.js樣板</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="Style/main.css">
+    <script src="Chartjs/Chart.bundle.js"></script>
+</head>
+
+<body>
+    <canvas id="myChart">
+        圖表區
+    </canvas>
+    <script>
+        (function () {
+            'user strict';
+            var type = 'radar';
+            var data = {
+                labels: ["解決問題能力", "電腦程式能力", "人際關係能力", "教育與訓練能力", "科學與數學能力","財務管理能力","資訊管理能力","外語能力","經營管理能力","職業相關的科技能力"],
+                datasets: [
+                    {
+                        label: '阿呆',
+                        data: [10, 5, 2, 8, 6,2,8,4,6,5],
+                        borderColor:'green'
+                    },
+                    {
+                        label: '阿笨',
+                        data: [5, 6, 4, 8, 2,6,8,2,5,10],
+                        borderColor:'blue'
+                    }
+                ]
+            };
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var newchart = new Chart(ctx, {
+                type: type,
+                data: data,
+                options: {                  
+                    title: {
+                        display: true,
+                        text: "能力分析",
+                        fontColor: 'red',
+                        fontSize: '24'
+                    }
+                }
+            })
+        })();
+    </script>
+</body>
+
+</html>

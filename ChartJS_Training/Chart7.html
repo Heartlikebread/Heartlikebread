@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chart.js樣板</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="Style/main.css">
+    <script src="Chartjs/Chart.bundle.js"></script>
+</head>
+
+<body>
+    <canvas id="myChart">
+        圖表區
+    </canvas>
+    <script>
+        (function () {
+            'user strict';
+            var type = 'bar';
+            var data = {
+                labels: [2014, 2015, 2016, 2017, 2018],
+                datasets: [
+                    {
+                        label: '優酷',
+                        data: [100, 200, 400, 800, 1600],
+                        type: 'line',//將該筆資料改成線圖
+                        fill: false,//取消填滿
+                        yAxisID: 'youku-axes'//對應資料ID
+                    },
+                    {
+                        label: 'Youtube',
+                        data: [50, 100, 200, 400, 600],
+                        type: 'bar',//將該筆資料改成長條圖
+                        yAxisID: 'youtube-axes'
+                    }
+                ]
+            };
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var newchart = new Chart(ctx, {
+                type: type,
+                data: data,
+                options: {
+                    scales: {//在scales自訂義修改修改樣式
+                        yAxes: [{
+                            id: 'youku-axes',//對應datasets內的yAxisID
+                            type: 'linear',//刻度樣式
+                            position: 'left',//刻度顯示
+                            ticks: {//自訂義刻度大小
+                                min: 0,
+                                max: 1800
+                            }
+                        },
+                        {
+                            id: 'youtube-axes',
+                            type: 'linear',
+                            position: 'right',
+                            ticks: {
+                                min: 0,
+                                max: 800
+                            },
+                            gridLines: {//刪除右方刻度樣式  避免線條過多
+                                display: false
+                            }
+                        }],
+
+                    },
+                    title: {
+                        display: true,
+                        text: "Hello,Chart世界",
+                        fontColor: 'red',
+                        fontSize: '24'
+                    }
+                }
+            })
+        })();
+    </script>
+</body>
+
+</html>

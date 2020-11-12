@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chart.js樣板</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="Style/main.css">
+    <script src="Chartjs/Chart.bundle.js"></script>
+</head>
+
+<body>
+    <canvas id="myChart">
+        圖表區
+    </canvas>
+    <script>
+        (function () {
+            'user strict';
+            var type = 'line';
+            var data = {
+                labels: [2014, 2015, 2016, 2017, 2018],
+                datasets: [
+                    {
+                        label: '優酷',
+                        data: [100, 200, 400, 800, 2600]
+                    },
+                    {
+                        label: 'Youtube',
+                        data: [50, 100, 200, 400, 600]
+                    }
+                ]
+            };
+            var options = {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            // min: 0,
+                            // max: 2000,
+                            suggestedMin:0,
+                            suggestedMax:2000,
+                            stepSize:300,
+                            callback:function(value,index,values){
+                                return value +'人';
+                            },
+                        }
+                    }]                   
+                },
+                title: {
+                    display: true,
+                    text: "Chart練習中心",
+                    fontColor: 'green',
+                    fontSize: '24'
+                }
+            };
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var newchart = new Chart(ctx, {
+                type: type,
+                data: data,
+                options: options
+            })
+        })();
+    </script>
+</body>
+
+</html>
