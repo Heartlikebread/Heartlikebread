@@ -1,0 +1,4 @@
+[1114/210107.666:ERROR:process_info.cc(329)] VirtualQueryEx: 存取被拒。 (0x5)
+[1114/210107.668:ERROR:process_info.cc(556)] ReadMemoryInfo failed
+[1114/210107.668:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: 嘗試存取現有的處理程序。 (0xc000010a)
+[1114/210451.271:ERROR:directory_reader_win.cc(43)] FindFirstFile: 系統找不到指定的路徑。 (0x3)
