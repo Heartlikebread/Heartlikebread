@@ -1,0 +1,80 @@
+/* 選中所有元素 */
+* {
+color:red;
+}
+/* 具有href屬性的元素 */
+[href]{
+  color:blue;
+}
+/* 也可以指定href */
+[href="https://tw.yahoo.com/"]{
+  color:wheat;
+}
+/* 若class名稱包含該字則改變 */
+[class~='b']{
+  color: aqua;
+}
+/* 偽類選擇器
+需要照順序編輯
+1.link:超鏈接位訪問時的狀態。
+2.visited:超鏈接位訪問後的狀態。
+3.hover:鼠標懸停狀態。
+4.active:滑鼠按下狀態。
+*/
+a:link{
+  color: chocolate;
+}
+a:visited{
+ color: rgb(113,133,0);
+}
+a:hover{
+  color:red;
+}
+a:active{
+  color: #008c8c;
+}
+
+/* 偽元素選擇器
+::before
+::after
+*/
+span::before{
+  content: "<<";
+  color: #008c8c;
+}
+span::after{
+  content: ">>";
+  color:yellow;
+}
+
+/* 多個選擇器組合 */
+/* 1.或|| 使用的方式中間不要空格 */
+p{
+ text-indent: 2em;
+ line-height: 2;
+}
+p.red{
+color: red;
+}
+
+/* 後代元素加空格:所有在.test 內的li都會被選定*/
+.test li{
+  color: black;
+}
+/* 若加入>則代表子元素 需要過到第三層 */
+.test>ul>li{
+  color:green;
+}
+/* +為類似&強調某一元素 */
+.special+li{
+  color:orange;
+}
+/* 若是使用~為.special後的li都改變 */
+.special~li{
+  color:orange;
+}
+
+/* 如果要選擇多個選擇器則需加入, */
+.test,.special{
+  color: blue;
+}

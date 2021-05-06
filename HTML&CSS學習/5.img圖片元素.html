@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 屬性src為資源路徑 alt錯誤時顯示名稱 -->
+  <!-- <img src="./4.文件路徑測試/2.jpg" alt="圖片錯誤顯示"> -->
+
+<!-- 和a元素共用 -->
+  <img usemap="#solarMap" src="./4.文件路徑測試/0429.png" alt="圖片錯誤顯示">
+
+<!-- 和map元素使用 -->
+<map name="solarMap">
+  <!-- 圓形座標 取中心與半徑 (X,Y,半徑) -->
+  <area shape="circle" coords="350,155,60" href="https://zh.wikipedia.org/zh-tw/%E6%9C%A8%E6%98%9F" target="_blank">
+    <!-- 矩形座標 取左上和右下 (LX,LY,RX,RY) -->
+  <area shape="rect" coords="426,103,568,260" href="https://zh.wikipedia.org/wiki/%E5%9C%9F%E6%98%9F" target="_blank">
+  <!-- 多邊形  取左上、右上、左下、右下....可以自己加 (LX,LY,RX,RY)-->
+  <area shape="poly" coords="662,145,707,142,700,303,657,297" href="https://zh.wikipedia.org/wiki/%E5%9C%9F%E6%98%9F" target="_blank">
+</map>
+<h2>太陽系</h2>
+<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas non in quam, nesciunt, cupiditate dolore officia molestias, fugiat veritatis ratione consectetur quos atque voluptates quasi fugit illo impedit temporibus omnis!</p>
+<!-- 語意化寫法 SEO重要性 -->
+<figure>
+  <img usemap="#solarMap" src="./4.文件路徑測試/0429.png" alt="圖片錯誤顯示">
+  <figcaption><h2>太陽系</h2></figcaption>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum quas rerum incidunt! Cumque quas sint blanditiis in quasi nam, tempore, error ipsa rem exercitationem repudiandae beatae iure necessitatibus, recusandae facere.</p>
+</figure>
+
+
+</body>
+</html>

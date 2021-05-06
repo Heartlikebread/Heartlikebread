@@ -1,0 +1,17 @@
+h1{
+  color: red;
+  background-color: royalblue;
+  text-align: center;
+}
+p{
+  color: rgb(117, 109, 162);
+}
+#test{
+  color: rgb(154, 211, 61);
+}
+.testClass{
+  color: saddlebrown;
+  /* 標準字體的三倍 */
+  font-size: 3em;
+  
+}
