@@ -1,0 +1,33 @@
+body{
+  margin: 0px;
+}
+main{
+display: flex;
+/* 想要容器中要有換行的動作需要加此語法 */
+flex-wrap: wrap;
+justify-content: center;
+  background-color: aliceblue;
+}
+
+main>.item{
+  flex:none;
+  width: 270px;
+  margin: 10px;
+  background-color: antiquewhite;
+}
+ 
+@media (max-width: 1200px) {main>.item{
+  width:29%;
+}}
+
+@media (max-width: 992px) {main>.item{
+  width:22%;
+}}
+
+@media (max-width: 768px) {main>.item{
+  width:45%;
+}}
+
+@media (max-width: 480px) {main>.item{
+  width:90%;
+}

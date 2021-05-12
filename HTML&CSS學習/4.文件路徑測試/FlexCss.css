@@ -1,0 +1,51 @@
+body{
+  margin: 0px;
+}
+nav{
+  display: flex;
+}
+nav>.home{
+  flex:none;
+  width: 100px;
+  background-color: #ffcccc;
+}
+nav>.search{
+  flex:auto;
+  background-color: #ccccff;
+}
+nav>.logout{
+  flex: none;
+  width: 100px;
+  background-color: #ccffcc;
+}
+
+
+nav>.menu{
+  background-color: #ccccff;
+}
+nav>.user{
+  background-color: #ccffcc;
+}
+main{
+  /* 容器做處理 */
+  display: flex;
+  /*justify-content水平的意思 置中 */
+  justify-content: center;
+   /* 靠左 */
+  /* justify-content: flex-start; */
+  /* 靠右 */
+  /* justify-content: flex-end; */
+  /* align-items的意思 垂直 */
+  /* align-items: stretch; */
+  /* 靠上 */
+  /* align-items: flex-start; */
+  /* 靠下 */
+  align-items: flex-end;
+  background-color: #cccccc;
+}
+main>.item{
+  flex: none;
+  width: 300px;
+  margin: 10px;
+  background-color: #ffcccc;
+}
