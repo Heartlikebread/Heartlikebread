@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    p,span{
+      background: lightblue;
+      border: 2px solid;
+      line-height: 3;
+
+    }
+    .btnNum a{
+      border: 1px solid #e1e2e3;
+      text-emphasis: none;
+      color: #38f;
+      width: 34px;
+      height:34px;
+      display: inline-block;
+      text-align: center;
+      line-height: 34px;
+    }
+    .btnNum a:hover{
+    background: #f2f8ff;
+    border: 1px solid #38f;
+    }
+  .btnNum a.selectItem{
+    border: none;
+    color: #000;
+    background: initial;
+    }
+    img{
+width: 100px;
+/* height: 300px; */
+object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    行盒模型有：span、strong、em、i、img、video、audio，注意行盒是不能設置寬高的，它是依照內容長停得，
+    所以要調整的是字體大小或者行高、或者類型間接調整。
+   -->
+<p>
+  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat beatae enim asperiores blanditiis tempore eius corporis esse nam provident eos est quo minus sunt a veniam, facilis deserunt recusandae corrupti?
+</p>
+<p>
+  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat beatae enim asperiores blanditiis tempore eius corporis esse nam provident eos est quo minus sunt a veniam, facilis deserunt recusandae corrupti?
+</p>
+<span>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas tempora reiciendis excepturi nisi ullam non veritatis asperiores cumque, laborum, modi laudantium cupiditate ipsa, reprehenderit quaerat optio dolor nulla omnis maiores.
+</span>
+<span>
+  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum pariatur accusamus repudiandae sequi magnam culpa autem assumenda? Doloribus sed aspernatur, hic suscipit fugit enim, laudantium, ab perferendis quidem quisquam ipsam.
+</span>
+
+
+<!-- 學習行塊盒:不獨站一行但有行盒特點 -->
+<div class="btnNum">
+  <a href="#">1</a>
+  <a href="#">2</a>
+  <!-- 假設選擇第三頁 -->
+  <a href="#" class="selectItem">3</a>
+  <a href="#">4</a>
+  <a href="#">5</a>
+</div>
+
+<!-- 空白摺疊，發生在行盒內部或行盒之間 -->
+
+<!-- 可替換元素是行盒如：img、video、audio  
+  是比較特別的它可以看成行塊可以調整大小 -->
+<img src="./4.文件路徑測試/0429.png" alt="test">
+<span>test</span>
+
+</body>
+</html>

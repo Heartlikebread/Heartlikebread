@@ -32,13 +32,28 @@ overflow-y: scroll;
       padding-left: 10px;
       margin: 1em 0;
       width: 200px;
+      /* 不換行 */
       white-space:nowrap;
       overflow: hidden;
+     /* 如果自行超過設定範圍則修飾 */
       text-overflow: ellipsis;
+    }
+    .box{
+      width: 300px;
+      height: 51px;
+      line-height: 51px;
+      padding-left: 30px;
+      border: 2px solid blue;
+      box-sizing: border-box;
     }
   </style>
 </head>
 <body>
+<div class="box">
+  這是CSS3屬性
+</div>
+
+
   <!-- 行盒與塊盒 
   行盒 display等於inline的元素,行盒不換行
   塊盒 display等於block的元素，塊盒等於block獨佔一行
@@ -48,15 +63,12 @@ Lorem, ipsum.
 </div>
 <!--溢出處理 -->
 <div id="overflow">
-
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, culpa nesciunt non laboriosam suscipit eos facere laborum maxime pariatur molestias dolorem? Vel repellat neque doloremque cupiditate provident corporis rerum quis.
 </div>
-
-
 <div class="test3">
   <ul>
     <li>Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.</li>
-    <li>Lorem ipsum dolor sit amet.</li>
+    <li>Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.</li>
     <li>Lorem ipsum dolor sit amet.</li>
     <li>Lorem ipsum dolor sit amet.</li>
     <li>Lorem ipsum dolor sit amet.</li>
