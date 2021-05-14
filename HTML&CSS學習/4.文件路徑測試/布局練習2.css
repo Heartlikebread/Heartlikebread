@@ -3,6 +3,7 @@ body{
   padding: 20px 0px;
   width: 100%;
   line-height: 2;
+  min-width:800px;
 }
 .article_contianer{
 width: 80%;
@@ -41,9 +42,11 @@ text-decoration: underline;
 
   .article_contianer  section{
     width: 90%;
-    
+    padding: 0 30px;
   }
   .article_contianer  h2{
    font-size: 32px;
    border-bottom:1px solid gray;
+   border-top: 1px solid gray;
+   
   }

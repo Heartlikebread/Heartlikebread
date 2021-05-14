@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+span{
+  border:3px solid;
+  float: right;
+}
+
+.container{
+  width: 1000px;
+  height: 500px;
+  background: lightblue;
+}
+.item{
+  float: right;
+  width: 100px;
+  height: 100px;
+  border: 2px solid;
+  background: red;
+}
+
+
+.clearfix::after{
+  content: "";
+  clear: both;
+  display: block;
+}
+</style>
+</head>
+<body>
+  <!-- 
+    修改float 屬性值為:
+    left:左浮動，元素靠上靠左
+    right:右浮動，元素靠上靠右
+    默認值為none
+    當一個元素經過浮動一定是塊盒
+   -->
+<span>
+  Lorem ipsum dolor sit amet.
+</span>
+<div class="container">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+  <div class="item">4</div>
+  <div class="item">5</div>
+  <div class="item">6</div>
+  <div class="item">7</div>
+  <div class="item">8</div>
+  <div class="item">9</div>
+  <div class="item">10</div>
+  <div class="item">11</div>
+  <div class="item">12</div>
+  <div class="item">13</div>
+  <div class="item">14</div>
+  <div class="item">15</div>
+  <div class="item">16</div>
+  <div class="item">17</div>
+  <div class="item">18</div>
+  <div class="item">19</div>
+  <div class="item">20</div>
+  <div class="item">21</div>
+</div>
+<div class="container2" style="width: 500px;height: 500px;background: skyblue;">
+  
+  <img src="./4.文件路徑測試/0429.png" alt="" style="height: 100px;float: left;margin: 5px;">
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi modi est impedit rerum incidunt magni laborum fugit ducimus quam sequi commodi accusantium sit, error accusamus sed quidem sint dolor. Qui.
+  Provident dolorem, eos perferendis praesentium delectus animi sed velit magnam cupiditate voluptates rem porro minus eaque et excepturi corrupti dolorum hic deserunt ad distinctio dignissimos quo. Non quos eligendi placeat?
+  Doloribus inventore, magnam laborum velit autem iste esse nisi dicta quis enim. Dolor nesciunt eaque, vitae saepe modi reiciendis animi qui vel dicta? Optio architecto cumque molestias ullam sed ipsam.
+  Ut dolorem harum porro esse adipisci inventore non minus itaque soluta obcaecati quidem, quis consectetur repellendus neque. Nemo nisi atque eveniet? Enim, ea quia labore ipsam accusantium rem nisi beatae!
+  Nesciunt alias quod porro ratione tempora quisquam aliquid reiciendis accusamus laborum doloribus quas nihil, tenetur voluptas aut quidem deleniti rem magni pariatur consequuntur ullam! Nesciunt sint libero assumenda minus quia. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo, esse, iusto a porro sed quae, deleniti et totam quos voluptas nobis suscipit commodi. Harum tempora deserunt cum sit officiis eum.</p>
+</div>
+
+<div class="container3 clearfix" style="width: 500px;">
+<div class="item">test1</div>
+<div class="item">test2</div>
+<div class="item">test3</div>
+<div class="item">test4</div>
+<div class="item">test5</div> 
+</div>
+<div style="height: 20px;background: black;">test</div>
+</body>
+</html>
