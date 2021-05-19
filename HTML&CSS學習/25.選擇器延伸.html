@@ -8,11 +8,48 @@
 </head>
 <style>
 
-  li:first-child{
+   li:first-child{
     color: blue;
-  }
+  } 
   a:first-of-type{
     color: chartreuse;
+  }
+
+  /* 注意只有在最後一個子元素為該a或li才會改變*/
+  a:last-child{
+    color:rgb(54, 241, 25)
+  } 
+  li:last-child{
+    color: rgb(255, 2, 2)
+  }
+
+
+  a:last-of-type{
+    color: rgb(255, 0, 0);
+  }
+
+  .typeitem li {
+   background: #ccc;
+   margin: 1em 0;
+ }  
+ /* 基數改變 */
+ .typeitem li:nth-last-child(odd){
+   background: #008c8c;
+   color:#fff;
+ }
+  p::first-letter{
+color: red;
+font-size: 2em;
+font-weight: bold;
+
+  }
+  p::first-line{
+    color: green;
+  }
+  
+  p::selection{
+   background: green;
+   color: yellow; 
   }
 </style>
 <body>
@@ -31,8 +68,24 @@
      <li>test7</li>
      <li>test8</li>
      <li>test9</li>
-     <li>test10</li>
-     <a href="">btn1</a><a href="">btn2</a><a href="">btn3</a><a href="">btn4</a><a href="">btn5</a>
+     <li>test10</li> 
+   
+    </div>
+   <a href="">btn1</a><a href="">btn2</a><a href="">btn3</a><a href="">btn4</a><a href="">btn5</a> -->
+
+   <div class="typeitem">
+     <ul>
+       <li>test 1</li>
+       <li>test 2</li>
+       <li>test 3</li>
+       <li>test 4</li>
+       <li>test 5</li>
+     </ul>
    </div>
+   <div class="pchangeSize">
+     <p>
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati blanditiis necessitatibus debitis ipsa mollitia sequi autem sapiente nesciunt modi quaerat? Deleniti provident quis ab maxime vitae? At in dolore aut!
+</p>  
+</div>
 </body>
 </html>
