@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&family=Noto+Serif+TC:wght@300&family=ZCOOL+KuaiLe&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.card {
+    @apply bg-white rounded overflow-hidden shadow-md relative;
+}
+.card_image {
+    @apply w-80 object-cover;
+}
+.card_badge {
+    @apply bg-yellow-300 rounded-full text-red-600 font-bold p-1 text-3xl absolute top-0 ml-1 mt-1;
+}
+.btn_primary {
+    @apply bg-bootstrap_primary text-white font-bold py-2 px-3 rounded cursor-pointer tracking-widest hover:bg-yellow-400;
+}
+.btn_secondary {
+    @apply bg-bootstrap_secondary text-white font-bold py-2 px-3 rounded cursor-pointer tracking-widest hover:bg-yellow-400;
+}
+.btn_success {
+    @apply bg-bootstrap_success text-white font-bold py-2 px-3 rounded cursor-pointer tracking-widest hover:bg-yellow-400;
+}
+.btn_danger {
+    @apply bg-bootstrap_danger text-white font-bold py-2 px-3 rounded cursor-pointer tracking-widest hover:bg-yellow-400;
+}
+.btn_info {
+    @apply bg-bootstrap_info text-white font-bold py-2 px-3 rounded cursor-pointer tracking-widest hover:bg-yellow-400;
+}

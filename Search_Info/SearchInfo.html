@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+    <title>SearchInfo</title>
+  </head>
+  <body>
+    <table id="example" class="display" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th>姓名</th>
+          <th>性別</th>
+          <th>身分證字號</th>
+          <th>住址</th>
+          <th>父</th>
+          <th>母</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th>姓名</th>
+          <th>性別</th>
+          <th>身分證字號</th>
+          <th>住址</th>
+          <th>父</th>
+          <th>母</th>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr>
+          <td>小東</td>
+          <td>男</td>
+          <td>A123456789</td>
+          <td>屏東縣屏東市自由路593號</td>
+          <td>東父</td>
+          <td>東母</td>
+        </tr>
+        <tr>
+          <td>小西</td>
+          <td>男</td>
+          <td>B987654321</td>
+          <td>高雄市三民區鼎強街97-1號</td>
+          <td>西父</td>
+          <td>西母</td>
+        </tr>
+        <tr>
+          <td>小南</td>
+          <td>女</td>
+          <td>C147852369</td>
+          <td>台南市中西區中山路128號</td>
+          <td>南父</td>
+          <td>南母</td>
+        </tr>
+        <tr>
+          <td>小北</td>
+          <td>女</td>
+          <td>A369852147</td>
+          <td>雲林縣斗六市中山路286-8號</td>
+          <td>北父</td>
+          <td>北母</td>
+        </tr>
+        <tr>
+          <td>小洪</td>
+          <td>女</td>
+          <td>A396825741</td>
+          <td>嘉義市東區光華路145號</td>
+          <td>洪父</td>
+          <td>洪母</td>
+        </tr>
+        <tr>
+          <td>小成</td>
+          <td>男</td>
+          <td>T889665332</td>
+          <td>彰化縣彰化市新平路146號</td>
+          <td>成父</td>
+          <td>成母</td>
+        </tr>
+        <tr>
+          <td>小煌</td>
+          <td>男</td>
+          <td>T258365214</td>
+          <td>台中市南屯區五權西路二段355之1號</td>
+          <td>煌父</td>
+          <td>煌母</td>
+        </tr>
+      </tbody>
+    </table>
+    <h1>以上資料為測試使用</h1>
+    <script>
+      $(document).ready(function () {
+        $('#example').DataTable({
+          dom: 'Bfrtip',
+          buttons: [
+            'copyHtml5',
+            {
+              extend: 'excelHtml5',
+              title:
+                'Project Report - ' +
+                new Date().toJSON().slice(0, 10).replace(/-/g, '-'),
+            },
+            'csvHtml5',
+          ],
+        })
+      })
+    </script>
+  </body>
+</html>
