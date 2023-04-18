@@ -1,53 +1,49 @@
 <!DOCTYPE html>
 
 <html>
+  <head>
+    <title>JQuery HTML5 QR Code Scanner using Instascan JS Example - ItSolutionStuff.com</title>
 
-<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-	<title>JQuery HTML5 QR Code Scanner using Instascan JS Example - ItSolutionStuff.com</title>
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+  </head>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-	<script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
-
-</head>
-
-<body>
-
-    <h1>JQuery HTML5 QR Code Scanner using Instascan JS Example - ItSolutionStuff.com</h1>
-
-    <video id="preview"></video>
+  <body>
+    <button onclick="PushMe()">請按我</button>
+    <button onclick="Close()">關閉</button>
+    <input id="txtShowQRCode" type="text" />
+    <br />
+    <video style="padding-left: 500px; border-style: double; width: 30%; height: 500px" id="preview"></video>
 
     <script type="text/javascript">
-
-      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-
-      scanner.addListener('scan', function (content) {
-
-        alert(content);
-
-      });
-
-      Instascan.Camera.getCameras().then(function (cameras) {
-
-        if (cameras.length > 0) {
-
-          scanner.start(cameras[0]);
-
-        } else {
-
-         alert('No cameras found.');
-
+      let showQRCode = ''
+      let txtShowQRCode = document.getElementById('txtShowQRCode')
+      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') })
+      function PushMe() {
+        scanner.addListener('scan', function (content) {
+          txtShowQRCode.value = content
+        })
+        if (txtShowQRCode.value != '') {
+          $('#txtShowQRCode').val(showQRCode)
+          scanner.stop()
         }
+        Instascan.Camera.getCameras()
+          .then(function (cameras) {
+            if (cameras.length > 0) {
+              scanner.start(cameras[0])
+            } else {
+              alert('No cameras found.')
+            }
+          })
+          .catch(function (e) {
+            alert(e)
+          })
+      }
 
-      }).catch(function (e) {
-
-        alert(e);
-
-      });
-
+      function Close() {
+        scanner.stop()
+      }
     </script>
-
-</body>
-
+  </body>
 </html>
