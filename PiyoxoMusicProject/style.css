@@ -47,8 +47,10 @@ nav ul li{
    width: 70%;
    border-radius: 12px;
    padding: 34px;
-   background-image: url('bg.jpg');
-   background-repeat: repeat-y;
+   background-image: url('LINE_ALBUM_20191231_230704.jpg');
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-position: center;
 }
 
 .bottom{
