@@ -4,30 +4,114 @@
   <head>
     <title>JQuery HTML5 QR Code Scanner using Instascan JS Example - ItSolutionStuff.com</title>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+      crossorigin="anonymous"
+    />
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+      integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ"
+      crossorigin="anonymous"
+    />
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+      integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <style>
+      #map {
+        height: 300px;
+      }
+    </style>
   </head>
 
   <body>
-    <button onclick="PushMe()">請按我</button>
-    <button onclick="Close()">關閉</button>
-    <input id="txtShowQRCode" type="text" />
-    <br />
-    <video style="padding-left: 500px; border-style: double; width: 30%; height: 500px" id="preview"></video>
-
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="col-md-12">
+            <button onclick="PushMe()">開啟鏡頭掃描</button>
+            <button onclick="Close()">關閉鏡頭</button>
+          </div>
+          <div class="col-md-12">
+            <video style="border-style: double; width: 600px; height: 400px" id="preview"></video>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="col-12">
+            <div class="form-group">
+              <label class="CSTD">QRCode</label>
+              <input type="text" class="form-control" id="txtShowQRCode" value="" />
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <label class="CSTD">物料</label>
+              <input type="text" class="form-control" id="txtMaterial" value="" />
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <label class="CSTD">GPS位置</label>
+              <input type="text" class="form-control" id="txtgps" value="" />
+            </div>
+          </div>
+          <div class="col-12">
+            <div style="width: 300px">
+              <div id="map" style="height: 200px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="text/javascript">
+      $(document).ready(function () {
+        console.log(document.body.clientWidth)
+        if (document.body.clientWidth < 500) {
+          $('#preview').hide()
+        }
+      })
       let showQRCode = ''
       let txtShowQRCode = document.getElementById('txtShowQRCode')
       let scanner = new Instascan.Scanner({ video: document.getElementById('preview') })
+      let gpslat = ''
+      let gpslon = ''
+      function init() {
+        // if (document.body.clientWidth > 500) {
+        //   document.querySelector('preview').innerHTML = ''
+        // }
+        // document.querySelector('map').innerHTML = ''
+        $('#txtShowQRCode').val('')
+        $('#txtMaterial').val('')
+        $('#txtgps').val('')
+      }
       function PushMe() {
+        init()
         scanner.addListener('scan', function (content) {
-          txtShowQRCode.value = content
+          if (content != '') {
+            $('#txtShowQRCode').val(content)
+            $('#txtMaterial').val('物料XXX')
+            test()
+
+            Close()
+          }
         })
-        if (txtShowQRCode.value != '') {
-          $('#txtShowQRCode').val(showQRCode)
-          scanner.stop()
-        }
+
         Instascan.Camera.getCameras()
           .then(function (cameras) {
             if (cameras.length > 0) {
@@ -43,6 +127,31 @@
 
       function Close() {
         scanner.stop()
+      }
+      function test() {
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback)
+
+        function successCallback(position) {
+          let lat = position.coords.latitude
+          let lon = position.coords.longitude
+
+          $('#lon').text(lon)
+          $('#lat').text(lat)
+          gpslat = lat
+          gpslon = lon
+          var map = L.map('map').setView([lat, lon], 13)
+          $('#txtgps').val(gpslat + ',' + gpslon)
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          }).addTo(map)
+
+          L.marker([lat, lon]).addTo(map).bindPopup('你現在的位置在這邊').openPopup()
+        }
+        function errorCallback(error) {
+          console.log(error)
+        }
+
+        navigator.geolocation
       }
     </script>
   </body>
