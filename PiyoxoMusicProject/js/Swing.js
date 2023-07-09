@@ -10,15 +10,15 @@ let masterSongName = document.getElementById('masterSongName');
 let songItems = Array.from(document.getElementsByClassName('songItem'));
 
 let songs = [  
-    {songName: "大會舞1", filePath: "songs/豐年祭/搖擺歌/搖擺歌1.wav", coverPath: "covers/1.jpg"},
-    {songName: "大會舞2", filePath: "songs/豐年祭/搖擺歌/搖擺歌2.wav", coverPath: "covers/1.jpg"},
-    {songName: "大會舞3", filePath: "songs/豐年祭/搖擺歌/搖擺歌3.wav", coverPath: "covers/1.jpg"},
-    {songName: "大會舞4", filePath: "songs/豐年祭/搖擺歌/搖擺歌4.wav", coverPath: "covers/1.jpg"},
-    {songName: "大會舞5", filePath: "songs/豐年祭/搖擺歌/搖擺歌5.wav", coverPath: "covers/1.jpg"},
-    {songName: "大會舞6", filePath: "songs/豐年祭/搖擺歌/搖擺歌6.wav", coverPath: "covers/1.jpg"},
-    {songName: "大會舞7", filePath: "songs/豐年祭/搖擺歌/搖擺歌7.wav", coverPath: "covers/1.jpg"},
-    {songName: "大會舞8", filePath: "songs/豐年祭/搖擺歌/搖擺歌8.wav", coverPath: "covers/1.jpg"},
-    {songName: "大會舞9", filePath: "songs/豐年祭/搖擺歌/搖擺歌9.wav", coverPath: "covers/1.jpg"}
+    {songName: "搖擺歌1", filePath: "songs/豐年祭/搖擺歌/搖擺歌1.wav", coverPath: "covers/1.jpg"},
+    {songName: "搖擺歌2", filePath: "songs/豐年祭/搖擺歌/搖擺歌2.wav", coverPath: "covers/1.jpg"},
+    {songName: "搖擺歌3", filePath: "songs/豐年祭/搖擺歌/搖擺歌3.wav", coverPath: "covers/1.jpg"},
+    {songName: "搖擺歌4", filePath: "songs/豐年祭/搖擺歌/搖擺歌4.wav", coverPath: "covers/1.jpg"},
+    {songName: "搖擺歌5", filePath: "songs/豐年祭/搖擺歌/搖擺歌5.wav", coverPath: "covers/1.jpg"},
+    {songName: "搖擺歌6", filePath: "songs/豐年祭/搖擺歌/搖擺歌6.wav", coverPath: "covers/1.jpg"},
+    {songName: "搖擺歌7", filePath: "songs/豐年祭/搖擺歌/搖擺歌7.wav", coverPath: "covers/1.jpg"},
+    {songName: "搖擺歌8", filePath: "songs/豐年祭/搖擺歌/搖擺歌8.wav", coverPath: "covers/1.jpg"},
+    {songName: "搖擺歌9", filePath: "songs/豐年祭/搖擺歌/搖擺歌9.wav", coverPath: "covers/1.jpg"}
 ]
 
 songItems.forEach((element, i)=>{ 
