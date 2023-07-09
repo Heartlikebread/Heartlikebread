@@ -47,10 +47,10 @@ nav ul li{
    width: 70%;
    border-radius: 12px;
    padding: 34px;
-   background-image: url('LINE_ALBUM_20191231_230704.jpg');
+   background-image: url('20230610_Amis背後圖.jpg');
    background-repeat: no-repeat;
    background-attachment: fixed;
-   background-position: center;
+   background-size: 100% 100%;
 }
 
 .bottom{
@@ -108,6 +108,7 @@ nav ul li{
 }
 
 .songInfo{
+    padding-top: 100px;
     position: absolute;
     left: 10vw;
     font-family: 'Varela Round', sans-serif;
