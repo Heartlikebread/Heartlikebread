@@ -20,10 +20,18 @@ nav ul{
     height: 65px;
     background-color: black;
     color: white;
+    justify-content: center;
 }
 
 nav ul li{
     padding: 0 12px;
+    
+}
+nav ul li a{
+    color:white
+}
+nav ul li:hover{
+    margin-bottom: 10px;
 }
 .brand img{
     width: 44px;
