@@ -19,7 +19,10 @@ let songs = [
     {songName: "大會舞7", filePath: "songs/豐年祭/大會舞/大會舞7.wav", coverPath: "covers/1.jpg"},
     {songName: "大會舞8", filePath: "songs/豐年祭/大會舞/大會舞8.wav", coverPath: "covers/1.jpg"},
     {songName: "大會舞9", filePath: "songs/豐年祭/大會舞/大會舞9.wav", coverPath: "covers/1.jpg"},
-    {songName: "大會舞10", filePath:"songs/豐年祭/大會舞/大會舞10.wav", coverPath: "covers/1.jpg"}
+    {songName: "大會舞10", filePath:"songs/豐年祭/大會舞/大會舞10.wav", coverPath: "covers/1.jpg"},
+    {songName: "大會舞11", filePath:"songs/豐年祭/大會舞/大會舞11.wav", coverPath: "covers/1.jpg"},
+    {songName: "大會舞12", filePath:"songs/豐年祭/大會舞/大會舞12.wav", coverPath: "covers/1.jpg"},
+    {songName: "大會舞13", filePath:"songs/豐年祭/大會舞/大會舞13.wav", coverPath: "covers/1.jpg"}
 ]
 
 songItems.forEach((element, i)=>{ 
