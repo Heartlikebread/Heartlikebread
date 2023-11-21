@@ -24,8 +24,8 @@
     })
     let luckyWheel = new LuckyCanvas.LuckyWheel({
       el: '#my-lucky',
-      width: '350px',
-      height: '350px',
+      width: '320px',
+      height: '320px',
     }, {
       prizes: prizes,
       defaultStyle: {
@@ -48,7 +48,7 @@
         luckyWheel.play()
         setTimeout(() => {
           luckyWheel.stop(Math.random() * 8 >> 0)
-        }, 3000)
+        }, 1000)
       },
       end (prize) {
         alert(`走~${prize.title}`)
