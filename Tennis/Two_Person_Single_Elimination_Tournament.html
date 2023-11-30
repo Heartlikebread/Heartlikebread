@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>單敗淘汰賽表</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .match {
+            margin-bottom: 20px;
+        }
+
+        .score-input {
+            width: 40px;
+            text-align: center;
+        }
+
+        #nextRoundButton {
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>單敗淘汰賽表</h1>
+
+    <div id="tournamentContainer"></div>
+    <button id="nextRoundButton" onclick="moveToNextRound()">晉級下一輪</button>
+
+    <script>
+        // 假設已知的人員陣列
+        const initialParticipants = ["選手1", "選手2", "選手3", "選手4", "選手5", "選手6", "選手7", "選手8"];
+        let participants = [...initialParticipants];
+        let matchResults = [];
+
+        function generateTournament() {
+            const tournamentContainer = document.getElementById('tournamentContainer');
+            tournamentContainer.innerHTML = '';
+
+            const rounds = Math.ceil(Math.log2(participants.length));
+
+            for (let i = 0; i < rounds; i++) {
+                const roundTitle = document.createElement('h2');
+                roundTitle.textContent = `第 ${i + 1} 輪`;
+                tournamentContainer.appendChild(roundTitle);
+
+                const matches = [];
+
+                for (let j = 0; j < participants.length / Math.pow(2, i); j++) {
+                    const match = document.createElement('div');
+                    match.classList.add('match');
+
+                    const player1Index = j * Math.pow(2, i);
+                    const player2Index = j * Math.pow(2, i) + Math.pow(2, i - 1);
+
+                    const player1 = participants[player1Index] !== undefined ? participants[player1Index] : 'bye';
+                    const player2 = participants[player2Index] !== undefined ? participants[player2Index] : 'bye';
+
+                    const matchText = document.createElement('p');
+                    matchText.textContent = `${player1} vs ${player2}`;
+
+                    const scoreInput1 = document.createElement('input');
+                    scoreInput1.type = 'number';
+                    scoreInput1.classList.add('score-input');
+                    scoreInput1.placeholder = '分數';
+
+                    const scoreInput2 = document.createElement('input');
+                    scoreInput2.type = 'number';
+                    scoreInput2.classList.add('score-input');
+                    scoreInput2.placeholder = '分數';
+
+                    match.appendChild(matchText);
+                    match.appendChild(scoreInput1);
+                    match.appendChild(scoreInput2);
+
+                    matches.push(match);
+                }
+
+                matches.forEach(match => tournamentContainer.appendChild(match));
+            }
+
+            const nextRoundButton = document.getElementById('nextRoundButton');
+            nextRoundButton.style.display = 'block';
+        }
+
+        function moveToNextRound() {
+            const tournamentContainer = document.getElementById('tournamentContainer');
+            const scoreInputs = tournamentContainer.querySelectorAll('.score-input');
+
+            // Check if all scores are filled
+            for (const input of scoreInputs) {
+                if (!input.value.trim()) {
+                    alert('請填寫所有分數');
+                    return;
+                }
+            }
+
+            // Store the results of the current round
+            scoreInputs.forEach((input, index) => {
+                const matchIndex = Math.floor(index / 2);
+                const isPlayer1 = index % 2 === 0;
+
+                if (!matchResults[matchIndex]) {
+                    matchResults[matchIndex] = {
+                        player1: '',
+                        player2: '',
+                        score1: 0,
+                        score2: 0,
+                    };
+                }
+
+                if (isPlayer1) {
+                    matchResults[matchIndex].player1 = participants[matchIndex * 2];
+                    matchResults[matchIndex].score1 = parseInt(input.value) || 0;
+                } else {
+                    matchResults[matchIndex].player2 = participants[matchIndex * 2 + 1];
+                    matchResults[matchIndex].score2 = parseInt(input.value) || 0;
+                }
+            });
+
+            // Clear matchResults for the next round
+            matchResults = [];
+
+            // Update the participants for the next round
+            const nextRoundParticipants = scoreInputs.map((input, index) => {
+                const matchIndex = Math.floor(index / 2);
+                return matchResults[matchIndex].score1 + matchResults[matchIndex].score2 > 0 ?
+                    matchResults[matchIndex].player1 :
+                    'bye';
+            });
+
+            participants = [...nextRoundParticipants];
+
+            // Generate the next round
+            generateTournament();
+        }
+
+        // 初始生成第一輪的賽程表
+        generateTournament();
+    </script>
+</body>
+</html>

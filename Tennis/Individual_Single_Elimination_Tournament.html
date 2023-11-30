@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>單打_單敗淘汰賽</title>
+    <!-- 引入 Bootstrap 的 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1>單敗淘汰賽</h1>
+      <div class="row" id="outputContainer"></div>
+      <div class="input-group mb-3">
+        <input type="text" id="nameInput" class="form-control" placeholder="輸入姓名" />
+        <button onclick="generateElement()" class="btn btn-primary">新增參賽人員</button>
+      </div>
+      <button class="btn btn-primary" onclick="generateTournament()">產生賽程表</button>
+      <div id="tournamentContainer"></div>
+      <button id="nextRoundButton" style="display: none" class="btn btn-primary" onclick="moveToNextRound()">晉級下一輪</button>
+    </div>
+
+    <script>
+      var Contestants = []
+      var Number = 0
+      function generateElement() {
+        // 獲取輸入框的值
+        const nameInput = document.getElementById('nameInput')
+        const name = nameInput.value.trim()
+
+        // 檢查是否有輸入姓名
+        if (name !== '') {
+          const newElement = document.createElement('div')
+          newElement.classList.add('col-3')
+
+          const cardBody = document.createElement('div')
+          cardBody.classList.add('input-group', 'mb-1')
+
+          const nameParagraph = document.createElement('input')
+          nameParagraph.classList.add('form-control')
+          nameParagraph.value = name
+          nameParagraph.readOnly = true
+          const personalInfo = new Object()
+          Number = Number + 1
+          personalInfo.Number = Number
+          personalInfo.Name = nameParagraph.value
+          personalInfo.Value = 0
+          Contestants.push(personalInfo)
+          const deleteButton = document.createElement('button')
+          deleteButton.classList.add('btn', 'btn-sm', 'btn-danger')
+          deleteButton.textContent = 'x'
+          deleteButton.onclick = function () {
+            // 刪除被點擊的元素
+            newElement.remove()
+            Contestants = Contestants.filter((item) => item.Name !== nameParagraph.value)
+            const tournamentContainer = document.getElementById('tournamentContainer')
+            tournamentContainer.innerHTML = ''
+          }
+
+          cardBody.appendChild(nameParagraph)
+          cardBody.appendChild(deleteButton)
+
+          newElement.appendChild(cardBody)
+
+          // 將新元素添加到容器中
+          const outputContainer = document.getElementById('outputContainer')
+          outputContainer.appendChild(newElement)
+
+          // 清空輸入框
+          nameInput.value = ''
+        } else {
+          alert('請輸入姓名')
+        }
+      }
+
+      //補足參賽人員
+      function padArray(arr, targetLength) {
+        const currentLength = arr.length
+
+        // 計算需要補足的長度
+        const paddingLength = targetLength - currentLength
+
+        // 如果需要補足長度大於 0，進行補足
+        if (paddingLength > 0) {
+          // 補足的值為 bye + 補足順序
+          for (let i = 1; i <= paddingLength; i++) {
+            const personalInfo = new Object()
+            Number = Number + 1
+            personalInfo.Number = Number
+            personalInfo.Name = `bye${i}`
+            personalInfo.Value = 0
+            arr.push(personalInfo)
+          }
+        }
+
+        return arr
+      }
+
+      //產生賽程表
+
+      function generateTournament() {
+        // 補足參賽人員
+        let newContestants = []
+        newContestants = Contestants.filter((x) => x != '')
+        let targetLength = 0
+        console.log(newContestants.length)
+        if (newContestants.length < 1) {
+          alert('請至少輸入一筆參賽者!!!')
+        } else if (newContestants.length > 1 && newContestants.length < 2) {
+          targetLength = 2
+        } else if (newContestants.length > 2 && newContestants.length < 4) {
+          targetLength = 4
+        } else if (newContestants.length > 4 && newContestants.length < 8) {
+          targetLength = 8
+        } else if (newContestants.length > 8 && newContestants.length < 16) {
+          targetLength = 16
+        } else if (newContestants.length > 16 && newContestants.length < 32) {
+          targetLength = 32
+        } else if (newContestants.length > 32 && newContestants.length < 64) {
+          targetLength = 64
+        } else if (newContestants.length > 64 && newContestants.length < 128) {
+          targetLength = 128
+        } else {
+        }
+
+        var totalContestants = padArray(newContestants, targetLength)
+        console.log(totalContestants)
+        const tournamentContainer = document.getElementById('tournamentContainer')
+        tournamentContainer.innerHTML = ''
+
+        const rounds = Math.ceil(Math.log2(Contestants.length))
+
+        for (let i = 0; i < rounds; i++) {
+          const roundTitle = document.createElement('h2')
+          roundTitle.textContent = `第 ${i + 1} 輪`
+          tournamentContainer.appendChild(roundTitle)
+
+          const matches = []
+
+          for (let j = 0; j < totalContestants.length / Math.pow(2, i); j++) {
+            const match = document.createElement('div')
+            match.classList.add('match')
+
+            const player1Index = j * Math.pow(2, i)
+            const player2Index = j * Math.pow(2, i) + Math.pow(2, i - 1)
+
+            const player1 = totalContestants[player1Index] || 'bye'
+            const player2 = totalContestants[player2Index] || 'bye'
+
+            const matchText = document.createElement('p')
+            matchText.textContent = `${player1} vs ${player2}`
+
+            match.appendChild(matchText)
+
+            matches.push(match)
+          }
+
+          matches.forEach((match) => tournamentContainer.appendChild(match))
+        }
+      }
+    </script>
+
+    <!-- 引入 Bootstrap 的 JavaScript 文件，以實現一些交互功能 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
