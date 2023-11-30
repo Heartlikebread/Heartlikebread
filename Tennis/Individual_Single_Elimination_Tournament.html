@@ -23,6 +23,7 @@
     <script>
       var Contestants = []
       var Number = 0
+      var round = 0
       function generateElement() {
         // 獲取輸入框的值
         const nameInput = document.getElementById('nameInput')
@@ -95,7 +96,26 @@
 
         return arr
       }
+      //隨機兩兩一組
+      function generateRandomArrayPairs(array) {
+        // 複製陣列，以避免修改原始陣列
+        const shuffledArray = array.slice()
 
+        // 打亂陣列
+        for (let i = shuffledArray.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1))
+          ;[shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]]
+        }
+
+        // 將打亂後的陣列分成每兩個一組
+        const pairs = []
+        for (let i = 0; i < shuffledArray.length; i += 2) {
+          const pair = [shuffledArray[i], shuffledArray[i + 1]]
+          pairs.push(pair)
+        }
+
+        return pairs
+      }
       //產生賽程表
 
       function generateTournament() {
@@ -122,41 +142,56 @@
           targetLength = 128
         } else {
         }
-
+        //補足賽事人員點
         var totalContestants = padArray(newContestants, targetLength)
         console.log(totalContestants)
+        //產生第一輪賽事
+
         const tournamentContainer = document.getElementById('tournamentContainer')
         tournamentContainer.innerHTML = ''
-
-        const rounds = Math.ceil(Math.log2(Contestants.length))
-
-        for (let i = 0; i < rounds; i++) {
-          const roundTitle = document.createElement('h2')
-          roundTitle.textContent = `第 ${i + 1} 輪`
-          tournamentContainer.appendChild(roundTitle)
-
-          const matches = []
-
-          for (let j = 0; j < totalContestants.length / Math.pow(2, i); j++) {
-            const match = document.createElement('div')
-            match.classList.add('match')
-
-            const player1Index = j * Math.pow(2, i)
-            const player2Index = j * Math.pow(2, i) + Math.pow(2, i - 1)
-
-            const player1 = totalContestants[player1Index] || 'bye'
-            const player2 = totalContestants[player2Index] || 'bye'
-
-            const matchText = document.createElement('p')
-            matchText.textContent = `${player1} vs ${player2}`
-
-            match.appendChild(matchText)
-
-            matches.push(match)
-          }
-
-          matches.forEach((match) => tournamentContainer.appendChild(match))
+        // 產生每兩個一組且不重複的陣列
+        const result = generateRandomArrayPairs(newContestants)
+        const roundTitle = document.createElement('h2')
+        round = round + 1
+        roundTitle.textContent = `第 ${round} 輪`
+        tournamentContainer.appendChild(roundTitle)
+        for (let i = 0; i < result.length; i++) {
+          const match = document.createElement('div')
+          const matchText = document.createElement('p')
+          matchText.textContent = result[i][0].Name + 'VS' + result[i][1].Name
+          match.appendChild(matchText)
+          tournamentContainer.appendChild(match)
         }
+
+        // const rounds = Math.ceil(Math.log2(Contestants.length))
+
+        // for (let i = 0; i < rounds; i++) {
+        //   const roundTitle = document.createElement('h2')
+        //   roundTitle.textContent = `第 ${i + 1} 輪`
+        //   tournamentContainer.appendChild(roundTitle)
+
+        //   const matches = []
+
+        //   for (let j = 0; j < totalContestants.length / Math.pow(2, i); j++) {
+        //     const match = document.createElement('div')
+        //     match.classList.add('match')
+
+        //     const player1Index = j * Math.pow(2, i)
+        //     const player2Index = j * Math.pow(2, i) + Math.pow(2, i - 1)
+
+        //     const player1 = totalContestants[player1Index] || 'bye'
+        //     const player2 = totalContestants[player2Index] || 'bye'
+
+        //     const matchText = document.createElement('p')
+        //     matchText.textContent = `${player1} vs ${player2}`
+
+        //     match.appendChild(matchText)
+
+        //     matches.push(match)
+        //   }
+
+        //   matches.forEach((match) => tournamentContainer.appendChild(match))
+        // }
       }
     </script>
 
