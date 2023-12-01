@@ -247,10 +247,11 @@
           // 使用 input 元素作為參賽者一的分數輸入框
           const scoreInput = document.createElement('input')
           // scoreInput.type = 'text'
-          scoreInput.type = 'number';
-          scoreInput.max = '7';
+          scoreInput.type = 'number'
+          scoreInput.max = '7'
           scoreInput.classList.add('form-control', 'text-center')
           scoreInput.value = participant[0].Value // 設置 input 的值為參賽者分數
+
           cell1.appendChild(scoreInput)
 
           cell2.textContent = 'VS'
@@ -269,9 +270,10 @@
           // 使用 input 元素作為參賽者二的分數輸入框
           const scoreInput2 = document.createElement('input')
           // scoreInput2.type = 'text'
-          scoreInput2.type = 'number';
-          scoreInput2.max = '7';
+          scoreInput2.type = 'number'
+          scoreInput2.max = '7'
           scoreInput2.classList.add('form-control', 'text-center')
+
           scoreInput2.value = participant[1].Value // 設置 input 的值為參賽者分數
           if (startsWithHello == true) {
             scoreInput2.readOnly = true
@@ -293,12 +295,28 @@
 
           // 添加輸入事件監聽器以更新分數
           scoreInput.addEventListener('input', function () {
+            // 讀取輸入的值
+            const inputValue = parseFloat(scoreInput.value)
+
+            // 判斷是否超過最大值
+            if (inputValue > 7) {
+              // 超過最大值，設定為最大值
+              scoreInput.value = '7'
+            }
             // 更新參賽者陣列中的分數
             participant[0].Value = parseInt(scoreInput.value) || 0
           })
 
           // 添加輸入事件監聽器以更新分數
           scoreInput2.addEventListener('input', function () {
+            // 讀取輸入的值
+            const inputValue = parseFloat(scoreInput2.value)
+
+            // 判斷是否超過最大值
+            if (inputValue > 7) {
+              // 超過最大值，設定為最大值
+              scoreInput2.value = '7'
+            }
             // 更新參賽者陣列中的分數
             participant[1].Value = parseInt(scoreInput2.value) || 0
           })
