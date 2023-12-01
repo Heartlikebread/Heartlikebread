@@ -246,7 +246,9 @@
 
           // 使用 input 元素作為參賽者一的分數輸入框
           const scoreInput = document.createElement('input')
-          scoreInput.type = 'text'
+          // scoreInput.type = 'text'
+          scoreInput.type = 'number';
+          scoreInput.max = '7';
           scoreInput.classList.add('form-control', 'text-center')
           scoreInput.value = participant[0].Value // 設置 input 的值為參賽者分數
           cell1.appendChild(scoreInput)
@@ -266,7 +268,9 @@
 
           // 使用 input 元素作為參賽者二的分數輸入框
           const scoreInput2 = document.createElement('input')
-          scoreInput2.type = 'text'
+          // scoreInput2.type = 'text'
+          scoreInput2.type = 'number';
+          scoreInput2.max = '7';
           scoreInput2.classList.add('form-control', 'text-center')
           scoreInput2.value = participant[1].Value // 設置 input 的值為參賽者分數
           if (startsWithHello == true) {
