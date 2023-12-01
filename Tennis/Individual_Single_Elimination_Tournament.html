@@ -126,23 +126,50 @@
       }
       //隨機兩兩一組
       function generateRandomArrayPairs(array) {
-        // 複製陣列，以避免修改原始陣列
-        const shuffledArray = array.slice()
+        // // 複製陣列，以避免修改原始陣列
+        const players = array.slice()
 
-        // 打亂陣列
-        for (let i = shuffledArray.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1))
-          ;[shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]]
+        // // // 打亂陣列
+        // for (let i = shuffledArray.length - 1; i > 0; i--) {
+        //   const j = Math.floor(Math.random() * (i + 1))
+        //   ;[shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]]
+        // }
+
+        // // 將打亂後的陣列分成每兩個一組
+        // const pairs = []
+        // for (let i = 0; i < shuffledArray.length; i += 2) {
+        //   const pair = [shuffledArray[i], shuffledArray[i + 1]]
+        //   pairs.push(pair)
+        // }
+
+        // return pairs
+        // 找出所有 "bye" 相關的元素
+        const byePlayers = players.filter((player) => player.Name.startsWith('bye'))
+
+        // 隨機重新排序陣列（除了 "bye" 相關的元素）
+        const shuffledPlayers = players.filter((player) => !player.Name.startsWith('bye')).sort(() => Math.random() - 0.5)
+
+        // 將 "bye" 相關的元素插入到配對中，確保它們不在同一組
+        const pairings = []
+        let byeIndex = 0
+
+        while (shuffledPlayers.length > 0) {
+          const pairing = []
+
+          // 插入非 "bye" 相關的元素
+          pairing.push(shuffledPlayers.pop())
+
+          // 插入 "bye" 相關的元素
+          if (byeIndex < byePlayers.length) {
+            pairing.push(byePlayers[byeIndex])
+            byeIndex++
+          } else {
+            pairing.push(shuffledPlayers.pop())
+          }
+
+          pairings.push(pairing)
         }
-
-        // 將打亂後的陣列分成每兩個一組
-        const pairs = []
-        for (let i = 0; i < shuffledArray.length; i += 2) {
-          const pair = [shuffledArray[i], shuffledArray[i + 1]]
-          pairs.push(pair)
-        }
-
-        return pairs
+        return pairings
       }
       //產生賽程表
       function generateTournament() {
@@ -151,7 +178,6 @@
         let newContestants = []
         newContestants = Contestants.filter((x) => x != '')
         let targetLength = 0
-        console.log(newContestants.length)
         if (newContestants.length < 1) {
           alert('請至少輸入一筆參賽者!!!')
         } else if (newContestants.length > 1 && newContestants.length < 2) {
@@ -172,9 +198,7 @@
         }
         //補足賽事人員點
         var totalContestants = padArray(newContestants, targetLength)
-        console.log(totalContestants)
         //產生第一輪賽事
-
         const tournamentContainer = document.getElementById('tournamentContainer')
         const nextRoundButton = document.getElementById('nextRoundButton')
 
@@ -207,7 +231,6 @@
 
         const tbody = document.createElement('tbody')
         participants.forEach((participant) => {
-          console.log(participant)
           const row = tbody.insertRow()
           const cell1 = row.insertCell(0)
           const cell2 = row.insertCell(1)
@@ -216,7 +239,7 @@
           // 使用 input 元素作為參賽者一的內容
           const participantInput = document.createElement('input')
           participantInput.type = 'text'
-          participantInput.classList.add('form-control', 'text-center','highlight-input')
+          participantInput.classList.add('form-control', 'text-center', 'highlight-input')
           participantInput.value = participant[0].Name // 設置 input 的值為參賽者名稱
           participantInput.readOnly = true
           cell1.appendChild(participantInput)
@@ -232,8 +255,12 @@
           // 使用 input 元素作為參賽者二的內容
           const participantInput2 = document.createElement('input')
           participantInput2.type = 'text'
-          participantInput2.classList.add('form-control', 'text-center','highlight-input')
+          participantInput2.classList.add('form-control', 'text-center', 'highlight-input')
           participantInput2.value = participant[1].Name // 設置 input 的值為參賽者名稱
+          const startsWithHello = participant[1].Name.startsWith('bye')
+          if (startsWithHello == true) {
+            participantInput2.value = 'bye'
+          }
           participantInput2.readOnly = true
           cell3.appendChild(participantInput2)
 
@@ -242,6 +269,9 @@
           scoreInput2.type = 'text'
           scoreInput2.classList.add('form-control', 'text-center')
           scoreInput2.value = participant[1].Value // 設置 input 的值為參賽者分數
+          if (startsWithHello == true) {
+            scoreInput2.readOnly = true
+          }
           cell3.appendChild(scoreInput2)
 
           row.classList.add('battle-row')
