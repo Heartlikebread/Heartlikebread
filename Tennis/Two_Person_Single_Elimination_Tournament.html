@@ -1,122 +1,348 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dynamic Battle Table with Score Input</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <style>
-    .highlight {
-      background-color: #ffeeba;
-    }
-  </style>
-</head>
-<body>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>雙打_單敗淘汰賽</title>
+    <!-- 引入 Bootstrap 的 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <style>
+      .highlight {
+        background-color: #ffeeba;
+      }
+      /* 隱藏表格的表頭 */
+      #battleTable thead {
+        display: none;
+      }
+      #battleTable th,
+      #battleTable td {
+        text-align: center;
+      }
+      /* 參賽者使用的底色 */
+      .highlight-input {
+        background-color: #9bb4eb; /* 淺紅色底色 */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1>
+        雙打淘汰賽_首輪抽籤系統
+        <small><p>此用於隨機挑選兩位一組進行雙打比賽</p></small>
+      </h1>
+      <div class="row" id="outputContainer"></div>
+      <div class="input-group mb-3">
+        <input type="text" id="nameInput" class="form-control" placeholder="輸入隊員A" />
+        <div class="input-group-text">
+          <div class="form-check-inline">
+            <label class="form-check-label"> <input type="checkbox" id="ckbSeed" class="form-check-input" />種子籤</label>
+          </div>
+        </div>
 
-  <div class="container mt-5">
-    <h2 class="text-center mb-4">對戰表</h2>
+        <button onclick="generateElement()" class="btn btn-primary">新增參賽人員</button>
+      </div>
+      <button class="btn btn-primary" onclick="generateTournament()">產生賽程表</button>
+      <div id="tournamentContainer"></div>
+      <button id="nextRoundButton" style="display: none" class="btn btn-primary" onclick="moveToNextRound()">晉級下一輪</button>
+    </div>
 
     <script>
-      // 你的參賽者陣列（包含 value 屬性表示分數）
-      const participants = [
-        { name: "選手1", id: 1, value: 0 },
-        { name: "選手2", id: 2, value: 0 },
-        { name: "選手3", id: 3, value: 0 },
-        // 可以添加更多參賽者
-      ];
+      var Contestants = []
+      var Number = 0
+      var round = 0
+      function generateElement() {
+        // 獲取輸入框的值
+        const ckbSeed = document.getElementById('ckbSeed')
+        const nameInput = document.getElementById('nameInput')
+        const name = nameInput.value.trim()
 
-      // 使用 JavaScript 生成資料表
-      const generateTable = () => {
-        const table = document.createElement('table');
-        table.id = 'battleTable';
-        table.classList.add('table');
+        // 檢查是否有輸入姓名
+        if (name !== '') {
+          const newElement = document.createElement('div')
+          newElement.classList.add('col-xl-2', 'col-lg-3', 'col-md-4', 'col-6')
 
-        const thead = table.createTHead();
-        const headerRow = thead.insertRow();
-        const headers = ['參賽者一', 'VS', '參賽者二'];
+          const cardBody = document.createElement('div')
+          cardBody.classList.add('input-group', 'mb-1')
 
-        headers.forEach(headerText => {
-          const th = document.createElement('th');
-          const text = document.createTextNode(headerText);
-          th.appendChild(text);
-          headerRow.appendChild(th);
-        });
+          const nameParagraph = document.createElement('input')
+          nameParagraph.classList.add('form-control')
+          nameParagraph.value = name
+          nameParagraph.readOnly = true
+          if (ckbSeed.checked) {
+            nameParagraph.style.color = 'red'
+          }
+          //檢查是否有重複人員
+          if (Contestants.length != 0) {
+            let checkList = Contestants.filter((x) => x.Name == nameParagraph.value)
+            if (checkList.length != 0) {
+              alert('重複人員，請確認!!!')
+              return
+            }
+          }
+          const personalInfo = new Object()
+          Number = Number + 1
+          personalInfo.Number = Number
+          personalInfo.Name = nameParagraph.value
+          personalInfo.Value = 0
+          personalInfo.Seed = ckbSeed.checked
+          Contestants.push(personalInfo)
+          const deleteButton = document.createElement('button')
+          deleteButton.classList.add('btn', 'btn-sm', 'btn-danger')
+          deleteButton.textContent = 'x'
+          deleteButton.onclick = function () {
+            // 刪除被點擊的元素
+            newElement.remove()
+            Contestants = Contestants.filter((item) => item.Name !== nameParagraph.value)
+            const tournamentContainer = document.getElementById('tournamentContainer')
+            tournamentContainer.innerHTML = ''
+            nextRoundButton.style.display = 'none'
+          }
 
-        const tbody = document.createElement('tbody');
-        participants.forEach(participant => {
-          const row = tbody.insertRow();
-          const cell1 = row.insertCell(0);
-          const cell2 = row.insertCell(1);
-          const cell3 = row.insertCell(2);
+          cardBody.appendChild(nameParagraph)
+          cardBody.appendChild(deleteButton)
+
+          newElement.appendChild(cardBody)
+
+          // 將新元素添加到容器中
+          const outputContainer = document.getElementById('outputContainer')
+          outputContainer.appendChild(newElement)
+
+          // 清空輸入框
+          nameInput.value = ''
+          nameInput.focus()
+          ckbSeed.checked = false
+        } else {
+          alert('請輸入姓名')
+        }
+      }
+
+      //補足參賽人員
+      function padArray(arr, targetLength) {
+        const currentLength = arr.length
+
+        // 計算需要補足的長度
+        const paddingLength = targetLength - currentLength
+
+        // 如果需要補足長度大於 0，進行補足
+        if (paddingLength > 0) {
+          // 補足的值為 bye + 補足順序
+          for (let i = 1; i <= paddingLength; i++) {
+            const personalInfo = new Object()
+            Number = Number + 1
+            personalInfo.Number = Number
+            personalInfo.Name = `bye${i}`
+            personalInfo.Value = 0
+            personalInfo.Seed = false
+            arr.push(personalInfo)
+          }
+        }
+
+        return arr
+      }
+      //隨機兩兩一組
+      function generateRandomArrayPairs(array) {
+        // // 複製陣列，以避免修改原始陣列
+        const players = array.slice()
+
+        // return pairs
+        // 找出所有 "bye" 相關的元素
+        const byePlayers = players.filter((player) => player.Name.startsWith('bye'))
+
+        // 隨機重新排序陣列（除了 "bye" 相關的元素）
+        var shuffledPlayers = players.filter((player) => !player.Name.startsWith('bye')).sort(() => Math.random() - 0.5)
+
+        //隨機調整完後再把種子籤往前移確保空籤優先對應
+        var sortedArray = shuffledPlayers
+          .map(function (obj, index) {
+            return { index, obj }
+          })
+          .sort(function (a, b) {
+            // 先將 isActive 為 false的物件移到開頭，然後按照原始順序排序
+            return a.obj.Seed === b.obj.Seed ? a.index - b.index : a.obj.Seed ? 1 : -1
+          })
+          .map(function (item) {
+            return item.obj
+          })
+        // 將 "bye" 相關的元素插入到配對中，確保它們不在同一組
+        const pairings = []
+        let byeIndex = 0
+        if (sortedArray.length != 0) {
+          console.log(sortedArray)
+          while (sortedArray.length > 0) {
+            const pairing = []
+
+            // 插入非 "bye" 相關的元素
+            pairing.push(sortedArray.pop())
+
+            // 插入 "bye" 相關的元素
+            if (byeIndex < byePlayers.length) {
+              pairing.push(byePlayers[byeIndex])
+              byeIndex++
+            } else {
+              pairing.push(sortedArray.pop())
+            }
+            console.log(pairing)
+            pairings.push(pairing)
+          }
+        }
+        return pairings
+      }
+      //產生賽程表
+      function generateTournament() {
+        round = 0
+        // 補足參賽人員
+        let newContestants = []
+        newContestants = Contestants.filter((x) => x != '')
+        let targetLength = 0
+        if (newContestants.length < 1) {
+          alert('請至少輸入一筆參賽者!!!')
+        } else if (newContestants.length > 1 && newContestants.length < 2) {
+          targetLength = 2
+        } else if (newContestants.length > 2 && newContestants.length < 4) {
+          targetLength = 4
+        } else if (newContestants.length > 4 && newContestants.length < 8) {
+          targetLength = 8
+        } else if (newContestants.length > 8 && newContestants.length < 16) {
+          targetLength = 16
+        } else if (newContestants.length > 16 && newContestants.length < 32) {
+          targetLength = 32
+        } else if (newContestants.length > 32 && newContestants.length < 64) {
+          targetLength = 64
+        } else if (newContestants.length > 64 && newContestants.length < 128) {
+          targetLength = 128
+        } else {
+        }
+        //補足賽事人員點
+        var totalContestants = padArray(newContestants, targetLength)
+        //產生第一輪賽事
+        const tournamentContainer = document.getElementById('tournamentContainer')
+        const nextRoundButton = document.getElementById('nextRoundButton')
+
+        tournamentContainer.innerHTML = ''
+        // 產生每兩個一組且不重複的陣列
+        const participants = generateRandomArrayPairs(newContestants)
+
+        const roundTitle = document.createElement('h2')
+        round = round + 1
+        roundTitle.textContent = `第 ${round} 輪`
+        tournamentContainer.appendChild(roundTitle)
+        tournamentContainer.appendChild(generateTable(participants))
+      }
+
+      function generateTable(participants) {
+        const table = document.createElement('table')
+        table.id = 'battleTable'
+        table.classList.add('table')
+
+        const thead = table.createTHead()
+        const headerRow = thead.insertRow()
+        const headers = ['參賽者一', 'VS', '參賽者二']
+
+        headers.forEach((headerText) => {
+          const th = document.createElement('th')
+          const text = document.createTextNode(headerText)
+          th.appendChild(text)
+          headerRow.appendChild(th)
+        })
+
+        const tbody = document.createElement('tbody')
+        participants.forEach((participant) => {
+          const row = tbody.insertRow()
+          const cell1 = row.insertCell(0)
+          const cell2 = row.insertCell(1)
+          const cell3 = row.insertCell(2)
 
           // 使用 input 元素作為參賽者一的內容
-          const participantInput = document.createElement('input');
-          participantInput.type = 'text';
-          participantInput.classList.add('form-control');
-          participantInput.value = participant.name; // 設置 input 的值為參賽者名稱
-          cell1.appendChild(participantInput);
+          const participantInput = document.createElement('input')
+          participantInput.type = 'text'
+          participantInput.classList.add('form-control', 'text-center', 'highlight-input')
+          participantInput.value = participant[0].Name // 設置 input 的值為參賽者名稱
+          participantInput.readOnly = true
+          cell1.appendChild(participantInput)
 
           // 使用 input 元素作為參賽者一的分數輸入框
-          const scoreInput1 = document.createElement('input');
-          scoreInput1.type = 'text';
-          scoreInput1.classList.add('form-control');
-          scoreInput1.value = participant.value; // 設置 input 的值為參賽者分數
-          cell1.appendChild(scoreInput1);
+          const scoreInput = document.createElement('input')
+          scoreInput.type = 'number'
+          scoreInput.max = '7'
+          scoreInput.classList.add('form-control', 'text-center')
+          scoreInput.value = participant[0].Value // 設置 input 的值為參賽者分數
 
-          cell2.textContent = 'VS';
+          cell1.appendChild(scoreInput)
 
+          cell2.textContent = 'VS'
           // 使用 input 元素作為參賽者二的內容
-          const participantInput2 = document.createElement('input');
-          participantInput2.type = 'text';
-          participantInput2.classList.add('form-control');
-          participantInput2.value = participant.name; // 設置 input 的值為參賽者名稱
-          cell3.appendChild(participantInput2);
+          const participantInput2 = document.createElement('input')
+          participantInput2.type = 'text'
+          participantInput2.classList.add('form-control', 'text-center', 'highlight-input')
+          participantInput2.value = participant[1].Name // 設置 input 的值為參賽者名稱
+          const startsWithHello = participant[1].Name.startsWith('bye')
+          if (startsWithHello == true) {
+            participantInput2.value = 'bye'
+          }
+          participantInput2.readOnly = true
+          cell3.appendChild(participantInput2)
 
           // 使用 input 元素作為參賽者二的分數輸入框
-          const scoreInput2 = document.createElement('input');
-          scoreInput2.type = 'text';
-          scoreInput2.classList.add('form-control');
-          scoreInput2.value = participant.value; // 設置 input 的值為參賽者分數
-          cell3.appendChild(scoreInput2);
+          const scoreInput2 = document.createElement('input')
+          // scoreInput2.type = 'text'
+          scoreInput2.type = 'number'
+          scoreInput2.max = '7'
+          scoreInput2.classList.add('form-control', 'text-center')
 
-          row.classList.add('battle-row');
+          scoreInput2.value = participant[1].Value // 設置 input 的值為參賽者分數
+          if (startsWithHello == true) {
+            scoreInput2.readOnly = true
+          }
+          cell3.appendChild(scoreInput2)
+
+          row.classList.add('battle-row')
 
           // 添加點擊事件
-          row.addEventListener('click', function() {
+          row.addEventListener('click', function () {
             // 移除其他行的突顯效果
-            Array.from(tbody.getElementsByClassName('battle-row')).forEach(row => {
-              row.classList.remove('highlight');
-            });
+            Array.from(tbody.getElementsByClassName('battle-row')).forEach((row) => {
+              row.classList.remove('highlight')
+            })
 
             // 添加被點擊行的突顯效果
-            row.classList.add('highlight');
-          });
+            row.classList.add('highlight')
+          })
 
           // 添加輸入事件監聽器以更新分數
-          scoreInput1.addEventListener('input', function() {
+          scoreInput.addEventListener('input', function () {
+            // 讀取輸入的值
+            const inputValue = parseFloat(scoreInput.value)
+
+            // 判斷是否超過最大值
+            if (inputValue > 7) {
+              // 超過最大值，設定為最大值
+              scoreInput.value = '7'
+            }
             // 更新參賽者陣列中的分數
-            participant.value = parseInt(scoreInput1.value) || 0;
-          });
+            participant[0].Value = parseInt(scoreInput.value) || 0
+          })
 
           // 添加輸入事件監聽器以更新分數
-          scoreInput2.addEventListener('input', function() {
+          scoreInput2.addEventListener('input', function () {
+            // 讀取輸入的值
+            const inputValue = parseFloat(scoreInput2.value)
+
+            // 判斷是否超過最大值
+            if (inputValue > 7) {
+              // 超過最大值，設定為最大值
+              scoreInput2.value = '7'
+            }
             // 更新參賽者陣列中的分數
-            participant.value = parseInt(scoreInput2.value) || 0;
-          });
-        });
+            participant[1].Value = parseInt(scoreInput2.value) || 0
+          })
+        })
 
-        table.appendChild(tbody);
-
-        return table;
-      };
-
-      // 將表格添加到容器中
-      document.querySelector('.container').appendChild(generateTable());
+        table.appendChild(tbody)
+        return table
+      }
     </script>
-  </div>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</body>
+    <!-- 引入 Bootstrap 的 JavaScript 文件，以實現一些交互功能 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

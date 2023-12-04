@@ -26,10 +26,15 @@
   </head>
   <body>
     <div class="container mt-5">
-      <h1>單敗淘汰賽</h1>
+      <h1>單打淘汰賽_首輪抽籤系統</h1>
       <div class="row" id="outputContainer"></div>
       <div class="input-group mb-3">
         <input type="text" id="nameInput" class="form-control" placeholder="輸入姓名" />
+        <div class="input-group-text">
+          <div class="form-check-inline">
+            <label class="form-check-label"> <input type="checkbox" id="ckbSeed" class="form-check-input" />種子籤</label>
+          </div>
+        </div>
         <button onclick="generateElement()" class="btn btn-primary">新增參賽人員</button>
       </div>
       <button class="btn btn-primary" onclick="generateTournament()">產生賽程表</button>
@@ -43,6 +48,7 @@
       var round = 0
       function generateElement() {
         // 獲取輸入框的值
+        const ckbSeed = document.getElementById('ckbSeed')
         const nameInput = document.getElementById('nameInput')
         const name = nameInput.value.trim()
 
@@ -58,7 +64,9 @@
           nameParagraph.classList.add('form-control')
           nameParagraph.value = name
           nameParagraph.readOnly = true
-
+          if (ckbSeed.checked) {
+            nameParagraph.style.color = 'red'
+          }
           //檢查是否有重複人員
           if (Contestants.length != 0) {
             let checkList = Contestants.filter((x) => x.Name == nameParagraph.value)
@@ -72,6 +80,7 @@
           personalInfo.Number = Number
           personalInfo.Name = nameParagraph.value
           personalInfo.Value = 0
+          personalInfo.Seed = ckbSeed.checked
           Contestants.push(personalInfo)
           const deleteButton = document.createElement('button')
           deleteButton.classList.add('btn', 'btn-sm', 'btn-danger')
@@ -97,6 +106,7 @@
           // 清空輸入框
           nameInput.value = ''
           nameInput.focus()
+          ckbSeed.checked = false
         } else {
           alert('請輸入姓名')
         }
@@ -118,6 +128,7 @@
             personalInfo.Number = Number
             personalInfo.Name = `bye${i}`
             personalInfo.Value = 0
+            personalInfo.Seed = false
             arr.push(personalInfo)
           }
         }
@@ -129,45 +140,46 @@
         // // 複製陣列，以避免修改原始陣列
         const players = array.slice()
 
-        // // // 打亂陣列
-        // for (let i = shuffledArray.length - 1; i > 0; i--) {
-        //   const j = Math.floor(Math.random() * (i + 1))
-        //   ;[shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]]
-        // }
-
-        // // 將打亂後的陣列分成每兩個一組
-        // const pairs = []
-        // for (let i = 0; i < shuffledArray.length; i += 2) {
-        //   const pair = [shuffledArray[i], shuffledArray[i + 1]]
-        //   pairs.push(pair)
-        // }
-
         // return pairs
         // 找出所有 "bye" 相關的元素
         const byePlayers = players.filter((player) => player.Name.startsWith('bye'))
 
         // 隨機重新排序陣列（除了 "bye" 相關的元素）
-        const shuffledPlayers = players.filter((player) => !player.Name.startsWith('bye')).sort(() => Math.random() - 0.5)
+        var shuffledPlayers = players.filter((player) => !player.Name.startsWith('bye')).sort(() => Math.random() - 0.5)
 
+        //隨機調整完後再把種子籤往前移確保空籤優先對應
+        var sortedArray = shuffledPlayers
+          .map(function (obj, index) {
+            return { index, obj }
+          })
+          .sort(function (a, b) {
+            // 先將 isActive 為 false的物件移到開頭，然後按照原始順序排序
+            return a.obj.Seed === b.obj.Seed ? a.index - b.index : a.obj.Seed ? 1 : -1
+          })
+          .map(function (item) {
+            return item.obj
+          })
         // 將 "bye" 相關的元素插入到配對中，確保它們不在同一組
         const pairings = []
         let byeIndex = 0
+        if (sortedArray.length != 0) {
+          console.log(sortedArray)
+          while (sortedArray.length > 0) {
+            const pairing = []
 
-        while (shuffledPlayers.length > 0) {
-          const pairing = []
+            // 插入非 "bye" 相關的元素
+            pairing.push(sortedArray.pop())
 
-          // 插入非 "bye" 相關的元素
-          pairing.push(shuffledPlayers.pop())
-
-          // 插入 "bye" 相關的元素
-          if (byeIndex < byePlayers.length) {
-            pairing.push(byePlayers[byeIndex])
-            byeIndex++
-          } else {
-            pairing.push(shuffledPlayers.pop())
+            // 插入 "bye" 相關的元素
+            if (byeIndex < byePlayers.length) {
+              pairing.push(byePlayers[byeIndex])
+              byeIndex++
+            } else {
+              pairing.push(sortedArray.pop())
+            }
+            console.log(pairing)
+            pairings.push(pairing)
           }
-
-          pairings.push(pairing)
         }
         return pairings
       }
@@ -246,7 +258,6 @@
 
           // 使用 input 元素作為參賽者一的分數輸入框
           const scoreInput = document.createElement('input')
-          // scoreInput.type = 'text'
           scoreInput.type = 'number'
           scoreInput.max = '7'
           scoreInput.classList.add('form-control', 'text-center')
