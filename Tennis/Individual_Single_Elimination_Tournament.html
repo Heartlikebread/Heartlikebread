@@ -148,22 +148,39 @@
         var shuffledPlayers = players.filter((player) => !player.Name.startsWith('bye')).sort(() => Math.random() - 0.5)
 
         //隨機調整完後再把種子籤往前移確保空籤優先對應
-        var sortedArray = shuffledPlayers
-          .map(function (obj, index) {
-            return { index, obj }
-          })
-          .sort(function (a, b) {
-            // 先將 isActive 為 false的物件移到開頭，然後按照原始順序排序
-            return a.obj.Seed === b.obj.Seed ? a.index - b.index : a.obj.Seed ? 1 : -1
-          })
-          .map(function (item) {
-            return item.obj
-          })
+        var sortedArray = []
+        if (byePlayers != 0) {
+          sortedArray = shuffledPlayers
+            .map(function (obj, index) {
+              return { index, obj }
+            })
+            .sort(function (a, b) {
+              // 先將 isActive 為 false的物件移到開頭，然後按照原始順序排序
+              return a.obj.Seed === b.obj.Seed ? a.index - b.index : a.obj.Seed ? 1 : -1
+            })
+            .map(function (item) {
+              return item.obj
+            })
+        } else {
+          //因為沒有空籤，第一輪不能讓種子籤相撞
+          // 將 Seed 為 true 的物件隨機排序
+          const shuffledTrueObjects = shuffledPlayers.filter((obj) => obj.Seed).sort(() => Math.random() - 0.5)
+
+          // 將 Seed 為 false 的物件保持原有順序
+          const falseObjects = shuffledPlayers.filter((obj) => !obj.Seed)
+          for (let i = 0; i < Math.max(shuffledTrueObjects.length, falseObjects.length); i++) {
+            if (i < falseObjects.length) {
+              sortedArray.push(falseObjects[i])
+            }
+            if (i < shuffledTrueObjects.length) {
+              sortedArray.push(shuffledTrueObjects[i])
+            }
+          }
+        }
         // 將 "bye" 相關的元素插入到配對中，確保它們不在同一組
         const pairings = []
         let byeIndex = 0
         if (sortedArray.length != 0) {
-          console.log(sortedArray)
           while (sortedArray.length > 0) {
             const pairing = []
 
