@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>真饌軒綠豆湯</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <style>
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: url('https://images.unsplash.com/photo-1560508180-03f285f67ded?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80') no-repeat center
+          center;
+        background-size: cover;
+      }
+      .container {
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 3px;
+      }
+      .row {
+        max-height: 600px;
+      }
+      .col-md-4 {
+        max-height: 580px;
+        overflow-y: auto;
+      }
+      [data-alpha-pos='delete-drink'] {
+        display: inline-block;
+        text-align: center;
+        color: #999;
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        font-size: 20px;
+        line-height: 1;
+      }
+      [data-alpha-pos='delete-drink']:hover {
+        color: #333;
+      }
+      .menu .card-body {
+        cursor: pointer;
+      }
+      .menu .card-body:hover {
+        box-shadow: 0px 0px 10px 1px rgba(255, 255, 255, 0.8);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="text-center pt-4 text-light">真饌軒綠豆湯點餐系統</h2>
+      <div class="row">
+        <!--    left side card list    -->
+        <div class="col-md-4 p-4" data-order-lists>
+          <!--   checkout button     -->
+          <div class="text-right">
+            <button class="btn btn-light" style="min-width: 120px" data-alpha-pos="checkout">確認</button>
+          </div>
+        </div>
+        <!--    right side card list    -->
+        <div class="col-md-8 p-4">
+          <section class="menu mb-4">
+            <div class="card-deck mb-1">
+              <div class="card text-center">
+                <label class="card-body px-1">
+                  <h5 class="card-title">綠豆湯</h5>
+                  <input type="radio" name="drink" value="綠豆湯" />
+                </label>
+              </div>
+
+              <div class="card text-center">
+                <label class="card-body px-1">
+                  <h5 class="card-title">綠豆沙汁</h5>
+                  <input type="radio" name="drink" value="綠豆沙汁" />
+                </label>
+              </div>
+
+              <div class="card text-center">
+                <label class="card-body px-1">
+                  <h5 class="card-title">紅豆湯</h5>
+                  <input type="radio" name="drink" value="紅豆湯" />
+                </label>
+              </div>
+
+              <div class="card text-center">
+                <label class="card-body px-1">
+                  <h5 class="card-title">紅豆沙汁</h5>
+                  <input type="radio" name="drink" value="紅豆沙汁" />
+                </label>
+              </div>
+
+              <div class="card text-center">
+                <label class="card-body px-1">
+                  <h5 class="card-title">薏仁湯</h5>
+                  <input type="radio" name="drink" value="薏仁湯" />
+                </label>
+              </div>
+              <div class="card text-center">
+                <label class="card-body px-1">
+                  <h5 class="card-title">薏仁漿</h5>
+                  <input type="radio" name="drink" value="薏仁漿" />
+                </label>
+              </div>
+            </div>
+
+            <div class="card-deck mb-1">
+              <div class="card text-center">
+                <label class="card-body px-1">
+                  <h5 class="card-title">綠豆薏仁湯</h5>
+                  <input type="radio" name="drink" value="綠豆薏仁湯" />
+                </label>
+              </div>
+              <div class="card text-center">
+                <label class="card-body px-1">
+                  <h5 class="card-title">紅豆薏仁湯</h5>
+                  <input type="radio" name="drink" value="紅豆薏仁湯" />
+                </label>
+              </div>
+
+              <div class="card text-center">
+                <label class="card-body px-1">
+                  <h5 class="card-title">綠豆牛奶</h5>
+                  <input type="radio" name="drink" value="綠豆牛奶" />
+                </label>
+              </div>
+
+              <div class="card text-center">
+                <label class="card-body px-1">
+                  <h5 class="card-title">紅豆牛奶</h5>
+                  <input type="radio" name="drink" value="紅豆牛奶" />
+                </label>
+              </div>
+
+              <div class="card text-center">
+                <label class="card-body px-1">
+                  <h5 class="card-title">薏仁牛奶</h5>
+                  <input type="radio" name="drink" value="薏仁牛奶" />
+                </label>
+              </div>
+
+              <div class="card text-center">
+                <label class="card-body px-1">
+                  <h5 class="card-title">綠豆冰沙</h5>
+                  <input type="radio" name="drink" value="綠豆冰沙" />
+                </label>
+              </div>
+            </div>
+            <div class="card-deck">
+              <div class="card text-center">
+                <label class="card-body px-1">
+                  <h5 class="card-title">綠豆沙牛奶</h5>
+                  <input type="radio" name="drink" value="綠豆沙牛奶" />
+                </label>
+              </div>
+              <div class="card text-center">
+                <label class="card-body px-1">
+                  <h5 class="card-title">客家麻糬</h5>
+                  <input type="radio" name="drink" value="客家麻糬" />
+                </label>
+              </div>
+              <div class="card text-center">
+                <label class="card-body px-1">
+                  <h5 class="card-title">紅豆湯圓</h5>
+                  <input type="radio" name="drink" value="紅豆湯圓" />
+                </label>
+              </div>
+              <div class="card text-center">
+                <label class="card-body px-1">
+                  <h5 class="card-title">紫米紅豆粥</h5>
+                  <input type="radio" name="drink" value="紫米紅豆粥" />
+                </label>
+              </div>
+              <div class="card text-center">
+                <label class="card-body px-1">
+                  <h5 class="card-title">養身黑豆茶</h5>
+                  <input type="radio" name="drink" value="養身黑豆茶" />
+                </label>
+              </div>
+              <div class="card text-center">
+                <label class="card-body px-1">
+                  <h5 class="card-title">養顏紅豆水</h5>
+                  <input type="radio" name="drink" value="養顏紅豆水" />
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <div class="row">
+            <div class="col">
+              <section class="ice">
+                <label class="d-block text-light">尺寸</label>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                  <label class="btn btn-outline-primary"> <input type="radio" name="size" value="小杯 (400cc)" />小杯 (400cc) </label>
+                  <label class="btn btn-outline-primary"> <input type="radio" name="size" value="大杯 (500cc)" checked="checked" />大杯 (500cc)</label>
+                  <label class="btn btn-outline-primary"> <input type="radio" name="size" value="特大 (700cc)" />特大 (700cc)</label>
+                </div>
+              </section>
+            </div>
+            <div class="col">
+              <section class="sugar">
+                <label class="d-block text-light">加料區</label>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                  <label class="btn btn-outline-info"> <input type="checkbox" name="Adding" value="粉角" />粉角 </label>
+                  <label class="btn btn-outline-info"> <input type="checkbox" name="Adding" value="仙草" />仙草 </label>
+                  <label class="btn btn-outline-info"> <input type="checkbox" name="Adding" value="牛奶" />牛奶 </label>
+                  <label class="btn btn-outline-info"> <input type="checkbox" name="Adding" value="湯圓(冬季限定)" />湯圓(冬季限定) </label>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <section class="sugar">
+            <label class="d-block text-light">數量</label>
+            <label class="btn btn-outline-info"> <input type="radio" name="cup" value="1" />1</label>
+            <label class="btn btn-outline-info"> <input type="radio" name="cup" value="2" />2</label>
+            <label class="btn btn-outline-info"> <input type="radio" name="cup" value="3" />3</label>
+            <label class="btn btn-outline-info"> <input type="radio" name="cup" value="4" />4</label>
+            <label class="btn btn-outline-info"> <input type="radio" name="cup" value="5" />5</label>
+            <label class="btn btn-outline-info"> <input type="number" id="txtCup" value="" />自行輸入 </label>
+
+            <div class="btn btn-light" style="min-width: 120px" data-alpha-pos="add-drink">新增</div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <script>
+      // new the alphaPos Instance
+      const alphaPos = new AlphaPos()
+
+      const addDrinkButton = document.querySelector('[data-alpha-pos="add-drink"]')
+      addDrinkButton.addEventListener('click', function () {
+        // 1. 取得店員選擇的飲料品項、甜度和冰塊
+        const drinkName = alphaPos.getCheckedValue('drink')
+        const size = alphaPos.getCheckedValue('size')
+        const checkboxes = document.querySelectorAll('input[name="Adding"]:checked')
+        let Adding = ''
+        checkboxes.forEach((checkbox) => {
+          Adding += checkbox.value + ','
+        })
+        Adding = Adding.slice(0, -1)
+        const cup = alphaPos.getCheckedValue('cup')
+        const txtCup = document.getElementById('txtCup').value
+        console.log(Adding)
+        let getNumber = 0
+        // 2. 如果沒有選擇飲料品項，跳出提示
+        if (!drinkName) {
+          alert('您還未選擇任何品項!')
+          return
+        }
+        if (drinkName == '綠豆冰沙' && size == '小杯 (400cc)') {
+          alert('綠豆冰沙沒有小杯 (400cc)，請再確認!')
+          return
+        }
+        if (drinkName == '綠豆沙牛奶' && size == '小杯 (400cc)') {
+          alert('綠豆沙牛奶沒有小杯 (400cc)，請再確認!')
+          return
+        }
+        if (drinkName == '紅豆湯圓' && size == '特大 (700cc)') {
+          alert('紅豆湯圓沒有特大 (700cc)，請再確認!')
+          return
+        }
+        if (drinkName == '紫米紅豆粥' && size == '特大 (700cc)') {
+          alert('紫米紅豆粥沒有特大 (700cc)，請再確認!')
+          return
+        }
+
+        if (drinkName == '養生黑豆茶' && size == '小杯 (400cc)') {
+          alert('養生黑豆茶沒有小杯 (400cc)，請再確認!')
+          return
+        }
+        if (drinkName == '養生黑豆茶' && size == '大杯 (500cc)') {
+          alert('養生黑豆茶沒有大杯 (500cc)，請再確認!')
+          return
+        }
+        if (drinkName == '美顏紅豆水' && size == '小杯 (400cc)') {
+          alert('紅豆湯圓沒有小杯 (400cc)，請再確認!')
+          return
+        }
+        if (drinkName == '美顏紅豆水' && size == '大杯 (500cc)') {
+          alert('紫米紅豆粥沒有大杯 (500cc)，請再確認!')
+          return
+        }
+
+        if (drinkName == '客家麻糬') {
+          size = '無'
+        }
+        if (!size) {
+          alert('您還未選擇任何尺寸!')
+          return
+        }
+
+        console.log(txtCup)
+        console.log(cup)
+        if (txtCup != 0 || txtCup != '') {
+          getNumber = txtCup
+        } else {
+          getNumber = cup
+        }
+        console.log(drinkName + ',' + size + ',' + Adding + ',' + getNumber)
+
+        // 3. 建立飲料實例，並取得飲料價格數量
+        const drink = new Drink(drinkName, size, Adding, getNumber)
+        console.log(drink)
+        console.log(drink.price())
+        // 4. 將飲料實例產生成左側訂單區的畫面
+        alphaPos.addDrink(drink)
+      })
+
+      const orderLists = document.querySelector('[data-order-lists]')
+      orderLists.addEventListener('click', function (event) {
+        let isDeleteButton = event.target.matches('[data-alpha-pos="delete-drink"]')
+        if (!isDeleteButton) {
+          return
+        }
+
+        // delete the card element
+        alphaPos.deleteDrink(event.target.parentElement.parentElement.parentElement)
+      })
+
+      const checkoutButton = document.querySelector('[data-alpha-pos="checkout"]')
+      checkoutButton.addEventListener('click', function () {
+        // 1. 計算訂單總金額
+        alert(`總金額為：$${alphaPos.checkout()}`)
+
+        // 2. 清空訂單
+        alphaPos.clearOrder(orderLists)
+      })
+
+      // Constructor function for Alpha Pos System
+      function AlphaPos() {}
+      AlphaPos.prototype.getCheckedValue = function (inputName) {
+        let selectedOption = ''
+        document.querySelectorAll(`[name=${inputName}]`).forEach(function (item) {
+          if (item.checked) {
+            selectedOption = item.value
+          }
+        })
+        return selectedOption
+      }
+
+      AlphaPos.prototype.addDrink = function (drink) {
+        let orderListsCard = `
+          <div class="card mb-3">
+          <div class="card-body pt-3 pr-3">
+            <div class="text-right">
+              <span data-alpha-pos="delete-drink">×</span>
+            </div>
+            <h6 class="card-title mb-1">品項: ${drink.name}</h6>
+            <div class="card-text">尺寸: ${drink.size}</div>
+            <div class="card-text">加料: ${drink.Adding}</div>
+            <div class="card-text">數量: ${drink.cup}</div>
+          </div>
+          <div class="card-footer text-right py-2">
+            <div class="card-text text-muted">$ <span data-drink-price>${drink.price()}</span></div>
+          </div>
+        </div>
+        `
+
+        orderLists.insertAdjacentHTML('afterbegin', orderListsCard)
+      }
+
+      AlphaPos.prototype.deleteDrink = function (target) {
+        target.remove()
+      }
+
+      AlphaPos.prototype.checkout = function () {
+        let totalAmount = 0
+        document.querySelectorAll('[data-drink-price]').forEach(function (drink) {
+          totalAmount += Number(drink.textContent)
+        })
+        return totalAmount
+      }
+
+      AlphaPos.prototype.clearOrder = function (target) {
+        target.querySelectorAll('.card').forEach(function (card) {
+          card.remove()
+        })
+      }
+
+      // constructor function for drinks
+      function Drink(name, size, Adding, cup) {
+        this.name = name
+        this.size = size
+        this.Adding = Adding
+        this.cup = cup
+      }
+      Drink.prototype.price = function () {
+        let total = 0
+        switch (this.name) {
+          case '綠豆湯':
+            if (this.size == '小杯 (400cc)') {
+              total = 40
+            } else if (this.size == '大杯 (500cc)') {
+              total = 45
+            } else {
+              //這裡為特大杯
+              total = 50
+            }
+            if (this.Adding != '') {
+              total += checkAdding(this.Adding)
+            }
+            return total * this.cup
+          case '綠豆沙汁':
+            if (this.size == '小杯 (400cc)') {
+              total = 20
+            } else if (this.size == '大杯 (500cc)') {
+              total = 30
+            } else {
+              //這裡為特大杯
+              total = 35
+            }
+            if (this.Adding != '') {
+              total += checkAdding(this.Adding)
+            }
+            return total * this.cup
+          case '紅豆湯':
+            if (this.size == '小杯 (400cc)') {
+              total = 45
+            } else if (this.size == '大杯 (500cc)') {
+              total = 50
+            } else {
+              //這裡為特大杯
+              total = 55
+            }
+            if (this.Adding != '') {
+              total += checkAdding(this.Adding)
+            }
+            return total * this.cup
+          case '紅豆沙汁':
+            if (this.size == '小杯 (400cc)') {
+              total = 20
+            } else if (this.size == '大杯 (500cc)') {
+              total = 30
+            } else {
+              //這裡為特大杯
+              total = 35
+            }
+            if (this.Adding != '') {
+              total += checkAdding(this.Adding)
+            }
+            return total * this.cup
+          case '薏仁湯':
+            if (this.size == '小杯 (400cc)') {
+              total = 40
+            } else if (this.size == '大杯 (500cc)') {
+              total = 45
+            } else {
+              //這裡為特大杯
+              total = 50
+            }
+            if (this.Adding != '') {
+              total += checkAdding(this.Adding)
+            }
+            return total * this.cup
+          case '薏仁漿':
+            if (this.size == '小杯 (400cc)') {
+              total = 20
+            } else if (this.size == '大杯 (500cc)') {
+              total = 30
+            } else {
+              //這裡為特大杯
+              total = 35
+            }
+            if (this.Adding != '') {
+              total += checkAdding(this.Adding)
+            }
+            return total * this.cup
+          case '綠豆薏仁湯':
+            if (this.size == '小杯 (400cc)') {
+              total = 45
+            } else if (this.size == '大杯 (500cc)') {
+              total = 50
+            } else {
+              //這裡為特大杯
+              total = 55
+            }
+            if (this.Adding != '') {
+              total += checkAdding(this.Adding)
+            }
+            return total * this.cup
+          case '紅豆薏仁湯':
+            if (this.size == '小杯 (400cc)') {
+              total = 45
+            } else if (this.size == '大杯 (500cc)') {
+              total = 50
+            } else {
+              //這裡為特大杯
+              total = 55
+            }
+            if (this.Adding != '') {
+              total += checkAdding(this.Adding)
+            }
+            return total * this.cup
+          case '綠豆牛奶':
+            if (this.size == '小杯 (400cc)') {
+              total = 50
+            } else if (this.size == '大杯 (500cc)') {
+              total = 60
+            } else {
+              //這裡為特大杯
+              total = 65
+            }
+            if (this.Adding != '') {
+              total += checkAdding(this.Adding)
+            }
+            return total * this.cup
+          case '薏仁牛奶':
+            if (this.size == '小杯 (400cc)') {
+              total = 50
+            } else if (this.size == '大杯 (500cc)') {
+              total = 60
+            } else {
+              //這裡為特大杯
+              total = 65
+            }
+            if (this.Adding != '') {
+              total += checkAdding(this.Adding)
+            }
+            return total * this.cup
+          case '紅豆牛奶':
+            if (this.size == '小杯 (400cc)') {
+              total = 55
+            } else if (this.size == '大杯 (500cc)') {
+              total = 65
+            } else {
+              //這裡為特大杯
+              total = 70
+            }
+            if (this.Adding != '') {
+              total += checkAdding(this.Adding)
+            }
+            return total * this.cup
+          case '綠豆冰沙':
+            if (this.size == '大杯 (500cc)') {
+              total = 35
+            } else {
+              //這裡為特大杯
+              total = 40
+            }
+            if (this.Adding != '') {
+              total += checkAdding(this.Adding)
+            }
+            return total * this.cup
+          case '綠豆沙牛奶':
+            if (this.size == '大杯 (500cc)') {
+              total = 45
+            } else {
+              //這裡為特大杯
+              total = 50
+            }
+            if (this.Adding != '') {
+              total += checkAdding(this.Adding)
+            }
+            return total * this.cup
+          case '客家麻糬':
+            return 35
+          case '紅豆湯圓':
+            if (this.size == '大杯 (500cc)') {
+              total = 55
+            } else {
+              //這裡為特大杯
+              total = 60
+            }
+            if (this.Adding != '') {
+              total += checkAdding(this.Adding)
+            }
+            return total * this.cup
+
+          case '紫米紅豆粥':
+            if (this.size == '大杯 (500cc)') {
+              total = 45
+            } else {
+              //這裡為特大杯
+              total = 50
+            }
+            if (this.Adding != '') {
+              total += checkAdding(this.Adding)
+            }
+            return total * this.cup
+          case '養生黑豆茶':
+            return 40
+          case '美顏紅豆水':
+            return 45
+          default:
+            alert('無此產品，請確認!')
+        }
+      }
+
+      function checkAdding(Adding) {
+        let addingTotal = 0
+        arrayAdding = Adding.split(',')
+        for (let i = 0; i < arrayAdding.length; i++) {
+          if (arrayAdding[i] == '粉角') {
+            addingTotal += 5
+          }
+          if (arrayAdding[i] == '仙草') {
+            addingTotal += 5
+          }
+          if (arrayAdding[i] == '牛奶') {
+            addingTotal += 10
+          }
+          if (arrayAdding[i] == '湯圓(冬季限定)') {
+            addingTotal += 10
+          }
+        }
+        return addingTotal
+      }
+    </script>
+  </body>
+</html>

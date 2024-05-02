@@ -35,9 +35,14 @@
             <label class="form-check-label"> <input type="checkbox" id="ckbSeed" class="form-check-input" />種子籤</label>
           </div>
         </div>
-        <button onclick="generateElement()" class="btn btn-primary">新增參賽人員</button>
       </div>
-      <button class="btn btn-primary" onclick="generateTournament()">產生賽程表</button>
+      <div class="input-group mb-3">
+        <button class="btn btn-primary pd-3" onclick="generateTournament()">產生賽程表</button>
+        <p style="width: 10px"></p>
+        <button onclick="generateElement()" class="btn btn-success">新增參賽人員</button>
+        <p style="width: 10px"></p>
+        <button onclick="exportExcel()" class="btn btn-success">匯出excel</button>
+      </div>
       <div id="tournamentContainer"></div>
       <button id="nextRoundButton" style="display: none" class="btn btn-primary" onclick="moveToNextRound()">晉級下一輪</button>
     </div>
@@ -209,6 +214,7 @@
         let targetLength = 0
         if (newContestants.length < 1) {
           alert('請至少輸入一筆參賽者!!!')
+          return
         } else if (newContestants.length > 1 && newContestants.length < 2) {
           targetLength = 2
         } else if (newContestants.length > 2 && newContestants.length < 4) {
