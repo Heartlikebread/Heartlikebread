@@ -213,18 +213,22 @@
               </section>
             </div>
           </div>
-
-          <section class="sugar">
-            <label class="d-block text-light">數量</label>
-            <label class="btn btn-outline-info"> <input type="radio" name="cup" value="1" />1</label>
-            <label class="btn btn-outline-info"> <input type="radio" name="cup" value="2" />2</label>
-            <label class="btn btn-outline-info"> <input type="radio" name="cup" value="3" />3</label>
-            <label class="btn btn-outline-info"> <input type="radio" name="cup" value="4" />4</label>
-            <label class="btn btn-outline-info"> <input type="radio" name="cup" value="5" />5</label>
-            <label class="btn btn-outline-info"> <input type="number" id="txtCup" value="" />自行輸入 </label>
-
-            <div class="btn btn-light" style="min-width: 120px" data-alpha-pos="add-drink">新增</div>
-          </section>
+          <div class="row align-items-center">
+            <div class="col-10">
+              <section class="sugar">
+                <label class="d-block text-light">數量</label>
+                <label class="btn btn-outline-info"> <input type="radio" name="cup" value="1" />1</label>
+                <label class="btn btn-outline-info"> <input type="radio" name="cup" value="2" />2</label>
+                <label class="btn btn-outline-info"> <input type="radio" name="cup" value="3" />3</label>
+                <label class="btn btn-outline-info"> <input type="radio" name="cup" value="4" />4</label>
+                <label class="btn btn-outline-info"> <input type="radio" name="cup" value="5" />5</label>
+                <label class="btn btn-outline-info"> <input type="number" id="txtCup" value="" />自行輸入 </label>
+              </section>
+            </div>
+            <div class="col-2 my-0">
+              <div class="btn btn-light" data-alpha-pos="add-drink">新增</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -269,20 +273,20 @@
           return
         }
 
-        if (drinkName == '養生黑豆茶' && size == '小杯 (400cc)') {
-          alert('養生黑豆茶沒有小杯 (400cc)，請再確認!')
+        if (drinkName == '養身黑豆茶' && size == '小杯 (400cc)') {
+          alert('養身黑豆茶沒有小杯 (400cc)，請再確認!')
           return
         }
-        if (drinkName == '養生黑豆茶' && size == '大杯 (500cc)') {
-          alert('養生黑豆茶沒有大杯 (500cc)，請再確認!')
+        if (drinkName == '養身黑豆茶' && size == '大杯 (500cc)') {
+          alert('養身黑豆茶沒有大杯 (500cc)，請再確認!')
           return
         }
-        if (drinkName == '美顏紅豆水' && size == '小杯 (400cc)') {
-          alert('紅豆湯圓沒有小杯 (400cc)，請再確認!')
+        if (drinkName == '養顏紅豆水' && size == '小杯 (400cc)') {
+          alert('養顏紅豆水沒有小杯 (400cc)，請再確認!')
           return
         }
-        if (drinkName == '美顏紅豆水' && size == '大杯 (500cc)') {
-          alert('紫米紅豆粥沒有大杯 (500cc)，請再確認!')
+        if (drinkName == '養顏紅豆水' && size == '大杯 (500cc)') {
+          alert('養顏紅豆水沒有大杯 (500cc)，請再確認!')
           return
         }
 
@@ -583,10 +587,10 @@
               total += checkAdding(this.Adding)
             }
             return total * this.cup
-          case '養生黑豆茶':
+          case '養身黑豆茶':
             total = 40
             return total * this.cup
-          case '美顏紅豆水':
+          case '養顏紅豆水':
             total = 45
             return total * this.cup
           default:
