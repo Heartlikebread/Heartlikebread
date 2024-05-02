@@ -235,9 +235,9 @@
       const addDrinkButton = document.querySelector('[data-alpha-pos="add-drink"]')
       addDrinkButton.addEventListener('click', function () {
         // 1. 取得店員選擇的飲料品項、甜度和冰塊
-        const drinkName = alphaPos.getCheckedValue('drink')
-        const size = alphaPos.getCheckedValue('size')
-        const checkboxes = document.querySelectorAll('input[name="Adding"]:checked')
+        let drinkName = alphaPos.getCheckedValue('drink')
+        let size = alphaPos.getCheckedValue('size')
+        let checkboxes = document.querySelectorAll('input[name="Adding"]:checked')
         let Adding = ''
         checkboxes.forEach((checkbox) => {
           Adding += checkbox.value + ','
@@ -558,7 +558,8 @@
             }
             return total * this.cup
           case '客家麻糬':
-            return 35
+            total = 35
+            return total * this.cup
           case '紅豆湯圓':
             if (this.size == '大杯 (500cc)') {
               total = 55
@@ -583,9 +584,11 @@
             }
             return total * this.cup
           case '養生黑豆茶':
-            return 40
+            total = 40
+            return total * this.cup
           case '美顏紅豆水':
-            return 45
+            total = 45
+            return total * this.cup
           default:
             alert('無此產品，請確認!')
         }
