@@ -199,7 +199,6 @@
             } else {
               pairing.push(sortedArray.pop())
             }
-            console.log(pairing)
             pairings.push(pairing)
           }
         }
@@ -240,7 +239,7 @@
         tournamentContainer.innerHTML = ''
         // 產生每兩個一組且不重複的陣列
         const participants = generateRandomArrayPairs(newContestants)
-
+        console.log(participants)
         const roundTitle = document.createElement('h2')
         round = round + 1
         roundTitle.textContent = `第 ${round} 輪`
