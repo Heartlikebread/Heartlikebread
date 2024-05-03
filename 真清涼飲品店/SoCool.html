@@ -188,6 +188,8 @@
                 </label>
               </div>
             </div>
+             
+         
           </section>
 
           <div class="row">
@@ -225,14 +227,43 @@
                 <label class="btn btn-outline-info"> <input type="number" id="txtCup" value="" />自行輸入 </label>
               </section>
             </div>
-            <div class="col-2 my-0">
-              <div class="btn btn-light" data-alpha-pos="add-drink">新增</div>
+            <div class="col-2">
+              <div class="row">
+                <div class="col-6"><div class="btn btn-light"  data-alpha-pos="add-drink">新增</div></div>
+                <div class="col-6"> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">功能</button></div>
             </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+
+<!-- 這裡是功能視窗 -->
+   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">功能視窗</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"><div class="btn btn-light"  onclick="exportTurnover()">匯出當日營業額</div></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+            <!-- <button type="button" class="btn btn-primary">保存更改</button> -->
           </div>
         </div>
       </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script>
+      let todayTotalPrice = 0
+      let todayOder = ''
       // new the alphaPos Instance
       const alphaPos = new AlphaPos()
 
@@ -364,7 +395,8 @@
           </div>
         </div>
         `
-
+        todayOder += orderListsCard
+        console.log(todayOder)
         orderLists.insertAdjacentHTML('afterbegin', orderListsCard)
       }
 
@@ -377,6 +409,7 @@
         document.querySelectorAll('[data-drink-price]').forEach(function (drink) {
           totalAmount += Number(drink.textContent)
         })
+        todayTotalPrice+=totalAmount;
         return totalAmount
       }
 
@@ -616,6 +649,29 @@
           }
         }
         return addingTotal
+      }
+      //匯出營業額
+      function exportTurnover(){
+        const textContent = todayTotalPrice.toString();
+        // 创建一个新的 Date 对象，表示当前日期和时间
+        let currentDate = new Date();
+        // 获取当前年份
+        let currentYear = currentDate.getFullYear();
+        // 获取当前月份（注意：月份从 0 开始，所以需要加 1）
+        let currentMonth =  (currentDate.getMonth() + 1).toString().padStart(2, '0');
+        // 获取当前日期
+        let currentDay =  currentDate.getDate().toString().padStart(2, '0'); 
+        const fileName = currentYear.toString()+currentMonth.toString()+currentDay.toString()+'.txt'
+        downloadTxtFile(textContent, fileName)
+      }
+      function downloadTxtFile(text, filename) {
+        const blob = new Blob([text], { type: 'text/plain' })
+        const link = document.createElement('a')
+        link.href = window.URL.createObjectURL(blob)
+        link.download = filename
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
       }
     </script>
   </body>

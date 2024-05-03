@@ -1,195 +1,85 @@
-<!--這可以創造出階層 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tournament Schedule</title>
-  </head>
-  <body>
-    <h1>Tournament Schedule</h1>
-    <input type="text" id="playerName" placeholder="Enter player name" />
-    <button onclick="addPlayer()">Add Player</button>
-    <div id="schedule"></div>
-
-    <script src="script.js"></script>
-  </body>
-  <script>
-    let players = []
-    let rounds = []
-
-    function addPlayer() {
-      const playerName = document.getElementById('playerName').value.trim()
-      if (playerName !== '') {
-        players.push(playerName)
-        document.getElementById('playerName').value = ''
-        generateSchedule()
-      } else {
-        alert('Please enter a valid player name!')
-      }
-    }
-
-    function generateSchedule() {
-      rounds = []
-      let remainingPlayers = [...players]
-
-      while (remainingPlayers.length > 1) {
-        const roundMatches = []
-        for (let i = 0; i < remainingPlayers.length; i += 2) {
-          const match = [remainingPlayers[i], remainingPlayers[i + 1]]
-          roundMatches.push(match)
-        }
-        rounds.push(roundMatches)
-        remainingPlayers = calculateWinners(roundMatches)
-      }
-
-      renderSchedule()
-    }
-
-    function calculateWinners(matches) {
-      const winners = []
-      matches.forEach((match) => {
-        const winner = simulateMatch(match[0], match[1]) // 这里可以是随机生成胜者的逻辑或者其他判断逻辑
-        winners.push(winner)
-      })
-      return winners
-    }
-
-    function simulateMatch(player1, player2) {
-      // 在这里你可以添加逻辑来模拟比赛结果，例如随机选择胜者
-      return Math.random() < 0.5 ? player1 : player2
-    }
-
-    function renderSchedule() {
-      const scheduleContainer = document.getElementById('schedule')
-      scheduleContainer.innerHTML = ''
-      rounds.forEach((round, roundIndex) => {
-        const roundElement = document.createElement('div')
-        roundElement.classList.add('round')
-        roundElement.innerHTML = `<h3>Round ${roundIndex + 1}</h3>`
-        round.forEach((match) => {
-          roundElement.innerHTML += `<p>${match[0]} vs ${match[1]}</p>`
-        })
-        scheduleContainer.appendChild(roundElement)
-      })
-    }
-  </script>
-</html> -->
-
 <!-- <!DOCTYPE html>
 <html>
   <head>
-    <title>比賽人員組織圖匯出</title>
-  </head>
-  <body>
-    <label>請輸入比賽人員姓名：</label>
-    <input type="text" id="playerName" />
-    <button onclick="addPlayer()">新增比賽人員</button>
-    <button onclick="exportToExcel()">匯出Excel</button>
+    <title>GoJS Tree Diagram Export to PDF</title>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/gojs/release/go.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
     <script>
-      var players = []
+      function init() {
+        var $ = go.GraphObject.make
 
-      function addPlayer() {
-        var playerName = document.getElementById('playerName').value
-        players.push(playerName)
-        document.getElementById('playerName').value = ''
-      }
+        var myDiagram = $(go.Diagram, 'myDiagramDiv', {
+          layout: $(go.TreeLayout, { angle: 90, layerSpacing: 80 }), // 使用 TreeLayout
+        })
 
-      function exportToExcel() {
-        var wb = XLSX.utils.book_new()
-        var ws = XLSX.utils.aoa_to_sheet([players])
-        XLSX.utils.book_append_sheet(wb, ws, '比賽人員')
+        // 定義節點模板
+        myDiagram.nodeTemplate = $(go.Node, 'Auto', $(go.Shape, 'RoundedRectangle', { fill: 'lightblue' }), $(go.TextBlock, { margin: 8 }, new go.Binding('text', 'key')))
 
-        var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' })
+        var model = $(go.TreeModel)
+        // 定義樹狀結構的數據，這裡以 JSON 的形式提供
+        model.nodeDataArray = [
+          { key: '1', parent: 0 },
+          { key: '2', parent: 1 },
+          { key: '3', parent: 1 },
+          { key: '4', parent: 2 },
+          { key: '5', parent: 2 },
+          { key: '6', parent: 3 },
+          { key: '7', parent: 3 },
+        ]
 
-        // 使用Blob和URL.createObjectURL來下載Excel檔案
-        var blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' })
-        var url = URL.createObjectURL(blob)
-        var a = document.createElement('a')
-        a.href = url
-        a.download = 'players.xlsx'
-        document.body.appendChild(a)
-        a.click()
-        setTimeout(function () {
-          document.body.removeChild(a)
-          window.URL.revokeObjectURL(url)
-        }, 0)
-      }
+        // 將模型綁定到 Diagram 上
+        myDiagram.model = model
 
-      function s2ab(s) {
-        var buf = new ArrayBuffer(s.length)
-        var view = new Uint8Array(buf)
-        for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xff
-        return buf
+        // 匯出為 PDF 函數
+        function exportToPDF() {
+          var imgData = myDiagram.makeImageData({ background: 'white', returnType: 'dataurl' })
+          const jsPDF = require('jspdf')
+          var doc = new jsPDF()
+          doc.addImage(imgData, 'PNG', 10, 10, 180, 150)
+          doc.save('diagram.pdf')
+        }
+
+        document.getElementById('exportButton').addEventListener('click', exportToPDF)
       }
     </script>
+  </head>
+  <body onload="init()">
+    <div id="myDiagramDiv" style="width: 100%; height: 600px; border: 1px solid black"></div>
+    <button id="exportButton">Export to PDF</button>
   </body>
 </html> -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>即時對戰表</title>
-    <!-- 引入 D3.js 庫 -->
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <style>
-      /* 定義對戰表的樣式 */
-      table {
-        border-collapse: collapse;
-      }
-      th,
-      td {
-        border: 1px solid black;
-        padding: 8px;
-        text-align: center;
-      }
-    </style>
-  </head>
-  <body>
-    <h2>即時對戰表</h2>
-    <!-- 對戰表容器 -->
-    <div id="tournament"></div>
-
+    <title>GoJS Diagram with Image</title>
+    <script src="https://unpkg.com/gojs/release/go.js"></script>
     <script>
-      // 準備資料，這裡假設每一輪比賽有兩組對手，並且獲勝者晉級下一輪
-      var data = [
-        { round: 1, player1: '選手1', player2: '選手2', winner: '選手1' },
-        { round: 1, player1: '選手3', player2: '選手4', winner: '選手4' },
-        { round: 2, player1: '選手1', player2: '選手4', winner: '選手1' },
-      ]
+      function init() {
+        var $ = go.GraphObject.make
 
-      // 建立對戰表
-      var table = d3.select('#tournament').append('table')
-      var thead = table.append('thead')
-      var tbody = table.append('tbody')
+        var myDiagram = $(go.Diagram, 'myDiagramDiv')
 
-      // 繪製表頭
-      thead
-        .append('tr')
-        .selectAll('th')
-        .data(['輪次', '選手1', '選手2', '獲勝者'])
-        .enter()
-        .append('th')
-        .text(function (d) {
-          return d
-        })
+        // 添加一个节点模板，包含一个图像和一个文本
+        myDiagram.nodeTemplate = $(
+          go.Node,
+          'Auto',
+          $(go.Picture, { source: 'https://via.placeholder.com/100', width: 100, height: 100 }), // 设置图像的来源和尺寸
+          $(go.TextBlock, { margin: 8 }, new go.Binding('text', 'key'))
+        )
 
-      // 繪製資料列
-      var rows = tbody.selectAll('tr').data(data).enter().append('tr')
+        var model = $(go.GraphLinksModel)
+        // 定义节点数据
+        model.nodeDataArray = [{ key: '1' }, { key: '2' }, { key: '3' }]
 
-      // 繪製資料
-      var cells = rows
-        .selectAll('td')
-        .data(function (d) {
-          return [d.round, d.player1, d.player2, d.winner]
-        })
-        .enter()
-        .append('td')
-        .text(function (d) {
-          return d
-        })
+        // 将模型绑定到图表上
+        myDiagram.model = model
+      }
     </script>
+  </head>
+  <body onload="init()">
+    <div id="myDiagramDiv" style="width: 600px; height: 400px; border: 1px solid black"></div>
   </body>
 </html>
