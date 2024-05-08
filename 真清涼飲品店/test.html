@@ -45,7 +45,7 @@
         <p style="width: 10px"></p>
         <button onclick="generateElement()" class="btn btn-success">新增參賽人員</button>
         <p style="width: 10px"></p>
-        <button onclick="exportExcel()" class="btn btn-success">匯出</button>
+        <button  id="blobButton" class="btn btn-success">匯出</button>
       </div>
       <div id="tournamentContainer"></div>
       <button id="nextRoundButton" style="display: none" class="btn btn-primary" onclick="moveToNextRound()">晉級下一輪</button>
@@ -154,6 +154,7 @@
       var arrBattle = []
       var Number = 0
       var round = 0
+      var myDiagramImage =null;
       function generateElement() {
         // 獲取輸入框的值
         const ckbSeed = document.getElementById('ckbSeed')
@@ -349,7 +350,15 @@
         roundTitle.textContent = `第 ${round} 輪`
         tournamentContainer.appendChild(roundTitle)
         tournamentContainer.appendChild(generateTable(participants))
-        createMyDiagram()
+        // myDiagramImage=null 
+        // var container = document.getElementById('myDiagramDiv');
+        // container.replaceChildren();
+
+        if (myDiagramImage) {
+          myDiagramImage.div = null; // remove association with div
+          myDiagramImage = null; // clear reference
+            } 
+        myDiagramImage=  createMyDiagram();
       }
 
       function generateTable(participants) {
@@ -466,8 +475,7 @@
 
       function createMyDiagram() {
         // 创建一个新的GoJS图表
-        var $ = go.GraphObject.make
-
+        var $ = go.GraphObject.make      
         // 创建一个新的Diagram对象
         var myDiagram = $(
           go.Diagram,
@@ -531,33 +539,71 @@
           return
         }
         putNumber = drawPanelList.length - 1
-        for (var j = arrBattle.length - 1; j >= 0; j--) {
-          console.log('我有近來')
+        for (var j = arrBattle.length - 1; j >= 0; j--) { 
+
+
+          if( arrBattle[j][0].Name.includes('bye')){
+            drawPanelList[putNumber].name ="bye";
+          }
+          else{
           drawPanelList[putNumber].name = arrBattle[j][0].Name
+          }
           putNumber = putNumber - 1
+          if( arrBattle[j][0].Name.includes('bye')){
+            drawPanelList[putNumber].name ="bye";
+          }
+          else{
           drawPanelList[putNumber].name = arrBattle[j][1].Name
+          }
           putNumber = putNumber - 1
         }
         console.log(drawPanelList)
         // 定义一个模型并将数据绑定到层次图中
         myDiagram.model = new go.TreeModel(drawPanelList)
 
-        // 原始陣列
-        var dataList = ['a', 'a', 'a', 'b', 'c', 'd', 'e', 'F']
-        var newDataList = []
-        // 檢查是否有連續的 "a"，如果有，則將後一個 "a" 移動到陣列的最後
-        for (var i = 1; i < dataList.length; i++) {
-          if (dataList[i] === 'a' && dataList[i - 1] === 'a') {
-            var aIndex = dataList.indexOf('a', i + 1)
-            if (aIndex !== -1) {
-              dataList.splice(aIndex, 1)
-              dataList.push('a')
-            }
-          }
-        }
+        // // 原始陣列
+        // var dataList = ['a', 'a', 'a', 'b', 'c', 'd', 'e', 'F']
+        // var newDataList = []
+        // // 檢查是否有連續的 "a"，如果有，則將後一個 "a" 移動到陣列的最後
+        // for (var i = 1; i < dataList.length; i++) {
+        //   if (dataList[i] === 'a' && dataList[i - 1] === 'a') {
+        //     var aIndex = dataList.indexOf('a', i + 1)
+        //     if (aIndex !== -1) {
+        //       dataList.splice(aIndex, 1)
+        //       dataList.push('a')
+        //     }
+        //   }
+        // }
 
-        console.log(dataList)
+        // console.log(dataList)
+        document.getElementById('blobButton').addEventListener('click', makeBlob);
+        return myDiagram;
       }
+      function makeBlob() {
+    var blob = myDiagramImage.makeImageData({ background: 'white', returnType: 'blob', callback: myCallback });
+  }
+  function myCallback(blob) {
+    var url = window.URL.createObjectURL(blob);
+    var filename = '對戰表.png';
+
+    var a = document.createElement('a');
+    a.style = 'display: none';
+    a.href = url;
+    a.download = filename;
+
+    // IE 11
+    if (window.navigator.msSaveBlob !== undefined) {
+      window.navigator.msSaveBlob(blob, filename);
+      return;
+    }
+
+    document.body.appendChild(a);
+    requestAnimationFrame(() => {
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    });
+  }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>

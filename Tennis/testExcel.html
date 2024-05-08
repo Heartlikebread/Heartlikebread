@@ -1,72 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Go.js Export Example</title>
-    <script src="https://unpkg.com/gojs/release/go.js"></script>
-  </head>
-  <body>
-    <!-- Go.js 圖表的容器 -->
-    <div id="myDiagramDiv" style="width: 600px; height: 400px"></div>
-
-    <!-- 匯出按鈕 -->
-    <button id="exportButton">匯出圖片</button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoJS Export Image Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gojs/2.1.59/go.js"></script>
+</head>
+<body>
+    <div id="myDiagram" style="width: 100%; height: 600px; border: 1px solid black;"></div>
+    <button onclick="exportImage()">Export Image</button>
 
     <script>
-      // 初始化 Go.js 圖表
-      var $ = go.GraphObject.make
-      var myDiagram = $(go.Diagram, 'myDiagramDiv')
+        function init() {
+            var $ = go.GraphObject.make;
+            var myDiagram =
+                $(go.Diagram, "myDiagram", {
+                    "undoManager.isEnabled": true
+                });
 
-      // 添加一個圖表節點
-      myDiagram.nodeTemplate = $(go.Node, 'Auto', $(go.Shape, 'RoundedRectangle', { fill: 'lightblue' }), $(go.TextBlock, { margin: 8 }, new go.Binding('text', 'key')))
+            myDiagram.nodeTemplate =
+                $(go.Node, "Auto",
+                    $(go.Shape, "RoundedRectangle", {
+                        fill: "white",
+                        portId: "",
+                        cursor: "pointer"
+                    }),
+                    $(go.TextBlock, {
+                            margin: 8
+                        },
+                        new go.Binding("text", "key"))
+                );
 
-      // 添加一個圖表連線
-      myDiagram.linkTemplate = $(go.Link, $(go.Shape, { stroke: 'black' }), $(go.Shape, { toArrow: 'Standard' }))
+            myDiagram.model = new go.GraphLinksModel([
+                { key: "Alpha" },
+                { key: "Beta" },
+                { key: "Gamma" }
+            ]);
 
-      // 創建一些節點
-      myDiagram.model = new go.GraphLinksModel(
-        [{ key: 'Alpha' }, { key: 'Beta' }, { key: 'Gamma' }],
-        [
-          { from: 'Alpha', to: 'Beta' },
-          { from: 'Beta', to: 'Gamma' },
-        ]
-      )
-
-      // 定義匯出圖片的函數
-      function exportDiagram() {
-        // 將圖表轉換為 SVG 字符串
-        var svgString = myDiagram.makeSvg()
-
-        // 創建一個新的 Blob 對象
-        var blob = new Blob([svgString], { type: 'image/svg+xml' })
-
-        // 創建一個 URL 對象
-        var url = URL.createObjectURL(blob)
-
-        // 創建一個新的圖片元素
-        var img = new Image()
-        img.src = url
-
-        // 等待圖片加載完成後，將圖片繪製到 canvas 中
-        img.onload = function () {
-          var canvas = document.createElement('canvas')
-          canvas.width = img.width
-          canvas.height = img.height
-          var ctx = canvas.getContext('2d')
-          ctx.drawImage(img, 0, 0)
-
-          // 通過 toDataURL 方法將 canvas 轉換為 PNG 圖片
-          var pngData = canvas.toDataURL('image/png')
-
-          // 創建一個新的窗口顯示圖片
-          var imgWindow = window.open()
-          imgWindow.document.write('<img src="' + pngData + '"/>')
+            return myDiagram;
         }
-      }
 
-      // 將按鈕點擊事件綁定到匯出圖片的函數
-      document.getElementById('exportButton').addEventListener('click', exportDiagram)
+        function exportImage() {
+            var diagram = init();
+            diagram.makeImageData({ background: "white", returnType: "blob", callback: function (blob) {
+                var img = document.createElement('img');
+                img.src = URL.createObjectURL(blob);
+                var link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = 'diagram.png';
+                link.click();
+            }});
+        }
     </script>
-  </body>
+</body>
 </html>
