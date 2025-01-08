@@ -12,9 +12,13 @@
     <!-- 引入Bootstrap CSS -->
     <link rel="stylesheet" href="~/../bootstrap-4.3.1-dist/css/bootstrap.css">
 
-    <title>Collibot 送餐機器人</title>
+    <title>Collibot 柯利堡</title>
     <style>
-        video { width: 80%; /* 調整影片寬度為視窗寬度的80% */ max-width: 300px; /* 設置影片的最大寬度 */ height: auto; /* 讓高度自適應寬度比例 */ }
+        video { 
+            width: 80%; /* 調整影片寬度為視窗寬度的80% */ 
+            max-width: 300px; /* 設置影片的最大寬度 */ 
+            height: auto; /* 讓高度自適應寬度比例 */ 
+        }
         header {
             background-color: #f8f8f8;
         }
@@ -29,10 +33,13 @@
             color: #777;
             font-weight: bold;
         }
-
+        section{
+            margin-bottom: 10px;
+        }
         section#intro-header {
-            background-image: url("~/../1226.png");
-			   background-size: cover; 
+             background-position: center; /* Center the image */ 
+             background-repeat: no-repeat; /* Prevent image repetition */
+             background-image: url("~/../1226.png");
         }
 
         section#intro-header .wrap-headline {
@@ -98,23 +105,23 @@
         }
 
         section#pricing thead .info {
-            background-color: #3EC6E0;
+            background-color: #fdf278;
         }
 
         section#pricing thead .danger {
-            background-color: #E3536C;
+            background-color: #ff7990;
         }
 
         section#pricing tbody .success {
-            background-color: #82DACA;
+            background-color: #78CFBF;
         }
 
         section#pricing tbody .info {
-            background-color: #53CFE9;
+            background-color: #fdf278;
         }
 
         section#pricing tbody .danger {
-            background-color: #EB6379;
+            background-color: #ff7990;
         }
         footer{
             background-color: #191919;
@@ -150,7 +157,12 @@
             text-decoration: none;
             color:#fff;
         }
-    </style>
+        .video-container { display: flex; justify-content: center; align-items: center; height: 100%; /* 如果需要，可以調整 */ } 
+         video { max-width: 100%; height: auto; /* 保持比例 */}       
+        .flex-list { display: flex; flex-wrap: wrap; /* 允許換行 */ justify-content: space-between; /* 均勻分佈 */ list-style: none; padding: 0; margin: 0; }
+        .flex-list li { background: #f8f9fa; /* 背景顏色 */ padding: 10px; border: 1px solid #dee2e6; /* 邊框 */ border-radius: 5px; /* 圓角 */ flex: 1 0 45%; /* 分配空間 */ margin: 10px; /* 間距 */ text-align: center;}
+ .feature img{height: 400px; width: 200px;}
+          </style>
 </head>
 
 <body>
@@ -159,15 +171,15 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="row">
-                        <a href="http://www.yspm.com.tw/" class="brand pull-left">佑昇機密有限公司</a>
+                        <a href="http://www.yspm.com.tw/" class="brand pull-left">佑昇精密有限公司</a>
                     </div>
                 </div>
                 <div class="col-sm-8">
                     <div class=" row justify-content-end">
                         <ul class="list-inline">
                             <li class="list-inline-item"><a href="#about">關於產品</a> </li>
-                            <li class="list-inline-item"><a href="#features">特色</a> </li>
-                            <li class="list-inline-item"><a href="#pricing">價格</a> </li>
+                            <li class="list-inline-item"><a href="#features">產品特色</a> </li>
+                            <li class="list-inline-item"><a href="#pricing">產品價格</a> </li>
                             <li class="list-inline-item"><a href="http://www.yspm.com.tw/%E6%8A%80%E8%A1%93%E6%94%AF%E6%8F%B4/">聯絡我們</a> </li>
                         </ul>
                     </div>
@@ -186,27 +198,40 @@
     </section>
     <section id="about">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-sm-12">
-                    <video autoplay loop muted> <source src="https://www.nuwarobotics.com/wp-content/uploads/2023/10/%E5%AE%98%E7%B6%B2%E7%9B%B4%E7%AB%8B%E5%BD%B1%E7%89%87_20231027.mp4" type="video/mp4"> 您的瀏覽器不支援 HTML5 視頻標籤。
-         
-                </div>
-                <div class="col-md-6 col-sm-12">
-                    <h3>基本介紹</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi odio voluptate cupiditate. Nostrum
-                        aliquid expedita sapiente possimus ex? Atque fugit eligendi voluptas impedit amet delectus in
-                        consequatur assumenda tempore sed!</p>
-                </div>
+            <div class="row justify-content-center">
+                <h2 class="text-center">產品亮點</h3>
             </div>
             <div class="row">
                 <div class="col-md-6 col-sm-12">
-                    <h3>功能與特色</h3>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum quam non expedita, blanditiis
-                        illo quasi? Similique doloremque magni sequi? Alias, provident laudantium! Optio autem rem
-                        facilis nesciunt illum. Minus, amet!</p>
+                    <h3>台灣製造MIT</h3>
+                    <p>台灣唯一機器人製造品牌！自2016年成立，兼具產品定位、人工智能、體驗設計及軟硬體研發等完整 A.I. 機器人產品研發、設計能力的科技公司。</p>
                 </div>
+                <div class="col-md-6 col-sm-12 video-container">
+                    <video autoplay loop muted> <source src="https://www.nuwarobotics.com/wp-content/uploads/2024/03/video-output-E96ADDCB-D1F7-41BD-8595-2AC9B0D09322.mov" type="video/mp4"> 您的瀏覽器不支援 HTML5 視頻標籤。
+                </div>
+               
+            </div>
+            <div class="row">
                 <div class="col-md-6 col-sm-12">
-                    <video autoplay loop muted> <source src="https://www.nuwarobotics.com/wp-content/uploads/2023/10/%E5%AE%98%E7%B6%B2%E7%9B%B4%E7%AB%8B%E5%BD%B1%E7%89%87_20231027.mp4" type="video/mp4"> 您的瀏覽器不支援 HTML5 視頻標籤。
+                    <h3>ROFLOW</h3>
+                    <p>機器人互動編輯工具，根據不同場景、情境需求，設計自動化服務內容，圖形化介面讓無程式背景也能自由運用。另外，服務數據收集工具，讓機器人輕鬆掌握消費者喜好。</p>
+                </div>
+                <div class="col-md-6 col-sm-12 video-container">
+                    <video autoplay loop muted> <source src="https://www.nuwarobotics.com/wp-content/uploads/2024/03/video-output-61A4F886-BAA2-4355-A26A-CAF7EE3ED75C.mov" type="video/mp4"> 您的瀏覽器不支援 HTML5 視頻標籤。
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-12 ">
+                    <h3>可愛互動</h3>
+                      <ul>
+                        <li>肢體表現力</li>
+                        <li>超級可愛角色</li>
+                        <li>角色臉譜體換</li>
+                      </ul>
+                </div>
+                <div class="col-md-6 col-sm-12 video-container">
+                    <video autoplay loop muted> <source src="https://www.nuwarobotics.com/wp-content/uploads/2024/03/video-output-346693A2-E409-48C6-85B5-191F1DD302E9.mov" type="video/mp4"> 您的瀏覽器不支援 HTML5 視頻標籤。
                 </div>
             </div>
         </div>
@@ -214,30 +239,30 @@
     <section id="features">
         <div class="container">
             <div class="row justify-content-center">
-                <h3 class="text-center">特色</h3>
+                <h3 class="text-center">為什麼選擇 AI 機器人服務？</h3>
             </div>
+           
             <div class="row justify-content-center">
-                <p class="text-center">特色的標題文字</p>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-sm-2 col-md-4">
-                    <div class="feature">特色</div>
+                <div class="col-sm-12 col-md-4">
+                    <img src="https://www.nuwarobotics.com/wp-content/uploads/2024/03/Group-692-1-1.png" alt="" style="height: 50%; width: 100%; object-fit:contain">
+                    <div class="feature">一機抵多人，最強 AI 服務合體技
+懂分工、能協作！不只送餐，更能接待，廣告及表演皆包辦，事半功倍的最強夥伴！
+
+高峰時段時，指派它協助分擔工作，讓員工專注於更深層的服務任務！若服務品質提升亦能提高客戶滿意度。而人員流動時，也能確保穩定的勞動力，不影響客戶的用餐體驗。</div>
                 </div>
-                <div class="col-sm-2 col-md-4">
-                    <div class="feature">特色</div>
+                <div class="col-sm-12 col-md-4">
+                    <img src="https://www.nuwarobotics.com/wp-content/uploads/2024/03/Group-283.png"  alt=""  style="height: 50%; width: 100%;  object-fit:contain">
+                    <div class="feature">圖形化介面，30分鐘快速上手
+                        完整教育訓練，提供人員學習操作，30分鐘快速上手！直覺的圖形化介面，能在忙碌時快速完成機器人指令，不耽誤其他工作時程。</div>
                 </div>
-                <div class="col-sm-2 col-md-4">
-                    <div class="feature">特色</div>
+                <div class="col-sm-12 col-md-4">
+                    <img src="https://www.nuwarobotics.com/wp-content/uploads/2024/03/Mask-group-13.png" alt=""   style="height: 50%; width: 100%;  object-fit:contain">
+                    <div class="feature">超優租賃方案，減少營運壓力
+軟體研發團隊，隨時優化功能
+可愛互動角色，作為品牌吉祥物
+不只送餐，接待、廣告及表演，滿足各種任務</div>
                 </div>
-                <div class="col-sm-2 col-md-4">
-                    <div class="feature">特色</div>
-                </div>
-                <div class="col-sm-2 col-md-4">
-                    <div class="feature">特色</div>
-                </div>
-                <div class="col-sm-2 col-md-4">
-                    <div class="feature">特色</div>
-                </div>
+               
             </div>
         </div>
     </section>
@@ -245,7 +270,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h3 class="text-center price-headline"> 價格表 </h3>
+                    <h3 class="text-center price-headline"> 產品價格 </h3>
                 </div>
             </div>
             <div class="row">
@@ -254,62 +279,62 @@
                         <thead>
                             <tr>
                                 <th class="success">
-                                    <h4 class="text-center white-text">免費方案</h4>
+                                    <h4 class="text-center white-text">短租六個月</h4>
                                 </th>
                                 <th class="info">
-                                    <h4 class="text-center white-text">準備方案</h4>
+                                    <h4 class="text-center white-text">長租12個月</h4>
                                 </th>
                                 <th class="danger">
-                                    <h4 class="text-center white-text">豪華方案</h4>
+                                    <h4 class="text-center white-text">建議售價</h4>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td class="success">
-                                    <h4 class="text-center white-text">$0</h4>
+                                    <h4 class="text-center white-text">$10,900/台月</h4>
                                 </td>
                                 <td class="info">
-                                    <h4 class="text-center white-text">$99</h4>
+                                    <h4 class="text-center white-text">$9,900/台月</h4>
                                 </td>
                                 <td class="danger">
-                                    <h4 class="text-center white-text">$999</h4>
+                                    <h4 class="text-center white-text">269,000/台</h4>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                    押金60,000/台<br/><small>約滿退還押金</small>
                                 </td>
                                 <td>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                    押金60,000/台<br/><small>約滿退還押金</small>
                                 </td>
                                 <td>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                    
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                   保固 免費<br/> <small>非人為損壞由原廠負責</small>
                                 </td>
                                 <td>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                    保固 免費<br/><small>非人為損壞由原廠負責</small>
                                 </td>
                                 <td>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                    一年保固 免費<br/><small>過保根據價祕寶報價維修</small>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                  建置費推廣期免費<br/><small>移機或重新建置5000元/次</small>
                                 </td>
                                 <td>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                    建置費推廣期免費<br/><small>移機或重新建置5000元/次</small>
                                 </td>
                                 <td>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
+                                    建置費推廣期免費<br/><small>移機或重新建置5000元/次</small>
                                 </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
                                 </td>
@@ -319,16 +344,56 @@
                                 <td>
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, doloribus?
                                 </td>
-                            </tr>
-                            <tr>
+                            </tr> -->
+                            <!-- <tr>
                                 <td><a href="#" class="btn btn-success btn-block">購買</a></td>
                                 <td><a href="#" class="btn btn-info btn-block">購買</a></td>
                                 <td><a href="#" class="btn btn-danger btn-block">購買</a></td>
+                            </tr> -->
+                            <tr>
+                                <td colspan="4">
+
+                                    <div class="row justify-content-center">
+                                        <h3 class="text-center">加值服務</h3>
+                                    </div>
+                                     
+                                    <div class="row justify-content-center">
+                                        <ul class="flex-list">
+                                            <li>
+                                                外觀裝飾設定<br/><span>3,000元/次</span>
+                                            </li>
+                                            <li>
+                                                機器人臉譜設計服務<br/><span>5,000元/次</span>
+                                            </li>
+                                            <li>
+                                                客製化流程顧問服務<br/><span>專案報價</span>
+                                            </li>
+                                            <li>
+                                                Roflow 軟體授權費<br/><span>半年方案:999元/月<br/>一年方案:699元/月</span>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
             </div>
         </div>
+        </div>
+    </section>
+
+    <section id="Specification">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="text-center price-headline"> 產品規格 </h3>
+                </div>
+                <div class="col-sm-12" style="text-align: center;">
+                    <img src="https://www.nuwarobotics.com/wp-content/uploads/2024/04/Group-779-scaled.jpg" style="width: 80%;" alt="">
+                </div>
+            </div>
+
         </div>
     </section>
     <footer>
