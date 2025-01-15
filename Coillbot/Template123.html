@@ -8,12 +8,56 @@
       當然也可以在content部分多加一項 user-scalable=no來關閉縮放功能製造出使用原生手機應用程式的感覺-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <!-- 引入Bootstrap CSS -->
     <link rel="stylesheet" href="~/../bootstrap-4.3.1-dist/css/bootstrap.css">
 
     <title>Collibot 柯利堡</title>
     <style>
+           .video-banner {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 50vh; /* 設定橫幅高度，可根據需求調整 */
+
+          
+        }
+
+        .video-banner video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+        }
+
+        .banner-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            z-index: 1;
+        }
+
+        /* 在大於 768px 寬度的螢幕顯示影片 */
+        @media (min-width: 768px) {
+            .mobile-img {
+                display: none;
+            }
+            
+            .desktop-img {
+                display: block;
+            }
+        }
         video { 
             width: 80%; /* 調整影片寬度為視窗寬度的80% */ 
             max-width: 300px; /* 設置影片的最大寬度 */ 
@@ -161,12 +205,81 @@
          video { max-width: 100%; height: auto; /* 保持比例 */}       
         .flex-list { display: flex; flex-wrap: wrap; /* 允許換行 */ justify-content: space-between; /* 均勻分佈 */ list-style: none; padding: 0; margin: 0; }
         .flex-list li { background: #f8f9fa; /* 背景顏色 */ padding: 10px; border: 1px solid #dee2e6; /* 邊框 */ border-radius: 5px; /* 圓角 */ flex: 1 0 45%; /* 分配空間 */ margin: 10px; /* 間距 */ text-align: center;}
- .feature img{height: 400px; width: 200px;}
+        #features img{  width: 200px;
+           height: 200px;
+           border-radius: 50%;
+           overflow: hidden;
+           transition: transform 0.6s;
+        }
 
- .list-unstyled{
-    text-align: center;
- }
-          </style>
+        #features img:hover {
+/*   請使用 transform 完成此作業*/
+    transform:rotate(360deg);
+}
+
+        .list-unstyled{
+           text-align: center;
+        }    
+        .desktop-img { display: block; } 
+        .mobile-img { display: none; } /* 當螢幕寬度小於或等於 768px 時，顯示手機圖片 */ 
+        @media (max-width: 768px) { 
+           .desktop-img { 
+            display: none;
+        }
+            .mobile-img {
+                 display: block;
+                }
+           }
+
+           .icon {
+                 position: fixed;
+                 left: 85%; 
+                 top:70%;
+                 height: 70px;
+                 width: 70px;
+                 background-image: url('https://www.nuwarobotics.com/wp-content/uploads/2024/06/Frame-776.png');
+                 background-size: contain;
+                 background-repeat: no-repeat;
+                 cursor: pointer;
+                 z-index: 1000;  
+           }
+           .icon::before {
+    content: "請跟我預約"; /* 顯示的文字 */
+    position: absolute;
+  
+    top: -5px; 
+    transform: translateY(-50%); /* 垂直居中 */
+    background-color: rgba(0, 0, 0, 0.5); /* 背景顏色 */
+    color: white; /* 文字顏色 */
+    padding: 2px 5px; /* 內間距 */
+    border-radius: 3px; /* 圓角效果 */
+    font-size: 12px; /* 文字大小 */
+}
+           /* 大於 1200px 的螢幕 */
+@media screen and (min-width: 1200px) {
+    .icon {
+        left: 85%; 
+                 top:70%;
+    }
+}
+
+/* 大於 768px 和小於 1200px 的螢幕 */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+    .icon {
+        left: 80%; 
+        top:70%;
+    }
+}
+
+/* 小於 768px 的螢幕 */
+@media screen and (max-width: 767px) {
+    .icon {
+        left: 65%; 
+        top:70%;
+    }
+}
+        
+        </style>
 </head>
 
 <body>
@@ -191,7 +304,19 @@
             </div>
         </div>
     </header>
-    <section id="intro-header">
+    
+    <div class="icon" onclick="window.location.href='https://ap13.ragic.com/yspm/survey-management/6?webview&webaction=form&ver=new&version=2'"> </div>
+    <section class="video-banner">
+        <video autoplay muted loop >
+            <source src="https://www.nuwarobotics.com/wp-content/uploads/2024/04/video-output-81672A76-FCEA-46D7-ABA5-5B54AB35A2A3.mov" type="video/mp4">            
+            你的瀏覽器不支援 HTML5 影片標籤。
+        </video>
+    
+        <div class="banner-content">
+            <h1>為什麼選擇 AI 機器人服務？</h1>
+        </div>
+    </section>
+    <!-- <section id="intro-header">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="wrap-headline">
@@ -199,23 +324,23 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <section id="about">
         <div class="container">
             <div class="row justify-content-center">
                 <h2 class="text-center">產品亮點</h3>
             </div>
             <div class="row">
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-6 col-sm-12" data-aos="fade-left">
                     <h3>台灣製造MIT</h3>
                     <p>台灣唯一機器人製造品牌！自2016年成立，兼具產品定位、人工智能、體驗設計及軟硬體研發等完整 A.I. 機器人產品研發、設計能力的科技公司。</p>
                 </div>
-                <div class="col-md-6 col-sm-12 video-container">
-                    <video autoplay loop muted> <source src="https://www.nuwarobotics.com/wp-content/uploads/2024/03/video-output-E96ADDCB-D1F7-41BD-8595-2AC9B0D09322.mov" type="video/mp4"> 您的瀏覽器不支援 HTML5 視頻標籤。
+                <div class="col-md-6 col-sm-12 video-container" data-aos="fade-right">
+                    <video autoplay loop muted> <source src="videoplayback.mp4" type="video/mp4"> 您的瀏覽器不支援 HTML5 視頻標籤。
                 </div>
                
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <h3>ROFLOW</h3>
                     <p>機器人互動編輯工具，根據不同場景、情境需求，設計自動化服務內容，圖形化介面讓無程式背景也能自由運用。另外，服務數據收集工具，讓機器人輕鬆掌握消費者喜好。</p>
@@ -223,10 +348,10 @@
                 <div class="col-md-6 col-sm-12 video-container">
                     <video autoplay loop muted> <source src="https://www.nuwarobotics.com/wp-content/uploads/2024/03/video-output-61A4F886-BAA2-4355-A26A-CAF7EE3ED75C.mov" type="video/mp4"> 您的瀏覽器不支援 HTML5 視頻標籤。
                 </div>
-            </div>
+            </div> -->
 
             <div class="row">
-                <div class="col-md-6 col-sm-12 ">
+                <div class="col-md-6 col-sm-12 " data-aos="fade-right">
                     <h3>可愛互動</h3>
                       <ul>
                         <li>肢體表現力</li>
@@ -234,43 +359,41 @@
                         <li>角色臉譜體換</li>
                       </ul>
                 </div>
-                <div class="col-md-6 col-sm-12 video-container">
+                <div class="col-md-6 col-sm-12 video-container"  data-aos="fade-left">
                     <video autoplay loop muted> <source src="https://www.nuwarobotics.com/wp-content/uploads/2024/03/video-output-346693A2-E409-48C6-85B5-191F1DD302E9.mov" type="video/mp4"> 您的瀏覽器不支援 HTML5 視頻標籤。
                 </div>
             </div>
         </div>
     </section>
-    <section id="features">
+    <section id="features" data-aos="zoom-out-down">
         <div class="container">
             <div class="row justify-content-center">
-                <h3 class="text-center">為什麼選擇 AI 機器人服務？</h3>
+                <h3 class="text-center" >產品特色</h3>
             </div>
            
             <div class="row justify-content-center">
-                <div class="col-sm-12 col-md-4">
-                    <img src="https://www.nuwarobotics.com/wp-content/uploads/2024/03/Group-692-1-1.png" alt="" style="height: 50%; width: 100%; object-fit:contain">
-                    <div class="feature">一機抵多人，最強 AI 服務合體技
-懂分工、能協作！不只送餐，更能接待，廣告及表演皆包辦，事半功倍的最強夥伴！
-
-高峰時段時，指派它協助分擔工作，讓員工專注於更深層的服務任務！若服務品質提升亦能提高客戶滿意度。而人員流動時，也能確保穩定的勞動力，不影響客戶的用餐體驗。</div>
+                <div class="col-sm-12 col-md-3" style="text-align: center;">
+                    <img src="https://www.nuwarobotics.com/wp-content/uploads/2024/01/Frame-196.png" alt=""  >
+                    <div class="feature"><h5>最實惠</h5>最實惠模組化的規格架購只為給您市場最低的啟動費用。
+                    </div>
                 </div>
-                <div class="col-sm-12 col-md-4">
-                    <img src="https://www.nuwarobotics.com/wp-content/uploads/2024/03/Group-283.png"  alt=""  style="height: 50%; width: 100%;  object-fit:contain">
-                    <div class="feature">圖形化介面，30分鐘快速上手
-                        完整教育訓練，提供人員學習操作，30分鐘快速上手！直覺的圖形化介面，能在忙碌時快速完成機器人指令，不耽誤其他工作時程。</div>
+                <div class="col-sm-12 col-md-3"  style="text-align: center;">
+                    <img src="https://www.nuwarobotics.com/wp-content/uploads/2024/01/Frame-197.png"  alt=""   >
+                    <div class="feature"><h5>最彈性</h5>無論軟體硬體皆能根據場景需求進行調整。</div>
                 </div>
-                <div class="col-sm-12 col-md-4">
-                    <img src="https://www.nuwarobotics.com/wp-content/uploads/2024/03/Mask-group-13.png" alt=""   style="height: 50%; width: 100%;  object-fit:contain">
-                    <div class="feature">超優租賃方案，減少營運壓力
-軟體研發團隊，隨時優化功能
-可愛互動角色，作為品牌吉祥物
-不只送餐，接待、廣告及表演，滿足各種任務</div>
+                <div class="col-sm-12 col-md-3"  style="text-align: center;">
+                    <img src="https://www.nuwarobotics.com/wp-content/uploads/2024/01/Frame-198.png"  alt=""  >
+                    <div class="feature"><h5>最好用</h5>符合人因工程的尺寸設計與友善的使用者介面設計。</div>
+                </div>                
+                <div class="col-sm-12 col-md-3"  style="text-align: center;">
+                    <img src="https://www.nuwarobotics.com/wp-content/uploads/2024/01/Frame-199.png" alt=""    >
+                    <div class="feature"><h5>最活潑</h5>除了單純遞送服務還能帶來生動的互動體驗。</div>
                 </div>
                
             </div>
         </div>
     </section>
-    <section id="pricing">
+    <section id="pricing" data-aos="zoom-out-down">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -387,20 +510,24 @@
         </div>
     </section>
 
-    <section id="Specification">
+    <section id="Specification" data-aos="zoom-out-down">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <h3 class="text-center price-headline"> 產品規格 </h3>
                 </div>
                 <div class="col-sm-12" style="text-align: center;">
-                    <img src="https://www.nuwarobotics.com/wp-content/uploads/2024/04/Group-779-scaled.jpg" style="width: 80%;" alt="">
+               
+                <!-- 大於手機尺寸顯示的圖片 -->
+                <img src="https://www.nuwarobotics.com/wp-content/uploads/2024/04/Group-829-scaled.jpg" alt="桌面圖片" class="img-fluid desktop-img">
+
+                <!-- 手機尺寸顯示的圖片 -->
+                <img src="https://www.nuwarobotics.com/wp-content/uploads/2024/04/Group-838.jpg" alt="手機圖片" class="img-fluid mobile-img">
                 </div>
             </div>
-
         </div>
     </section>
-    <footer>
+    <footer >
         <div class="container">
             <div class="row">
                 <div class="col-sm-2">
@@ -473,6 +600,10 @@
     <!-- 引入jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="~/../bootstrap-4.3.1-dist/js/node_modules/jquery/dist/jquery.js"></script>
     <script src="~/../bootstrap-4.3.1-dist/js/bootstrap.js"></script>
+
+    <script>	AOS.init({
+        duration: 2000,
+        });</script>
 </body>
 
 </html>
