@@ -189,6 +189,12 @@ footer a:hover{
     text-decoration: none;
     color:#5A5A5A;
 } 
+#footer .row {
+    margin: 0 auto; /* 将上下左右的 margin 设为自动，这样可以居中 */
+    padding: 20px; /* 调整 padding 值来增加内容与容器边缘的距离 */
+    max-width: 1200px; /* 设置一个最大宽度来限制内容的扩展 */
+}
+
 .video-container { display: flex;
      justify-content: center; 
      align-items: center; 
