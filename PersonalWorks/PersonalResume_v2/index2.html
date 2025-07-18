@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>柯彥廷 | 全端工程師</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 基礎設定 */
+        :root {
+            --primary: #2A3950;
+            --secondary: #FF6B6B;
+            --accent: #4ECDC4;
+            --text: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', '微軟正黑體', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f8f9fa;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* 通用樣式 */
+        .section {
+            padding: 80px 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+        }
+
+        /* 導航列 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.97);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* 首頁區塊 */
+        #home {
+            background: linear-gradient(135deg, var(--primary) 0%, #1E2A38 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 2rem auto;
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 30px rgba(78,205,196,0.3);
+        }
+
+        /* 技能卡片 */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* 時間軸 */
+        .timeline {
+            position: relative;
+            padding: 3rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: var(--accent);
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        /* 聯絡區塊 */
+        .contact-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            font-size: 1.8rem;
+            color: var(--primary);
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.8rem; }
+            .timeline::before { left: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-links">
+                <a href="#home">首頁</a>
+                <a href="#skills">技能</a>
+                <a href="#experience">經歷</a>
+                <a href="#contact">聯絡</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="section">
+        <div class="container">
+            <img src="avatar.jpg" alt="個人照片" class="profile-img">
+            <h1>柯彥廷</h1>
+            <p class="subtitle">全端工程師 | MES系統專家</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-codepen"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2>專業技能</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fas fa-code skill-icon"></i>
+                    <h3>前端開發</h3>
+                    <p>HTML5/CSS3/JavaScript<br>Vue.js/React/jQuery</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-server skill-icon"></i>
+                    <h3>後端開發</h3>
+                    <p>ASP.NET/C#<br>Web API/RESTful</p>
+                </div>
+                <!-- 更多技能卡片 -->
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="container">
+            <h2>工作經歷</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>MES系統開發工程師</h3>
+                    <p class="date">2017 - Present</p>
+                    <ul>
+                        <li>主導開發GS_ERP系統框架</li>
+                        <li>協同開發多間上市公司MES系統</li>
+                    </ul>
+                </div>
+                <!-- 更多經歷項目 -->
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="contact-box">
+                <h2>聯絡方式</h2>
+                <p><i class="fas fa-envelope"></i> dku04wu6@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +886 930-XXX-XXX</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
